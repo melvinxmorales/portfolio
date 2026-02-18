@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Melvin Morales — Senior Product Designer crafting intuitive, user-centered digital experiences.">
+<title>Melvin Morales — Product Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --surface: #111111;
+    --surface2: #161616;
+    --border: #1f1f1f;
+    --text: #e8e6e1;
+    --text-muted: #4a4a4a;
+    --text-dim: #2a2a2a;
+    --accent: #c8f135;
+    --accent-warm: #f5c842;
+    --white: #f0ede8;
+    --red: #ff4444;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* ── CUSTOM CURSOR ── */
+  .cursor {
+    position: fixed; top: 0; left: 0;
+    width: 10px; height: 10px;
+    background: var(--accent);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s, opacity 0.2s;
+    mix-blend-mode: difference;
+  }
+  .cursor-ring {
+    position: fixed; top: 0; left: 0;
+    width: 36px; height: 36px;
+    border: 1px solid rgba(200,241,53,0.4);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s cubic-bezier(.23,1,.32,1), height 0.4s cubic-bezier(.23,1,.32,1), opacity 0.3s;
+  }
+  body:hover .cursor { opacity: 1; }
+  a:hover ~ .cursor, .cursor.hover { width: 20px; height: 20px; }
+
+  /* ── GRAIN OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 1000; opacity: 0.35;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 28px 48px;
+    mix-blend-mode: normal;
+  }
+  nav::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(10,10,10,0.9) 0%, transparent 100%);
+    backdrop-filter: blur(0px);
+    pointer-events: none;
+  }
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    position: relative;
+  }
+  .nav-links {
+    display: flex; align-items: center; gap: 40px;
+    list-style: none; position: relative;
+  }
+  .nav-links a {
+    font-size: 0.78rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .nav-status {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.72rem; font-weight: 400;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-muted); position: relative;
+  }
+  .status-dot {
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 48px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg-text {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(14rem, 30vw, 28rem);
+    color: transparent;
+    -webkit-text-stroke: 1px var(--border);
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0.6;
+    letter-spacing: -0.04em;
+    user-select: none;
+  }
+  .hero-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+  .hero-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3.5rem, 9vw, 8.5rem);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s forwards;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--text-muted);
+  }
+  .hero-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.6s forwards;
+  }
+  .hero-bio {
+    max-width: 420px;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: #5a5a5a;
+    font-weight: 300;
+  }
+  .hero-bio strong { color: #888; font-weight: 400; }
+  .hero-scroll {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 0.7rem; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--text-muted);
+    text-decoration: none;
+  }
+  .hero-scroll-line {
+    width: 40px; height: 1px;
+    background: var(--text-dim);
+  }
+  .hero-year {
+    position: absolute;
+    right: 48px; top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    font-size: 0.65rem; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--text-dim);
+    transform-origin: center;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SECTION ── */
+  section { padding: 120px 48px; }
+  .section-label {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 60px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .section-label span { color: var(--text-dim); }
+  .section-label::after {
+    content: '';
+    flex: 1; height: 1px;
+    background: var(--border);
+  }
+
+  /* ── WORK ── */
+  .work-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .case-card {
+    position: relative;
+    background: var(--surface);
+    overflow: hidden;
+    text-decoration: none;
+    display: block;
+    group: true;
+  }
+  .case-card:nth-child(1) { grid-column: span 2; }
+  .case-img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(20%) brightness(0.8);
+    transition: filter 0.6s, transform 0.8s cubic-bezier(.23,1,.32,1);
+  }
+  .case-card:first-child .case-img { aspect-ratio: 21/9; }
+  .case-card:hover .case-img {
+    filter: grayscale(0%) brightness(0.9);
+    transform: scale(1.02);
+  }
+  .case-info {
+    padding: 28px 32px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .case-meta {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+  .case-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5rem;
+    color: var(--white);
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+  }
+  .case-card:first-child .case-title { font-size: 2rem; }
+  .case-tags {
+    display: flex; gap: 6px; flex-wrap: wrap;
+    margin-top: 10px;
+  }
+  .tag {
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+  }
+  .case-arrow {
+    width: 44px; height: 44px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.3s;
+  }
+  .case-card:hover .case-arrow {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #000;
+    transform: rotate(45deg);
+  }
+  .case-number {
+    position: absolute;
+    top: 20px; left: 28px;
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.2);
+  }
+  .case-overlay {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 60%;
+    background: linear-gradient(to top, rgba(10,10,10,0.8) 0%, transparent 100%);
+    pointer-events: none;
+  }
+
+  /* ── ABOUT ── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: start;
+  }
+  .about-img-wrap {
+    position: relative;
+    aspect-ratio: 4/5;
+    overflow: hidden;
+  }
+  .about-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: grayscale(30%);
+    transition: filter 0.6s;
+  }
+  .about-img-wrap:hover .about-img { filter: grayscale(0%); }
+  .about-img-label {
+    position: absolute;
+    bottom: 24px; left: 24px;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+  }
+  .about-content { padding-top: 20px; }
+  .about-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    line-height: 1.05;
+    color: var(--white);
+    letter-spacing: -0.02em;
+    margin-bottom: 32px;
+  }
+  .about-title em { font-style: italic; color: var(--text-muted); }
+  .about-text {
+    font-size: 0.92rem;
+    line-height: 1.8;
+    color: #5a5a5a;
+    margin-bottom: 20px;
+  }
+  .about-text strong { color: #888; font-weight: 400; }
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    margin-top: 48px;
+  }
+  .stat {
+    background: var(--bg);
+    padding: 28px 24px;
+  }
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.8rem;
+    color: var(--white);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .stat-num sup { font-size: 1.2rem; color: var(--accent); }
+  .stat-label {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 8px;
+  }
+  .skills-list {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    margin-top: 40px;
+  }
+  .skill {
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    padding: 8px 16px;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .skill:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ── SERVICES ── */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .service {
+    background: var(--bg);
+    padding: 48px 40px;
+    transition: background 0.3s;
+  }
+  .service:hover { background: var(--surface); }
+  .service-num {
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    color: var(--text-dim);
+    margin-bottom: 24px;
+  }
+  .service-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.4rem;
+    color: var(--white);
+    letter-spacing: -0.01em;
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+  .service-text {
+    font-size: 0.82rem;
+    line-height: 1.7;
+    color: #4a4a4a;
+  }
+  .service-tools {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    margin-top: 24px;
+  }
+  .service-tool {
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+  }
+
+  /* ── CONTACT ── */
+  .contact-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .contact-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3rem, 6vw, 6rem);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    color: var(--white);
+  }
+  .contact-title em { font-style: italic; color: var(--text-muted); }
+  .contact-email {
+    display: block;
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    color: var(--white);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    padding: 20px 0;
+    transition: border-color 0.2s, color 0.2s;
+    letter-spacing: -0.01em;
+  }
+  .contact-email:hover { border-color: var(--accent); color: var(--accent); }
+  .contact-text {
+    font-size: 0.85rem;
+    line-height: 1.75;
+    color: #4a4a4a;
+    margin-bottom: 48px;
+  }
+  .contact-links {
+    display: flex; flex-direction: column; gap: 0;
+    margin-top: 40px;
+  }
+  .contact-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border);
+    text-decoration: none;
+    transition: border-color 0.2s;
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .contact-link:hover { border-color: var(--text-muted); color: var(--text); }
+  .contact-link span { font-size: 1rem; transition: transform 0.2s; }
+  .contact-link:hover span { transform: rotate(45deg); }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 32px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border);
+    font-size: 0.68rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    width: 100%; height: 1px;
+    background: var(--border);
+    margin: 0 48px;
+    width: calc(100% - 96px);
+  }
+
+  /* ── VIEW ALL LINK ── */
+  .view-all {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-decoration: none;
+    margin-top: 48px;
+    transition: color 0.2s;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--border);
+  }
+  .view-all:hover { color: var(--accent); border-color: var(--accent); }
+  .view-all-line { width: 30px; height: 1px; background: currentColor; }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(.23,1,.32,1), transform 0.8s cubic-bezier(.23,1,.32,1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── MARQUEE ── */
+  .marquee-wrap {
+    overflow: hidden;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 20px 0;
+    background: var(--surface);
+  }
+  .marquee-inner {
+    display: flex;
+    white-space: nowrap;
+    animation: marquee 20s linear infinite;
+  }
+  .marquee-item {
+    display: flex; align-items: center; gap: 32px;
+    padding-right: 32px;
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    font-style: italic;
+    letter-spacing: 0.01em;
+  }
+  .marquee-dot { color: var(--accent); font-style: normal; }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 24px; }
+    .hero { padding: 0 24px 60px; }
+    section { padding: 80px 24px; }
+    .work-grid { grid-template-columns: 1fr; }
+    .case-card:nth-child(1) { grid-column: span 1; }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .contact-wrap { grid-template-columns: 1fr; gap: 40px; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+    .nav-links { display: none; }
+    .hero-bg-text { font-size: 8rem; }
+    .hero-year { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Custom cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">Melvin Morales</a>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-status">
+    <div class="status-dot"></div>
+    Available for work
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg-text" aria-hidden="true">UX</div>
+  <div class="hero-year" aria-hidden="true">Senior Product Designer — 2026</div>
+
+  <div class="hero-eyebrow">Product Design · Las Vegas, NV</div>
+  <h1 class="hero-title">
+    Designing<br>
+    <em>experiences</em><br>
+    that matter.
+  </h1>
+  <div class="hero-bottom">
+    <p class="hero-bio">
+      I'm <strong>Melvin Morales</strong> — a Senior Product Designer who translates complex business and user needs into clear, intuitive digital experiences. I use <strong>AI as a practical tool</strong> to accelerate research and decision-making.
+    </p>
+    <a href="#work" class="hero-scroll">
+      <div class="hero-scroll-line"></div>
+      View work
+    </a>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap" aria-hidden="true">
+  <div class="marquee-inner">
+    <div class="marquee-item">UX Design <span class="marquee-dot">◆</span></div>
+    <div class="marquee-item">Product Strategy <span class="marquee-dot">◆</span></div>
+    <div class="marquee-item">User Research <span class="marquee-dot">◆</span></div>
+    <div class="marquee-item">Design Systems <span class="marquee-dot">◆</span></div>
+    <div class="marquee-item">Prototyping <span class="marquee-dot">◆</span></div>
+    <div class="marquee-item">Interaction Design <span class="marquee-dot">◆</span></div>
+    <div class="marquee-item">AI-Assisted Workflows <span class="marquee-dot">◆</span></div>
+    <div class="marquee-item">UX Design <span class="marquee-dot">◆</span></div>
+    <div class="marquee-item">Product Strategy <span class="marquee-dot">◆</span></div>
+    <div class="marquee-item">User Research <span class="marquee-dot">◆</span></div>
+    <div class="marquee-item">Design Systems <span class="marquee-dot">◆</span></div>
+    <div class="marquee-item">Prototyping <span class="marquee-dot">◆</span></div>
+    <div class="marquee-item">Interaction Design <span class="marquee-dot">◆</span></div>
+    <div class="marquee-item">AI-Assisted Workflows <span class="marquee-dot">◆</span></div>
+  </div>
+</div>
+
+<!-- WORK -->
+<section id="work">
+  <div class="section-label reveal">
+    Selected Work <span>— 04 Cases</span>
+  </div>
+
+  <div class="work-grid">
+
+    <!-- Case 1: NetDocuments (hero/featured) -->
+    <a href="work/netdocuments.html" class="case-card reveal">
+      <span class="case-number">01</span>
+      <img
+        src="https://framerusercontent.com/images/5wpNb0pz7bshBK7KrMkpscYYsjg.png"
+        alt="NetDocuments Word Add-in"
+        class="case-img"
+        loading="lazy"
+      >
+      <div class="case-overlay"></div>
+      <div class="case-info">
+        <div>
+          <div class="case-meta">Legal Technology · SaaS · Microsoft</div>
+          <div class="case-title">NetDocuments Word Add-in</div>
+          <div class="case-tags">
+            <span class="tag">UX Design</span>
+            <span class="tag">SaaS</span>
+            <span class="tag">Microsoft</span>
+          </div>
+        </div>
+        <div class="case-arrow">→</div>
+      </div>
+    </a>
+
+    <!-- Case 2: Mindbody -->
+    <a href="work/mindbody.html" class="case-card reveal">
+      <span class="case-number">02</span>
+      <img
+        src="https://framerusercontent.com/images/VISsLIQFk5HLCoxnMMCpFR4PU.jpg"
+        alt="Mindbody Branded App"
+        class="case-img"
+        loading="lazy"
+      >
+      <div class="case-overlay"></div>
+      <div class="case-info">
+        <div>
+          <div class="case-meta">Wellness · SaaS · Mobile</div>
+          <div class="case-title">Mindbody Branded App</div>
+          <div class="case-tags">
+            <span class="tag">Mobile</span>
+            <span class="tag">iOS / Android</span>
+          </div>
+        </div>
+        <div class="case-arrow">→</div>
+      </div>
+    </a>
+
+    <!-- Case 3: Dardanos -->
+    <a href="work/dardanos.html" class="case-card reveal">
+      <span class="case-number">03</span>
+      <img
+        src="https://framerusercontent.com/images/cJCKPL2O8IUKwy9cyeeQ4R0bnfo.png"
+        alt="Dardanos Shoes"
+        class="case-img"
+        loading="lazy"
+      >
+      <div class="case-overlay"></div>
+      <div class="case-info">
+        <div>
+          <div class="case-meta">E-commerce · Retail · Checkout</div>
+          <div class="case-title">Dardanos Shoes</div>
+          <div class="case-tags">
+            <span class="tag">E-commerce</span>
+            <span class="tag">Conversion</span>
+          </div>
+        </div>
+        <div class="case-arrow">→</div>
+      </div>
+    </a>
+
+    <!-- Case 4: EZ Shoe Repair -->
+    <a href="work/ez-shoe-repair.html" class="case-card reveal">
+      <span class="case-number">04</span>
+      <img
+        src="https://framerusercontent.com/images/Y8EYX8ALmDEhWaDQDPE1EE2UQJY.jpg"
+        alt="EZ Shoe Repair"
+        class="case-img"
+        loading="lazy"
+      >
+      <div class="case-overlay"></div>
+      <div class="case-info">
+        <div>
+          <div class="case-meta">E-commerce · Web · Retail</div>
+          <div class="case-title">EZ Shoe Repair</div>
+          <div class="case-tags">
+            <span class="tag">E-commerce</span>
+            <span class="tag">Web</span>
+          </div>
+        </div>
+        <div class="case-arrow">→</div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label reveal">
+    About <span>— The Designer</span>
+  </div>
+
+  <div class="about-grid">
+    <div class="about-img-wrap reveal">
+      <img
+        src="https://framerusercontent.com/images/lIPyJYHmkd7Senrx88Xw9UbdXxY.jpg"
+        alt="Melvin Morales"
+        class="about-img"
+        loading="lazy"
+      >
+      <div class="about-img-label">Melvin Morales · Las Vegas, NV</div>
+    </div>
+
+    <div class="about-content reveal">
+      <h2 class="about-title">
+        Craft,<br>
+        <em>clarity,</em><br>
+        impact.
+      </h2>
+      <p class="about-text">
+        I'm a <strong>Senior Product Designer</strong> at NetDocuments, where I design enterprise UX for legal professionals using Microsoft Word and the broader NetDocuments platform.
+      </p>
+      <p class="about-text">
+        My work sits at the intersection of <strong>business strategy and human behavior</strong> — translating complex requirements into experiences that are both intuitive and scalable. I bring AI into my workflow as a practical accelerator, not a gimmick.
+      </p>
+      <p class="about-text">
+        When I'm not designing, I'm building the <strong>Las Vegas UX community</strong> through LVUX — a free monthly meetup connecting designers across the valley.
+      </p>
+
+      <div class="about-stats">
+        <div class="stat">
+          <div class="stat-num">8<sup>+</sup></div>
+          <div class="stat-label">Years Experience</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">4<sup>+</sup></div>
+          <div class="stat-label">Case Studies</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">3</div>
+          <div class="stat-label">Industries</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">400<sup>+</sup></div>
+          <div class="stat-label">LVUX Members</div>
+        </div>
+      </div>
+
+      <div class="skills-list">
+        <span class="skill">Figma</span>
+        <span class="skill">UX Research</span>
+        <span class="skill">Design Systems</span>
+        <span class="skill">Prototyping</span>
+        <span class="skill">Usability Testing</span>
+        <span class="skill">AI Workflows</span>
+        <span class="skill">Information Architecture</span>
+        <span class="skill">Product Strategy</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" style="padding-top: 0;">
+  <div class="section-label reveal">
+    What I Do <span>— Services</span>
+  </div>
+
+  <div class="services-grid reveal">
+    <div class="service">
+      <div class="service-num">01</div>
+      <div class="service-title">UX & Product Design</div>
+      <p class="service-text">End-to-end product design from discovery through delivery. I work with your team to define the problem, map user journeys, and ship polished, tested interfaces.</p>
+      <div class="service-tools">
+        <span class="service-tool">Figma</span>
+        <span class="service-tool">FigJam</span>
+        <span class="service-tool">Prototyping</span>
+      </div>
+    </div>
+    <div class="service">
+      <div class="service-num">02</div>
+      <div class="service-title">UX Research & Strategy</div>
+      <p class="service-text">User interviews, usability tests, competitive analysis, and synthesis. I translate qualitative and quantitative data into design decisions that move metrics.</p>
+      <div class="service-tools">
+        <span class="service-tool">User Interviews</span>
+        <span class="service-tool">Usability Testing</span>
+        <span class="service-tool">Analytics</span>
+      </div>
+    </div>
+    <div class="service">
+      <div class="service-num">03</div>
+      <div class="service-title">Design Systems</div>
+      <p class="service-text">Scalable, documented component libraries that allow teams to move fast without breaking consistency. Built for developers, designers, and product managers alike.</p>
+      <div class="service-tools">
+        <span class="service-tool">Component Libraries</span>
+        <span class="service-tool">Tokens</span>
+        <span class="service-tool">Documentation</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label reveal">
+    Contact <span>— Let's Work Together</span>
+  </div>
+
+  <div class="contact-wrap">
+    <div class="reveal">
+      <h2 class="contact-title">
+        Let's build<br>
+        something<br>
+        <em>great.</em>
+      </h2>
+    </div>
+
+    <div class="reveal">
+      <p class="contact-text">
+        Currently open to senior product design roles, contract work, and consulting engagements. If you're working on something interesting, let's talk.
+      </p>
+
+      <a href="mailto:melvinmoralesx@gmail.com" class="contact-email">
+        melvinmoralesx@gmail.com →
+      </a>
+
+      <div class="contact-links">
+        <a href="https://www.linkedin.com/in/melvinmorales/" target="_blank" rel="noopener" class="contact-link">
+          LinkedIn <span>↗</span>
+        </a>
+        <a href="https://www.instagram.com/milesawaywithmel/" target="_blank" rel="noopener" class="contact-link">
+          Instagram <span>↗</span>
+        </a>
+        <a href="https://www.etsy.com/shop/MilesAwayPrints" target="_blank" rel="noopener" class="contact-link">
+          Etsy — Miles Away Prints <span>↗</span>
+        </a>
+        <a href="https://nivlemx.github.io/lvux.github.io/" target="_blank" rel="noopener" class="contact-link">
+          LVUX Community <span>↗</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 Melvin Morales</span>
+  <span>Senior Product Designer · Las Vegas, NV</span>
+  <span>Built with intention.</span>
+</footer>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mouseX = 0, mouseY = 0;
+  let ringX = 0, ringY = 0;
+
+  document.addEventListener('mousemove', e => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    cursor.style.left = mouseX + 'px';
+    cursor.style.top = mouseY + 'px';
+  });
+
+  function animateRing() {
+    ringX += (mouseX - ringX) * 0.12;
+    ringY += (mouseY - ringY) * 0.12;
+    ring.style.left = ringX + 'px';
+    ring.style.top = ringY + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  // Hover states
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.width = '20px';
+      cursor.style.height = '20px';
+      ring.style.width = '60px';
+      ring.style.height = '60px';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.width = '10px';
+      cursor.style.height = '10px';
+      ring.style.width = '36px';
+      ring.style.height = '36px';
+    });
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 100);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  reveals.forEach(el => observer.observe(el));
+
+  // Stagger children in grids
+  document.querySelectorAll('.work-grid, .services-grid').forEach(grid => {
+    grid.querySelectorAll('.reveal').forEach((el, i) => {
+      el.style.transitionDelay = `${i * 0.08}s`;
+    });
+  });
+</script>
+</body>
+</html>
