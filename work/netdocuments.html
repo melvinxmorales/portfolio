@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="NetDocuments Word Add-in — UX Case Study by Melvin Morales">
+<title>NetDocuments Word Add-in — Melvin Morales</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:        #141414;
+    --card:      #1c1c1c;
+    --card2:     #202020;
+    --border:    #2a2a2a;
+    --text:      #f0f0f0;
+    --muted:     #888;
+    --accent:    #c8f135;
+    --radius:    20px;
+    --radius-sm: 12px;
+    --max:       860px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-serif; font-weight: 400; min-height: 100vh; cursor: none; overflow-x: hidden; }
+
+  /* CURSOR */
+  #cur { position: fixed; width: 9px; height: 9px; background: var(--accent); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width .2s, height .2s; mix-blend-mode: difference; }
+  #cur-ring { position: fixed; width: 34px; height: 34px; border: 1px solid rgba(200,241,53,.35); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: width .35s cubic-bezier(.23,1,.32,1), height .35s cubic-bezier(.23,1,.32,1); }
+
+  /* NAV */
+  .nav { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 200; display: flex; align-items: center; gap: 4px; background: rgba(28,28,28,.88); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,.07); border-radius: 100px; padding: 6px 8px; box-shadow: 0 8px 32px rgba(0,0,0,.5); white-space: nowrap; }
+  .nav-logo { font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--text); text-decoration: none; padding: 8px 16px; border-radius: 100px; margin-right: 4px; border-right: 1px solid rgba(255,255,255,.07); }
+  .nav-back { font-size: .7rem; font-weight: 500; letter-spacing: .08em; color: var(--muted); text-decoration: none; padding: 8px 16px; border-radius: 100px; transition: background .2s, color .2s; display: flex; align-items: center; gap: 6px; }
+  .nav-back:hover { background: rgba(255,255,255,.07); color: var(--text); }
+  .nav-cta { background: var(--accent); color: #000; font-weight: 700; font-size: .7rem; letter-spacing: .08em; text-decoration: none; padding: 8px 16px; border-radius: 100px; margin-left: 4px; transition: opacity .2s; }
+  .nav-cta:hover { opacity: .85; }
+
+  /* LAYOUT */
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
+  /* HERO */
+  .hero { padding: 120px 24px 0; max-width: var(--max); margin: 0 auto; }
+  .hero-tag { display: inline-flex; align-items: center; gap: 8px; font-size: .62rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; opacity: 0; animation: fadeup .6s .1s forwards; }
+  .hero-tag::before { content: ''; width: 24px; height: 1px; background: var(--accent); display: block; }
+  .hero-title { font-size: clamp(2.4rem, 6vw, 4.8rem); font-weight: 900; letter-spacing: -.03em; text-transform: uppercase; line-height: .95; color: var(--text); margin-bottom: 24px; opacity: 0; animation: fadeup .6s .2s forwards; }
+  .hero-title span { color: var(--accent); }
+  .hero-sub { font-size: 1rem; font-weight: 300; line-height: 1.7; color: var(--muted); max-width: 580px; margin-bottom: 40px; opacity: 0; animation: fadeup .6s .3s forwards; }
+  .hero-meta { display: flex; gap: 32px; flex-wrap: wrap; opacity: 0; animation: fadeup .6s .4s forwards; margin-bottom: 56px; }
+  .hero-meta-item { display: flex; flex-direction: column; gap: 4px; }
+  .hero-meta-label { font-size: .57rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
+  .hero-meta-val { font-size: .82rem; font-weight: 600; color: var(--text); }
+
+  /* HERO IMAGE */
+  .hero-img-wrap { width: 100%; border-radius: var(--radius); overflow: hidden; border: 1px solid rgba(255,255,255,.04); opacity: 0; animation: fadeup .8s .5s forwards; }
+  .hero-img { width: 100%; display: block; object-fit: cover; }
+
+  /* SECTION LAYOUT */
+  .section { max-width: var(--max); margin: 0 auto; padding: 80px 24px 0; }
+  .section-label { font-size: .58rem; font-weight: 700; letter-spacing: .25em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+  .section-label::before { content: ''; width: 20px; height: 1px; background: var(--accent); display: block; }
+  .section-title { font-size: clamp(1.6rem, 3.5vw, 2.6rem); font-weight: 800; letter-spacing: -.02em; line-height: 1.05; color: var(--text); margin-bottom: 24px; }
+  .section-body { font-size: .9rem; font-weight: 300; line-height: 1.85; color: var(--muted); }
+  .section-body p + p { margin-top: 16px; }
+  .section-body strong { color: #bbb; font-weight: 500; }
+
+  /* DIVIDER */
+  .divider { max-width: var(--max); margin: 80px auto 0; padding: 0 24px; }
+  .divider-line { height: 1px; background: var(--border); }
+
+  /* STAT ROW */
+  .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border-radius: var(--radius); overflow: hidden; border: 1px solid rgba(255,255,255,.04); }
+  .stat-cell { background: var(--card); padding: 32px 28px; }
+  .stat-big { font-size: 2.8rem; font-weight: 900; color: var(--text); letter-spacing: -.03em; line-height: 1; }
+  .stat-big span { color: var(--accent); }
+  .stat-desc { font-size: .72rem; font-weight: 400; color: var(--muted); margin-top: 8px; line-height: 1.5; }
+
+  /* CALLOUT CARD */
+  .callout { background: var(--card); border-radius: var(--radius); border: 1px solid rgba(255,255,255,.04); padding: 40px; position: relative; overflow: hidden; }
+  .callout-glow { position: absolute; top: -60px; right: -60px; width: 280px; height: 280px; background: radial-gradient(circle, rgba(200,241,53,.06) 0%, transparent 65%); pointer-events: none; }
+  .callout-quote { font-size: 1.15rem; font-weight: 300; line-height: 1.75; color: #bbb; font-style: italic; position: relative; }
+  .callout-quote::before { content: '"'; font-size: 4rem; font-weight: 900; color: var(--accent); line-height: .5; display: block; margin-bottom: 16px; font-style: normal; }
+  .callout-attr { font-size: .65rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); margin-top: 20px; }
+
+  /* PROCESS STEPS */
+  .process-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .process-card { background: var(--card); border-radius: var(--radius); border: 1px solid rgba(255,255,255,.04); padding: 32px; position: relative; overflow: hidden; }
+  .process-num { font-size: 4rem; font-weight: 900; color: rgba(200,241,53,.06); position: absolute; top: 16px; right: 20px; line-height: 1; letter-spacing: -.04em; }
+  .process-step-label { font-size: .6rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+  .process-step-title { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 14px; line-height: 1.2; }
+  .process-step-body { font-size: .8rem; font-weight: 300; line-height: 1.75; color: var(--muted); }
+
+  /* PERSONA */
+  .persona-card { background: var(--card); border-radius: var(--radius); border: 1px solid rgba(255,255,255,.04); overflow: hidden; display: grid; grid-template-columns: 240px 1fr; }
+  .persona-img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; filter: grayscale(20%); }
+  .persona-body { padding: 36px; }
+  .persona-name { font-size: 1.3rem; font-weight: 800; color: var(--text); margin-bottom: 4px; }
+  .persona-role { font-size: .7rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
+  .persona-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px; }
+  .persona-attr-label { font-size: .57rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+  .persona-attr-val { font-size: .8rem; font-weight: 500; color: var(--text); }
+  .persona-cols { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; border-top: 1px solid var(--border); padding-top: 20px; }
+  .persona-col-title { font-size: .6rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+  .persona-col-item { font-size: .75rem; font-weight: 300; color: #bbb; line-height: 1.6; display: flex; gap: 8px; align-items: flex-start; margin-bottom: 6px; }
+  .persona-col-item::before { content: '—'; color: var(--accent); flex-shrink: 0; font-size: .6rem; margin-top: 3px; }
+
+  /* INSIGHTS */
+  .insights-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+  .insight-card { background: var(--card); border-radius: var(--radius); border: 1px solid rgba(255,255,255,.04); padding: 28px; }
+  .insight-icon { font-size: 1.4rem; margin-bottom: 14px; }
+  .insight-title { font-size: .88rem; font-weight: 700; color: var(--text); margin-bottom: 10px; line-height: 1.3; }
+  .insight-body { font-size: .75rem; font-weight: 300; color: var(--muted); line-height: 1.7; }
+
+  /* OUTCOMES */
+  .outcomes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .outcome-card { background: var(--card); border-radius: var(--radius); border: 1px solid rgba(255,255,255,.04); padding: 32px; border-left: 3px solid var(--accent); }
+  .outcome-title { font-size: .95rem; font-weight: 700; color: var(--text); margin-bottom: 10px; line-height: 1.3; }
+  .outcome-body { font-size: .78rem; font-weight: 300; color: var(--muted); line-height: 1.7; }
+
+  /* LEARNINGS */
+  .learnings-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+  .learning-card { background: var(--card); border-radius: var(--radius); border: 1px solid rgba(255,255,255,.04); padding: 28px; }
+  .learning-num { font-size: .6rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+  .learning-title { font-size: .92rem; font-weight: 700; color: var(--text); margin-bottom: 10px; line-height: 1.3; }
+  .learning-body { font-size: .75rem; font-weight: 300; color: var(--muted); line-height: 1.7; }
+
+  /* NEXT PROJECT */
+  .next-wrap { max-width: var(--max); margin: 80px auto 0; padding: 0 24px 80px; }
+  .next-card { background: var(--card); border-radius: var(--radius); border: 1px solid rgba(255,255,255,.04); padding: 48px; display: flex; justify-content: space-between; align-items: center; gap: 24px; text-decoration: none; transition: border-color .2s, background .2s; position: relative; overflow: hidden; }
+  .next-card:hover { border-color: rgba(200,241,53,.2); background: rgba(200,241,53,.02); }
+  .next-card-glow { position: absolute; right: -80px; top: -80px; width: 280px; height: 280px; background: radial-gradient(circle, rgba(200,241,53,.05) 0%, transparent 65%); pointer-events: none; }
+  .next-label { font-size: .6rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  .next-title { font-size: 1.4rem; font-weight: 800; color: var(--text); letter-spacing: -.01em; }
+  .next-arrow { width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--muted); flex-shrink: 0; transition: background .2s, color .2s, transform .3s; }
+  .next-card:hover .next-arrow { background: var(--accent); color: #000; transform: rotate(45deg); }
+
+  /* FOOTER */
+  .footer { max-width: var(--max); margin: 0 auto; padding: 0 24px 40px; }
+  .footer-card { background: var(--card); border-radius: var(--radius); border: 1px solid rgba(255,255,255,.04); padding: 18px 26px; display: flex; justify-content: space-between; align-items: center; font-size: .6rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+
+  /* TAG CHIPS */
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 20px; }
+  .tag { font-size: .6rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: 5px 12px; border-radius: 100px; background: rgba(255,255,255,.04); color: var(--muted); border: 1px solid var(--border); }
+
+  /* LIVE LINK */
+  .live-link { display: inline-flex; align-items: center; gap: 10px; font-size: .75rem; font-weight: 600; letter-spacing: .06em; color: var(--accent); text-decoration: none; border: 1px solid rgba(200,241,53,.2); border-radius: 100px; padding: 10px 20px; transition: background .2s, border-color .2s; margin-top: 28px; }
+  .live-link:hover { background: rgba(200,241,53,.06); border-color: rgba(200,241,53,.4); }
+  .live-link span { transition: transform .2s; display: inline-block; }
+  .live-link:hover span { transform: rotate(45deg); }
+
+  /* REVEAL */
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity .65s cubic-bezier(.23,1,.32,1), transform .65s cubic-bezier(.23,1,.32,1); }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  @keyframes fadeup { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:none; } }
+
+  /* MOBILE */
+  @media (max-width: 700px) {
+    .process-grid { grid-template-columns: 1fr; }
+    .insights-grid { grid-template-columns: 1fr; }
+    .learnings-grid { grid-template-columns: 1fr; }
+    .outcomes-grid { grid-template-columns: 1fr; }
+    .stat-row { grid-template-columns: 1fr; }
+    .persona-card { grid-template-columns: 1fr; }
+    .persona-img { aspect-ratio: 4/3; width: 100%; height: auto; }
+    .persona-cols { grid-template-columns: 1fr; }
+    .persona-grid { grid-template-columns: 1fr 1fr; }
+    .next-card { flex-direction: column; align-items: flex-start; }
+    .footer-card { flex-direction: column; gap: 6px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+<div id="cur-ring"></div>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">MM</a>
+  <a href="../index.html" class="nav-back">&#8592; Back to Work</a>
+  <a href="../index.html#contact" class="nav-cta">Contact</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">Case Study</div>
+  <h1 class="hero-title">NetDocuments<br><span>Word Add-in</span></h1>
+  <p class="hero-sub">Enabling secure coauthoring and document management directly inside Microsoft Word — without leaving the document.</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Industry</span>
+      <span class="hero-meta-val">Legal Technology / SaaS</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Role</span>
+      <span class="hero-meta-val">Lead Product Designer</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Platform</span>
+      <span class="hero-meta-val">Microsoft Word Desktop</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Timeline</span>
+      <span class="hero-meta-val">Ongoing · Sep 2023 — Present</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Company</span>
+      <span class="hero-meta-val">NetDocuments</span>
+    </div>
+  </div>
+  <div class="hero-img-wrap">
+    <img src="https://framerusercontent.com/images/5wpNb0pz7bshBK7KrMkpscYYsjg.png" alt="NetDocuments Word Add-in" class="hero-img">
+  </div>
+</div>
+
+<!-- OVERVIEW -->
+<div class="section reveal">
+  <div class="section-label">01 — Overview</div>
+  <h2 class="section-title">Bringing Document<br>Management Into Word</h2>
+  <div class="section-body">
+    <p>Legal professionals spend the majority of their day drafting and editing documents in Microsoft Word. Historically, NetDocuments users had to constantly move between the NetDocuments web platform and Word to open files, save changes, manage versions, and add required metadata — a workflow that fragmented focus and slowed work.</p>
+    <p>I led the end-to-end design of a net-new Word Add-in that brings NetDocuments directly into the Word ribbon. Users can now manage documents, collaborate in real time, and maintain compliance — <strong>without ever leaving Word.</strong></p>
+  </div>
+  <a href="https://www.netdocuments.com/solutions/microsoft-integration/" target="_blank" rel="noopener" class="live-link">View Live Product <span>&#8599;</span></a>
+  <div class="tags">
+    <span class="tag">UX Research</span>
+    <span class="tag">Product Design</span>
+    <span class="tag">Microsoft 365</span>
+    <span class="tag">Design Systems</span>
+    <span class="tag">Prototyping</span>
+    <span class="tag">Usability Testing</span>
+    <span class="tag">Patternbuilder</span>
+  </div>
+</div>
+
+<div class="divider reveal"><div class="divider-line"></div></div>
+
+<!-- IMPACT STATS -->
+<div class="section reveal">
+  <div class="section-label">Project Scope</div>
+  <div class="stat-row">
+    <div class="stat-cell">
+      <div class="stat-big" style="font-size:1.6rem;line-height:1.2;">Net New<span>.</span></div>
+      <div class="stat-desc">Shipped a brand new product surface — the first native Word Add-in in NetDocuments' Microsoft 365 integration suite</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-big">4<span>+</span></div>
+      <div class="stat-desc">Integrated products designed: Word Add-in, CSPP Plus, ndConnect, and Patternbuilder</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-big" style="font-size:1.6rem;line-height:1.2;">Zero<span>.</span></div>
+      <div class="stat-desc">Compliance compromises — all firm metadata and versioning requirements met in the shipped product</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider reveal"><div class="divider-line"></div></div>
+
+<!-- PROBLEM -->
+<div class="section reveal">
+  <div class="section-label">02 — Problem Statement</div>
+  <h2 class="section-title">Legal Work Happens in Word.<br>Document Management Didn't.</h2>
+  <div class="section-body">
+    <p>Users were forced to jump between Word and the NetDocuments web platform to open files, save updates, manage versions, and add metadata. This constant task-switching broke concentration and made real-time collaboration nearly impossible in a profession where accuracy and speed are critical.</p>
+  </div>
+</div>
+
+<div class="section reveal" style="padding-top: 28px;">
+  <div class="callout">
+    <div class="callout-glow"></div>
+    <p class="callout-quote">I lose my train of thought every time I have to go back to the browser to save or check a version. I just want to stay in Word and do my work.</p>
+    <div class="callout-attr">— Senior Associate Attorney, User Research Interview</div>
+  </div>
+</div>
+
+<div class="divider reveal"><div class="divider-line"></div></div>
+
+<!-- PERSONA -->
+<div class="section reveal">
+  <div class="section-label">03 — User Persona</div>
+  <h2 class="section-title">Who We Designed For</h2>
+  <div class="persona-card" style="margin-top: 28px;">
+    <img src="https://framerusercontent.com/images/JEp9uTaXIIUQM5yytnCuY5Xq9fs.jpg" alt="Alex Morgan" class="persona-img">
+    <div class="persona-body">
+      <div class="persona-name">Alex Morgan</div>
+      <div class="persona-role">Senior Associate Attorney</div>
+      <div class="persona-grid">
+        <div>
+          <div class="persona-attr-label">Age</div>
+          <div class="persona-attr-val">38</div>
+        </div>
+        <div>
+          <div class="persona-attr-label">Location</div>
+          <div class="persona-attr-val">Urban / City Center</div>
+        </div>
+        <div>
+          <div class="persona-attr-label">Tech Proficiency</div>
+          <div class="persona-attr-val">High</div>
+        </div>
+        <div>
+          <div class="persona-attr-label">Primary Tool</div>
+          <div class="persona-attr-val">Microsoft Word</div>
+        </div>
+      </div>
+      <div class="persona-cols">
+        <div>
+          <div class="persona-col-title">Goals</div>
+          <div class="persona-col-item">Work directly in Word without switching tools</div>
+          <div class="persona-col-item">Collaborate in real time with colleagues</div>
+          <div class="persona-col-item">Maintain version control and compliance</div>
+        </div>
+        <div>
+          <div class="persona-col-title">Frustrations</div>
+          <div class="persona-col-item">Constant platform switching breaks focus</div>
+          <div class="persona-col-item">Manual version management is error-prone</div>
+          <div class="persona-col-item">No real-time collaboration in Word</div>
+        </div>
+        <div>
+          <div class="persona-col-title">Behaviors</div>
+          <div class="persona-col-item">Spends 6+ hours daily drafting in Word</div>
+          <div class="persona-col-item">Manages 10–30 active matters at once</div>
+          <div class="persona-col-item">High expectations for reliability and trust</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:14px;background:rgba(200,241,53,.04);border:1px solid rgba(200,241,53,.12);border-radius:var(--radius-sm);padding:20px 24px;display:flex;gap:16px;align-items:flex-start;">
+    <div style="font-size:1rem;flex-shrink:0;margin-top:2px;">💡</div>
+    <div>
+      <div style="font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;">How Alex shaped the design</div>
+      <div style="font-size:.78rem;font-weight:300;line-height:1.7;color:#bbb;">Alex's core frustration — losing focus every time she had to leave Word — directly drove the decision to <strong style="color:var(--text);font-weight:500;">embed the entire save and version flow inside the ribbon</strong> rather than launching a separate panel or browser window. Every action that could be kept in-context was kept in-context.</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider reveal"><div class="divider-line"></div></div>
+
+<!-- RESEARCH -->
+<div class="section reveal">
+  <div class="section-label">04 — Research &amp; Insights</div>
+  <h2 class="section-title">What We Learned</h2>
+  <div class="section-body">
+    <p>I conducted interviews with legal professionals across firm sizes to understand their daily drafting workflows and identify the highest-friction moments. Key research activities included contextual inquiry sessions, workflow mapping, and validation sessions with existing NetDocuments customers.</p>
+  </div>
+  <div class="insights-grid" style="margin-top: 28px;">
+    <div class="insight-card">
+      <div class="insight-icon">⚡</div>
+      <div class="insight-title">Word Is the Primary Workspace</div>
+      <div class="insight-body">100% of participants opened Word first. Any friction that required leaving Word was seen as a hard blocker to adoption — not just an inconvenience.</div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-icon">🤝</div>
+      <div class="insight-title">Collaboration Must Feel Native</div>
+      <div class="insight-body">Users needed coauthoring to feel like a built-in Word feature, not a third-party tool. Trust in the integration was directly tied to how native it felt.</div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-icon">🔒</div>
+      <div class="insight-title">Compliance Is Non-Negotiable</div>
+      <div class="insight-body">Metadata and version history are legal requirements in most firms. Any solution that removed or hid these features would fail compliance review and never ship.</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider reveal"><div class="divider-line"></div></div>
+
+<!-- PROCESS -->
+<div class="section reveal">
+  <div class="section-label">05 — Design Process</div>
+  <h2 class="section-title">How We Got There</h2>
+  <div class="process-grid" style="margin-top: 28px;">
+    <div class="process-card">
+      <div class="process-num">01</div>
+      <div class="process-step-label">Discovery</div>
+      <div class="process-step-title">User Research &amp; Workflow Mapping</div>
+      <div class="process-step-body">Conducted interviews with attorneys, paralegals, and legal ops across 8 firms. Mapped every step of the document open, edit, save, and version workflow to identify friction points and priorities.</div>
+    </div>
+    <div class="process-card">
+      <div class="process-num">02</div>
+      <div class="process-step-label">Define</div>
+      <div class="process-step-title">Insights Synthesis &amp; Problem Framing</div>
+      <div class="process-step-body">Synthesized research into core insight themes. Defined the design challenge: bring NetDocuments into Word without adding cognitive load or breaking existing compliance workflows.</div>
+    </div>
+    <div class="process-card">
+      <div class="process-num">03</div>
+      <div class="process-step-label">Design</div>
+      <div class="process-step-title">Ribbon Architecture &amp; System Design</div>
+      <div class="process-step-body">Designed the ribbon layout, task pane flows, open/save dialogs, version panels, and coauthoring indicators — all within Microsoft's strict Office Add-in constraints. Used Patternbuilder, NetDocuments' internal design system, to ensure every component stayed consistent across the broader product suite. Fluent Design alignment wasn't optional — it was the baseline for the experience to feel trusted.</div>
+    </div>
+    <div class="process-card">
+      <div class="process-num">04</div>
+      <div class="process-step-label">Validate</div>
+      <div class="process-step-title">Usability Testing &amp; Iteration</div>
+      <div class="process-step-body">Ran moderated usability sessions with legal professionals. Iterated on ribbon layouts to reduce cognitive load, tested open and save flows to minimize required steps, and collaborated with Microsoft engineers to validate technical feasibility.</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider reveal"><div class="divider-line"></div></div>
+
+<!-- SOLUTION -->
+<div class="section reveal">
+  <div class="section-label">06 — Design Solution</div>
+  <h2 class="section-title">One Experience.<br>Inside Word.</h2>
+  <div class="section-body">
+    <p>The final solution integrates NetDocuments directly into the Microsoft Word ribbon — giving users access to their entire document management system without leaving the application where they do their best work. Every interaction was designed to feel like it was built by Microsoft, not bolted on.</p>
+    <p><strong>Key capabilities delivered:</strong></p>
+  </div>
+  <div class="insights-grid" style="margin-top: 28px;">
+    <div class="insight-card">
+      <div class="insight-icon">📂</div>
+      <div class="insight-title">Open &amp; Save from NetDocuments</div>
+      <div class="insight-body">Users can open any NetDocuments file directly from the ribbon and save changes back — with full version history — without touching a browser.</div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-icon">🔄</div>
+      <div class="insight-title">Version Management</div>
+      <div class="insight-body">Inline flows for saving new versions and accessing previous versions, surfaced in context during the save action — so it's part of the habit, not an extra step.</div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-icon">🏷️</div>
+      <div class="insight-title">Integrated Document Profiling</div>
+      <div class="insight-body">Document metadata profiling is embedded directly into the save flow, ensuring compliance requirements are met without requiring users to switch contexts.</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider reveal"><div class="divider-line"></div></div>
+
+<!-- OUTCOMES -->
+<div class="section reveal">
+  <div class="section-label">07 — Outcomes</div>
+  <h2 class="section-title">What We Delivered</h2>
+  <div class="outcomes-grid" style="margin-top: 28px;">
+    <div class="outcome-card">
+      <div class="outcome-title">Net New Word Add-in Shipped</div>
+      <div class="outcome-body">Delivered a production-ready Word Add-in that meets users where they work — directly inside the tool that drives their entire day.</div>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-title">Strengthened Microsoft 365 Ecosystem</div>
+      <div class="outcome-body">The Add-in is a core part of NetDocuments' Microsoft 365 integration story, expanding the product surface and increasing enterprise stickiness.</div>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-title">Unified Compliance + Collaboration</div>
+      <div class="outcome-body">Merged document management, real-time collaboration, and compliance requirements into one seamless experience — no trade-offs required.</div>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-title">Fluent Design = Enterprise Trust</div>
+      <div class="outcome-body">Designing to Microsoft's Fluent Design standards wasn't just craft — it was a prerequisite for adoption. Legal firms evaluate tools based on how trustworthy they feel. A native-feeling Add-in passes that bar in a way a bolted-on integration never would.</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider reveal"><div class="divider-line"></div></div>
+
+<!-- LEARNINGS -->
+<div class="section reveal">
+  <div class="section-label">08 — Key Learnings</div>
+  <h2 class="section-title">What This Project Taught Me</h2>
+  <div class="learnings-grid" style="margin-top: 28px;">
+    <div class="learning-card">
+      <div class="learning-num">Learning 01</div>
+      <div class="learning-title">Meet Users Where They Work</div>
+      <div class="learning-body">The most impactful solutions don't ask users to change their behavior — they reduce friction by integrating into the workflows that already exist. The best UX is often invisible.</div>
+    </div>
+    <div class="learning-card">
+      <div class="learning-num">Learning 02</div>
+      <div class="learning-title">Native Experiences Build Trust</div>
+      <div class="learning-body">In a high-stakes legal environment, trust is everything. Aligning with Microsoft's Fluent Design system wasn't just aesthetic — it was a strategic decision that directly impacted adoption.</div>
+    </div>
+    <div class="learning-card">
+      <div class="learning-num">Learning 03</div>
+      <div class="learning-title">Complexity Requires Clarity</div>
+      <div class="learning-body">The design challenge wasn't removing features — legal requirements meant all features had to stay. The challenge was designing clarity around unavoidable complexity.</div>
+    </div>
+  </div>
+</div>
+
+<!-- NEXT PROJECT -->
+<div class="next-wrap reveal">
+  <a href="mindbody.html" class="next-card">
+    <div class="next-card-glow"></div>
+    <div>
+      <div class="next-label">Next Case Study</div>
+      <div class="next-title">Mindbody Branded App</div>
+    </div>
+    <div class="next-arrow">&#8594;</div>
+  </a>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-card">
+    <span>&copy; 2026 Melvin Morales</span>
+    <span>Senior Product Designer &middot; Las Vegas, NV</span>
+    <span>Built with intention.</span>
+  </div>
+</div>
+
+<script>
+  var cur = document.getElementById('cur'), ring = document.getElementById('cur-ring');
+  var mx=0, my=0, rx=0, ry=0;
+  document.addEventListener('mousemove', function(e) { mx=e.clientX; my=e.clientY; cur.style.left=mx+'px'; cur.style.top=my+'px'; });
+  (function loop() { rx+=(mx-rx)*0.1; ry+=(my-ry)*0.1; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(loop); })();
+  document.querySelectorAll('a,button').forEach(function(el) {
+    el.addEventListener('mouseenter', function() { cur.style.width=cur.style.height='16px'; ring.style.width=ring.style.height='50px'; });
+    el.addEventListener('mouseleave', function() { cur.style.width=cur.style.height='9px'; ring.style.width=ring.style.height='34px'; });
+  });
+
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e, i) {
+      if (e.isIntersecting) { setTimeout(function(){ e.target.classList.add('visible'); }, i*80); obs.unobserve(e.target); }
+    });
+  }, {threshold: 0.08});
+  document.querySelectorAll('.reveal').forEach(function(el) { obs.observe(el); });
+</script>
+</body>
+</html>
