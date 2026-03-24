@@ -133,32 +133,56 @@
   @media (max-width: 860px) {
     body { cursor: auto; }
     #cur, #cur-ring { display: none; }
+
+    /* Nav */
     .nav { gap: 0; padding: 5px 6px; }
     .nav-link { display: none; }
     .nav-link.mobile-show { display: inline-block; }
     .nav-logo { font-size: .68rem; padding: 8px 14px; margin-right: 0; border-right: none; }
     .nav-cta { font-size: .68rem; padding: 8px 14px; margin-left: 6px; }
-    .page { grid-template-columns: 1fr; padding: 72px 16px 24px; gap: 12px; }
-    .col-left { position: relative; top: 0; width: 100%; height: auto; overflow: visible; display: flex; flex-direction: column; gap: 10px; }
+
+    /* Layout — single column, no sidebar */
+    .page { display: block; padding: 72px 16px 24px; max-width: 100%; }
+    .col-left { position: relative; top: 0; width: 100%; margin-bottom: 12px; }
+    .col-right { width: 100%; }
+
+    /* Profile — compact */
     .profile-photo { aspect-ratio: 16/9; object-position: center 20%; }
-    .hero-card { padding: 28px 20px; }
-    .hero-title { font-size: clamp(1.6rem, 6vw, 2.4rem); }
+    .profile-info { padding: 16px; }
+    .stats-card { margin-top: 10px; }
+    .stat-num { font-size: 1.3rem; }
+
+    /* Hero */
+    .hero-card { padding: 24px 20px; }
+    .hero-title { font-size: clamp(1.6rem, 7vw, 2.4rem); }
     .hero-bio { font-size: .78rem; }
-    .hero-btn { font-size: .68rem; padding: 10px 22px; }
+    .hero-btn { font-size: .68rem; padding: 10px 20px; }
     .hero-btn-secondary { font-size: .66rem; }
+    .hero-cta-wrap { flex-wrap: wrap; }
+
+    /* Projects — horizontal scroll */
     .proj-grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; gap: 10px; padding: 10px; }
-    .proj-card { min-width: 75vw; scroll-snap-align: start; flex-shrink: 0; }
-    .proj-card.wide { grid-column: unset; min-width: 75vw; }
+    .proj-card { min-width: 80vw; scroll-snap-align: start; flex-shrink: 0; }
+    .proj-card.wide { grid-column: unset; min-width: 80vw; }
     .proj-img-wrap.tall { aspect-ratio: 16/10; }
-    .section-head { padding: 20px 16px; }
-    .exp-item { padding: 18px 16px; }
+
+    /* Sections */
+    .section-head { padding: 18px 16px; }
+    .section-card { border-radius: 14px; }
+    .exp-item { padding: 16px; }
     .exp-role { white-space: normal; }
     .exp-company { font-size: .82rem; }
+
+    /* Contact */
     .contact-links { grid-template-columns: 1fr; }
-    .contact-card { padding: 28px 20px; }
-    .contact-heading { font-size: clamp(1.6rem, 6vw, 2.4rem); }
+    .contact-card { padding: 24px 20px; }
+    .contact-heading { font-size: clamp(1.6rem, 7vw, 2.4rem); }
+
+    /* Footer */
     .footer-card { flex-direction: column; gap: 6px; text-align: center; padding: 14px; }
-    .stat-num { font-size: 1.3rem; }
+
+    /* Skill chips */
+    .skill-chip { font-size: .58rem; padding: 4px 10px; }
   }
 </style>
 </head>
