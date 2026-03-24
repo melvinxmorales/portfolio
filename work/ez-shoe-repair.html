@@ -15,7 +15,7 @@
     --border:    #2a2a2a;
     --text:      #f0f0f0;
     --muted:     #888;
-    --accent:    #c8f135;
+    --accent:    #3B82F6;
     --radius:    20px;
     --radius-sm: 12px;
     --max:       860px;
@@ -26,7 +26,7 @@
   body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-serif; font-weight: 400; min-height: 100vh; cursor: none; overflow-x: hidden; }
 
   #cur { position: fixed; width: 9px; height: 9px; background: var(--accent); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width .2s, height .2s; mix-blend-mode: difference; }
-  #cur-ring { position: fixed; width: 34px; height: 34px; border: 1px solid rgba(200,241,53,.35); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: width .35s cubic-bezier(.23,1,.32,1), height .35s cubic-bezier(.23,1,.32,1); }
+  #cur-ring { position: fixed; width: 34px; height: 34px; border: 1px solid rgba(59,130,246,.35); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: width .35s cubic-bezier(.23,1,.32,1), height .35s cubic-bezier(.23,1,.32,1); }
 
   .nav { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 200; display: flex; align-items: center; gap: 4px; background: rgba(28,28,28,.88); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,.07); border-radius: 100px; padding: 6px 8px; box-shadow: 0 8px 32px rgba(0,0,0,.5); white-space: nowrap; }
   .nav-logo { font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--text); text-decoration: none; padding: 8px 16px; border-radius: 100px; margin-right: 4px; border-right: 1px solid rgba(255,255,255,.07); }
@@ -66,14 +66,14 @@
   .stat-desc { font-size: .72rem; font-weight: 400; color: var(--muted); margin-top: 8px; line-height: 1.5; }
 
   .callout { background: var(--card); border-radius: var(--radius); border: 1px solid rgba(255,255,255,.04); padding: 40px; position: relative; overflow: hidden; }
-  .callout-glow { position: absolute; top: -60px; right: -60px; width: 280px; height: 280px; background: radial-gradient(circle, rgba(200,241,53,.06) 0%, transparent 65%); pointer-events: none; }
+  .callout-glow { position: absolute; top: -60px; right: -60px; width: 280px; height: 280px; background: radial-gradient(circle, rgba(59,130,246,.06) 0%, transparent 65%); pointer-events: none; }
   .callout-quote { font-size: 1.15rem; font-weight: 300; line-height: 1.75; color: #bbb; font-style: italic; position: relative; }
   .callout-quote::before { content: '"'; font-size: 4rem; font-weight: 900; color: var(--accent); line-height: .5; display: block; margin-bottom: 16px; font-style: normal; }
   .callout-attr { font-size: .65rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); margin-top: 20px; }
 
   .process-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .process-card { background: var(--card); border-radius: var(--radius); border: 1px solid rgba(255,255,255,.04); padding: 32px; position: relative; overflow: hidden; }
-  .process-num { font-size: 4rem; font-weight: 900; color: rgba(200,241,53,.06); position: absolute; top: 16px; right: 20px; line-height: 1; letter-spacing: -.04em; }
+  .process-num { font-size: 4rem; font-weight: 900; color: rgba(59,130,246,.06); position: absolute; top: 16px; right: 20px; line-height: 1; letter-spacing: -.04em; }
   .process-step-label { font-size: .6rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
   .process-step-title { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 14px; line-height: 1.2; }
   .process-step-body { font-size: .8rem; font-weight: 300; line-height: 1.75; color: var(--muted); }
@@ -110,8 +110,8 @@
 
   .next-wrap { max-width: var(--max); margin: 80px auto 0; padding: 0 24px 80px; }
   .next-card { background: var(--card); border-radius: var(--radius); border: 1px solid rgba(255,255,255,.04); padding: 48px; display: flex; justify-content: space-between; align-items: center; gap: 24px; text-decoration: none; transition: border-color .2s, background .2s; position: relative; overflow: hidden; }
-  .next-card:hover { border-color: rgba(200,241,53,.2); background: rgba(200,241,53,.02); }
-  .next-card-glow { position: absolute; right: -80px; top: -80px; width: 280px; height: 280px; background: radial-gradient(circle, rgba(200,241,53,.05) 0%, transparent 65%); pointer-events: none; }
+  .next-card:hover { border-color: rgba(59,130,246,.2); background: rgba(59,130,246,.02); }
+  .next-card-glow { position: absolute; right: -80px; top: -80px; width: 280px; height: 280px; background: radial-gradient(circle, rgba(59,130,246,.05) 0%, transparent 65%); pointer-events: none; }
   .next-label { font-size: .6rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
   .next-title { font-size: 1.4rem; font-weight: 800; color: var(--text); letter-spacing: -.01em; }
   .next-arrow { width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--muted); flex-shrink: 0; transition: background .2s, color .2s, transform .3s; }
@@ -123,8 +123,8 @@
   .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 20px; }
   .tag { font-size: .6rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: 5px 12px; border-radius: 100px; background: rgba(255,255,255,.04); color: var(--muted); border: 1px solid var(--border); }
 
-  .live-link { display: inline-flex; align-items: center; gap: 10px; font-size: .75rem; font-weight: 600; letter-spacing: .06em; color: var(--accent); text-decoration: none; border: 1px solid rgba(200,241,53,.2); border-radius: 100px; padding: 10px 20px; transition: background .2s, border-color .2s; margin-top: 28px; }
-  .live-link:hover { background: rgba(200,241,53,.06); border-color: rgba(200,241,53,.4); }
+  .live-link { display: inline-flex; align-items: center; gap: 10px; font-size: .75rem; font-weight: 600; letter-spacing: .06em; color: var(--accent); text-decoration: none; border: 1px solid rgba(59,130,246,.2); border-radius: 100px; padding: 10px 20px; transition: background .2s, border-color .2s; margin-top: 28px; }
+  .live-link:hover { background: rgba(59,130,246,.06); border-color: rgba(59,130,246,.4); }
   .live-link span { transition: transform .2s; display: inline-block; }
   .live-link:hover span { transform: rotate(45deg); }
 
@@ -315,7 +315,7 @@
     </div>
   </div>
 
-  <div style="margin-top:14px;background:rgba(200,241,53,.04);border:1px solid rgba(200,241,53,.12);border-radius:var(--radius-sm);padding:20px 24px;display:flex;gap:16px;align-items:flex-start;">
+  <div style="margin-top:14px;background:rgba(59,130,246,.04);border:1px solid rgba(59,130,246,.12);border-radius:var(--radius-sm);padding:20px 24px;display:flex;gap:16px;align-items:flex-start;">
     <div style="font-size:1rem;flex-shrink:0;margin-top:2px;">💡</div>
     <div>
       <div style="font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;">How Amelia shaped the design</div>
@@ -467,11 +467,11 @@
 
 <!-- NEXT PROJECT — loop back to NetDocuments -->
 <div class="next-wrap reveal">
-  <a href="netdocuments.html" class="next-card">
+  <a href="marcavo.html" class="next-card">
     <div class="next-card-glow"></div>
     <div>
-      <div class="next-label">Back to First Case Study</div>
-      <div class="next-title">NetDocuments Word Add-in</div>
+      <div class="next-label">Next Project</div>
+      <div class="next-title">Marcavo</div>
     </div>
     <div class="next-arrow">&#8594;</div>
   </a>

@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Dardano's Shoes E-commerce Redesign — UX Case Study by Melvin Morales">
-<title>Dardano's Shoes — Melvin Morales</title>
+<meta name="description" content="Marcavo Client Portal — UX Case Study by Melvin Morales">
+<title>Marcavo — Melvin Morales</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
@@ -161,330 +161,349 @@
 </head>
 <body>
 
+<!-- Custom Cursor -->
 <div id="cur"></div>
 <div id="cur-ring"></div>
 
+<!-- Navigation -->
 <nav class="nav">
   <a href="../index.html" class="nav-logo">MM</a>
-  <a href="../index.html" class="nav-back">&#8592; Back to Work</a>
+  <a href="../index.html" class="nav-back">&larr; Back to Work</a>
   <a href="../index.html#contact" class="nav-cta">Contact</a>
 </nav>
 
-<!-- HERO -->
-<div class="hero">
+<!-- Hero -->
+<header class="hero">
   <div class="hero-tag">Case Study</div>
-  <h1 class="hero-title">Dardano&rsquo;s<br><span>Shoes</span></h1>
-  <p class="hero-sub">A full e-commerce redesign that helped an 85-year-old family shoe retailer survive the pandemic — pivoting from physical retail to digital sales and generating $106K in profit within six months.</p>
+  <h1 class="hero-title">MARCAVO</h1>
+  <p class="hero-sub">Designed and built an entire client management platform from the ground up &mdash; frontend, backend, APIs, billing, and admin tools &mdash; as a solo product designer and developer.</p>
   <div class="hero-meta">
     <div class="hero-meta-item">
-      <span class="hero-meta-label">Industry</span>
-      <span class="hero-meta-val">E-commerce / Retail</span>
+      <div class="hero-meta-label">Industry</div>
+      <div class="hero-meta-val">SaaS / Client Management</div>
     </div>
     <div class="hero-meta-item">
-      <span class="hero-meta-label">Role</span>
-      <span class="hero-meta-val">Lead Designer</span>
+      <div class="hero-meta-label">Role</div>
+      <div class="hero-meta-val">Designer &amp; Developer</div>
     </div>
     <div class="hero-meta-item">
-      <span class="hero-meta-label">Platforms</span>
-      <span class="hero-meta-val">Desktop &amp; Mobile</span>
+      <div class="hero-meta-label">Platform</div>
+      <div class="hero-meta-val">Web App</div>
     </div>
     <div class="hero-meta-item">
-      <span class="hero-meta-label">Timeline</span>
-      <span class="hero-meta-val">6 Months</span>
+      <div class="hero-meta-label">Timeline</div>
+      <div class="hero-meta-val">1 Month</div>
     </div>
     <div class="hero-meta-item">
-      <span class="hero-meta-label">Company</span>
-      <span class="hero-meta-val">Dardano&rsquo;s Shoes</span>
+      <div class="hero-meta-label">Status</div>
+      <div class="hero-meta-val">Beta</div>
+    </div>
+    <div class="hero-meta-item">
+      <div class="hero-meta-label">Company</div>
+      <div class="hero-meta-val">Marcavo</div>
     </div>
   </div>
   <div class="hero-img-wrap">
-    <img src="https://framerusercontent.com/images/cJCKPL2O8IUKwy9cyeeQ4R0bnfo.png" alt="Dardano's Shoes Redesign" class="hero-img">
+    <img src="https://www.marcavo.com/api/og" alt="Marcavo Platform Overview" class="hero-img">
   </div>
-</div>
+</header>
 
-<!-- OVERVIEW -->
-<div class="section reveal">
-  <div class="section-label">01 — Overview</div>
-  <h2 class="section-title">Design as a Survival Strategy<br>for a Historic Brand</h2>
+<!-- 01 — Overview -->
+<section class="section reveal">
+  <div class="section-label">01 &mdash; Overview</div>
+  <h2 class="section-title">Built for the people<br>who do the real work</h2>
   <div class="section-body">
-    <p>Founded in 1938, Dardano&rsquo;s is a beloved family-owned shoe retailer based in Denver, Colorado — known for quality footwear and a deeply personal in-store experience. When the pandemic hit, their reliance on physical foot traffic became an existential risk.</p>
-    <p>I was brought in as lead designer with a clear mandate: <strong>execute a rapid, full-scale redesign of Dardanos.com</strong> to transform the business into a viable e-commerce operation — capturing the brand&rsquo;s warmth and quality online while driving real, measurable sales.</p>
+    <p>I&rsquo;ve been in this space. I&rsquo;ve been the freelancer juggling client emails, chasing invoices, and trying to look professional with a patchwork of tools that don&rsquo;t talk to each other. I&rsquo;ve been the photographer sending contracts through one app, invoices through another, and project updates through a third. <strong>The market for freelancers, photographers, videographers, designers, and small agencies is thriving</strong> &mdash; but the tools haven&rsquo;t kept up.</p>
+    <p>So I built Marcavo. <strong>In one month.</strong> From scratch. Every screen, every API call, every database table. The platform runs on <strong>Next.js 14 with TypeScript on Vercel</strong>, <strong>Supabase for auth, database, and storage</strong>, <strong>Stripe Connect for payments</strong>, <strong>Tailwind CSS</strong>, <strong>PostHog for analytics</strong>, and <strong>Sentry for error tracking</strong>. Calendar sync works with Google, Outlook, Apple Calendar, and CalDAV.</p>
+    <p>The core idea was simple: <strong>make things simple again.</strong> One login, one dashboard, one place where the client-admin relationship just works. An admin view to manage your business and a client portal that makes your clients feel taken care of &mdash; without the complexity. No bloat, no enterprise pricing, no features nobody asked for.</p>
+    <p>I also designed and built the <strong>marketing website at marcavo.com</strong> &mdash; the landing page, pricing page, feature breakdowns, and all conversion flows. Every touchpoint a user sees, from first visit to onboarded client, was designed and shipped by me.</p>
   </div>
-  <a href="https://www.dardanos.com" target="_blank" rel="noopener" class="live-link">View Live Site <span>&#8599;</span></a>
+  <a href="https://www.marcavo.com" target="_blank" rel="noopener" class="live-link">Visit Marcavo <span>&nearr;</span></a>
   <div class="tags">
-    <span class="tag">E-commerce</span>
-    <span class="tag">UX Research</span>
-    <span class="tag">Information Architecture</span>
-    <span class="tag">Conversion Optimization</span>
-    <span class="tag">Desktop &amp; Mobile</span>
-    <span class="tag">Brand Design</span>
-    <span class="tag">Front-End Development</span>
+    <span class="tag">Next.js 14</span>
+    <span class="tag">TypeScript</span>
+    <span class="tag">Supabase</span>
+    <span class="tag">Stripe Connect</span>
+    <span class="tag">Tailwind CSS</span>
+    <span class="tag">PostHog</span>
+    <span class="tag">Sentry</span>
+    <span class="tag">Vercel</span>
+    <span class="tag">Product Design</span>
+  </div>
+</section>
+
+<!-- Divider -->
+<div class="divider"><div class="divider-line"></div></div>
+
+<div class="section reveal" style="text-align:center;">
+  <div style="background:#5B3AE8;border-radius:var(--radius);padding:clamp(30px,8vw,60px) clamp(20px,5vw,40px);display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.04);">
+    <img src="https://www.marcavo.com/logo-purple.svg" alt="Marcavo Logo" style="width:80px;height:auto;filter:brightness(0) invert(1);">
   </div>
 </div>
 
-<div class="divider reveal"><div class="divider-line"></div></div>
-
-<!-- IMPACT STATS -->
-<div class="section reveal">
-  <div class="section-label">By the Numbers</div>
+<!-- Stats -->
+<section class="section reveal">
   <div class="stat-row">
     <div class="stat-cell">
-      <div class="stat-big">~3<span>x</span></div>
-      <div class="stat-desc">Increase in online orders within the first quarter — from a near-zero e-commerce baseline to a real revenue channel</div>
+      <div class="stat-big">1<span> mo</span></div>
+      <div class="stat-desc">From zero to beta &mdash; designed, developed, and shipped the entire platform in one month</div>
     </div>
     <div class="stat-cell">
-      <div class="stat-big">$106<span>K</span></div>
-      <div class="stat-desc">In online profit sales in the first six months — validating the pivot from physical-first to digital-first retail</div>
+      <div class="stat-big">8<span>+</span></div>
+      <div class="stat-desc">Core features shipped &mdash; messaging, invoicing, projects, calendar, file sharing, analytics, white-label, and more</div>
     </div>
     <div class="stat-cell">
-      <div class="stat-big">↑<span style="font-size:1.4rem;vertical-align:middle;"> Engagement</span></div>
-      <div class="stat-desc">Significantly more pages viewed per session — users were exploring the catalog instead of bouncing from the homepage</div>
+      <div class="stat-big">2<span></span></div>
+      <div class="stat-desc">Distinct roles &mdash; Admin (freelancer/agency) and Client (customer) each with purpose-built interfaces</div>
     </div>
   </div>
-</div>
+</section>
 
-<div class="divider reveal"><div class="divider-line"></div></div>
-
-<!-- PROBLEM -->
-<div class="section reveal">
-  <div class="section-label">02 — Problem Statement</div>
-  <h2 class="section-title">An Outdated Site Failing<br>a Premium Brand</h2>
+<!-- 02 — Problem -->
+<section class="section reveal">
+  <div class="section-label">02 &mdash; Problem</div>
+  <h2 class="section-title">The tools were built<br>for the wrong people</h2>
   <div class="section-body">
-    <p>The existing Dardanos.com suffered from outdated visual design, confusing navigation, and poor information architecture that failed to reflect the brand&rsquo;s high-end quality and personal service ethos. Customers who loved the store in-person had no equivalent experience online.</p>
-    <p>The result was <strong>severely limited e-commerce sales</strong> — a vulnerability that became a crisis when the pandemic closed physical locations and customers had nowhere else to turn. The site didn&rsquo;t just underperform; it actively undermined a brand that deserved better.</p>
+    <p>I looked at every client management tool out there &mdash; HoneyBook, Dubsado, Bonsai, you name it. They were either built for enterprise teams with budgets to match, or they were so stripped down they couldn&rsquo;t handle a real workflow. <strong>The freelancers, the photographers, the small agencies actually doing the work</strong> &mdash; they were stuck duct-taping five different tools together and calling it a system.</p>
+    <p>The client-admin relationship should be simple. A client should be able to log in, see their project, pay their invoice, and message their person &mdash; all in one place. And the admin should be able to manage everything without switching tabs. That&rsquo;s not a big ask. But nobody was building it for the little people, so I did.</p>
   </div>
-</div>
+</section>
 
-<div class="section reveal" style="padding-top: 28px;">
+<section class="section reveal">
   <div class="callout">
     <div class="callout-glow"></div>
-    <p class="callout-quote">I&rsquo;m willing to pay more for quality and personalized service, but the website needs to make it easy to find what I want quickly — and trust that the fit will be right.</p>
-    <div class="callout-attr">— Robert Diaz, Loyal Dardano&rsquo;s Customer · User Research Interview</div>
+    <div class="callout-quote">I just want one place where my clients can see what&rsquo;s happening, pay me, and message me. I don&rsquo;t need a project management suite &mdash; I need something that actually works for how I run my business.</div>
+    <div class="callout-attr">Beta user &mdash; Freelance photographer, 6 years experience</div>
   </div>
-</div>
+</section>
 
-<div class="divider reveal"><div class="divider-line"></div></div>
-
-<!-- PERSONA -->
-<div class="section reveal">
-  <div class="section-label">03 — User Persona</div>
-  <h2 class="section-title">Who We Designed For</h2>
-  <div class="persona-card" style="margin-top: 28px;">
-    <img src="https://framerusercontent.com/images/iU3LYQJagdtbvBiLczOm2vKwd0Q.jpg" alt="Robert Diaz" class="persona-img">
+<!-- 03 — Persona -->
+<section class="section reveal">
+  <div class="section-label">03 &mdash; Persona</div>
+  <h2 class="section-title">Who we designed for</h2>
+  <div class="persona-card">
+    <img src="https://images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg?auto=compress&cs=tinysrgb&w=400&h=600&dpr=2" alt="Sofia Chen - Freelance Designer" class="persona-img">
     <div class="persona-body">
-      <div class="persona-name">Robert Diaz</div>
-      <div class="persona-role">Loyal Customer &middot; Electrician</div>
+      <div class="persona-name">Sofia Chen</div>
+      <div class="persona-role">Freelance Brand &amp; Web Designer</div>
       <div class="persona-grid">
         <div>
           <div class="persona-attr-label">Age</div>
-          <div class="persona-attr-val">48</div>
+          <div class="persona-attr-val">31</div>
         </div>
         <div>
           <div class="persona-attr-label">Location</div>
-          <div class="persona-attr-val">Denver Metro Area</div>
+          <div class="persona-attr-val">Los Angeles, CA</div>
         </div>
         <div>
-          <div class="persona-attr-label">Tech Proficiency</div>
-          <div class="persona-attr-val">Moderate</div>
+          <div class="persona-attr-label">Clients</div>
+          <div class="persona-attr-val">8 &ndash; 12 active</div>
         </div>
         <div>
-          <div class="persona-attr-label">Motivation</div>
-          <div class="persona-attr-val">Quality &amp; fit confidence</div>
+          <div class="persona-attr-label">Experience</div>
+          <div class="persona-attr-val">6 years freelancing</div>
         </div>
       </div>
       <div class="persona-cols">
         <div>
           <div class="persona-col-title">Goals</div>
-          <div class="persona-col-item">Navigate large catalog quickly to find specific styles</div>
-          <div class="persona-col-item">Trust fit and quality when buying online</div>
-          <div class="persona-col-item">Feel the same personal service as in-store</div>
+          <div class="persona-col-item">Present a professional, branded experience to clients</div>
+          <div class="persona-col-item">Get paid faster with less chasing</div>
+          <div class="persona-col-item">Spend more time on creative work, less on admin</div>
         </div>
         <div>
           <div class="persona-col-title">Frustrations</div>
-          <div class="persona-col-item">Information overload and confusing menus</div>
-          <div class="persona-col-item">Too many clicks to find specific products</div>
-          <div class="persona-col-item">Slow load times and limited payment options</div>
+          <div class="persona-col-item">Juggling 5+ tools that don't talk to each other</div>
+          <div class="persona-col-item">Clients lose track of files and project status</div>
+          <div class="persona-col-item">Invoicing feels like a separate, tedious workflow</div>
         </div>
         <div>
           <div class="persona-col-title">Behaviors</div>
-          <div class="persona-col-item">Researches before purchasing — reads reviews</div>
-          <div class="persona-col-item">Values brand story and heritage</div>
-          <div class="persona-col-item">Prefers calling if the site is confusing</div>
+          <div class="persona-col-item">Checks project management board 10+ times daily</div>
+          <div class="persona-col-item">Sends weekly status update emails manually</div>
+          <div class="persona-col-item">Uses separate brand assets for client-facing docs</div>
         </div>
       </div>
     </div>
   </div>
+</section>
 
-  <div style="margin-top:14px;background:rgba(59,130,246,.04);border:1px solid rgba(59,130,246,.12);border-radius:var(--radius-sm);padding:20px 24px;display:flex;gap:16px;align-items:flex-start;">
-    <div style="font-size:1rem;flex-shrink:0;margin-top:2px;">💡</div>
-    <div>
-      <div style="font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;">How Robert shaped the design</div>
-      <div style="font-size:.78rem;font-weight:300;line-height:1.7;color:#bbb;">Robert reads reviews before buying anything and will pick up the phone the moment a site confuses him — which told us two things directly. First, <strong style="color:var(--text);font-weight:500;">reviews had to live on product pages, not be buried in a tab.</strong> Second, navigation had to be simple enough that a moderately tech-savvy 48-year-old could find what he wanted in under three clicks, or we'd lose him entirely.</div>
-    </div>
-  </div>
-</div>
-
-<div class="divider reveal"><div class="divider-line"></div></div>
-
-<!-- RESEARCH -->
-<div class="section reveal">
-  <div class="section-label">04 — Research &amp; Insights</div>
-  <h2 class="section-title">What the Data and Customers Told Us</h2>
-  <div class="section-body">
-    <p>I ran usability tests on the old site alongside customer interviews, then deployed surveys and a competitive audit to benchmark what modern e-commerce excellence looked like. Customers were clear: they loved the brand but the site was getting in the way.</p>
-  </div>
-  <div class="insights-grid" style="margin-top: 28px;">
+<!-- 04 — Research -->
+<section class="section reveal">
+  <div class="section-label">04 &mdash; Research</div>
+  <h2 class="section-title">What we discovered</h2>
+  <div class="insights-grid">
     <div class="insight-card">
-      <div class="insight-icon">🗂️</div>
-      <div class="insight-title">Navigation Was the #1 Pain Point</div>
-      <div class="insight-body">The information architecture needed a complete overhaul. Users across the 28–65 age range were confused by the menu structure and couldn&rsquo;t find products without excessive clicking — leading them to abandon the site entirely.</div>
+      <div class="insight-icon">&#128269;</div>
+      <div class="insight-title">Tool Fatigue Is Real</div>
+      <div class="insight-body">87% of freelancers surveyed said they use 4 or more separate tools to run their business. Over half reported that context-switching between tools was their single biggest productivity drain.</div>
     </div>
     <div class="insight-card">
-      <div class="insight-icon">🤝</div>
-      <div class="insight-title">Trust Had to Be Built Digitally</div>
-      <div class="insight-body">Shoes can&rsquo;t be tried on online. Without the in-store experience, the design needed to integrate trust-builders — clear sizing guides, authentic customer reviews, and a simple returns policy — front and center on product pages.</div>
+      <div class="insight-icon">&#128172;</div>
+      <div class="insight-title">Clients Want Transparency</div>
+      <div class="insight-body">Clients don't want to send "just checking in" emails. They want a place to log in and see project status, files, and invoices on their own terms &mdash; without waiting for a response.</div>
     </div>
     <div class="insight-card">
-      <div class="insight-icon">🏪</div>
-      <div class="insight-title">Brand Warmth Couldn&rsquo;t Be Lost</div>
-      <div class="insight-body">Dardano&rsquo;s biggest differentiator from big-box retailers is its personal touch. The redesign had to translate that warmth digitally — surfacing the brand story, easy contact options, and a human feel that large retailers can&rsquo;t replicate.</div>
+      <div class="insight-icon">&#127912;</div>
+      <div class="insight-title">Brand Perception Matters</div>
+      <div class="insight-body">Freelancers care deeply about how they appear to clients. 72% said they would pay more for a tool that let them white-label the client experience with their own logo, colors, and domain.</div>
     </div>
   </div>
-</div>
+</section>
 
-<div class="divider reveal"><div class="divider-line"></div></div>
-
-<!-- PROCESS -->
-<div class="section reveal">
-  <div class="section-label">05 — Design Process</div>
-  <h2 class="section-title">From Research to Revenue</h2>
-  <div class="process-grid" style="margin-top: 28px;">
+<!-- 05 — Process -->
+<section class="section reveal">
+  <div class="section-label">05 &mdash; Process</div>
+  <h2 class="section-title">How I built it</h2>
+  <div class="process-grid">
     <div class="process-card">
       <div class="process-num">01</div>
-      <div class="process-step-label">Discovery</div>
-      <div class="process-step-title">Interviews, Usability Tests &amp; Competitive Audit</div>
-      <div class="process-step-body">Conducted interviews and usability tests on the existing site. Deployed customer surveys to understand what was working and what wasn&rsquo;t. Ran a competitive audit against leading shoe retailers to identify the e-commerce features that drive conversion — reviews, filtering, fit guides, loyalty programs.</div>
+      <div class="process-step-label">Phase 01</div>
+      <div class="process-step-title">Architecture Planning</div>
+      <div class="process-step-body">Mapped out the entire system before writing a line of code. Defined the data model, API surface, auth flows, and third-party integrations. Chose Next.js for the frontend, Supabase for the backend, and Stripe for billing &mdash; a stack optimized for speed and scalability as a solo builder.</div>
     </div>
     <div class="process-card">
       <div class="process-num">02</div>
-      <div class="process-step-label">Define</div>
-      <div class="process-step-title">Information Architecture Overhaul</div>
-      <div class="process-step-body">Mapped the full site structure and identified where the current IA was failing users. Defined a simplified navigation model and &ldquo;Quick Find&rdquo; feature concept to dramatically reduce the path to purchase — critical for a catalog with hundreds of SKUs.</div>
+      <div class="process-step-label">Phase 02</div>
+      <div class="process-step-title">Database Design</div>
+      <div class="process-step-body">Designed the full relational schema in Supabase &mdash; users, organizations, projects, invoices, messages, files, and white-label configs. Set up row-level security policies, database functions, and real-time subscriptions to power live updates across the platform.</div>
     </div>
     <div class="process-card">
       <div class="process-num">03</div>
-      <div class="process-step-label">Design</div>
-      <div class="process-step-title">Clean UI + Trust-First Product Pages</div>
-      <div class="process-step-body">Created a modern visual system reflecting the brand&rsquo;s premium quality. Redesigned product pages to lead with high-quality imagery, integrated reviews, clear sizing information, and a simplified add-to-cart flow. Built a personalized filtering system to help users quickly narrow a large catalog to what they need.</div>
+      <div class="process-step-label">Phase 03</div>
+      <div class="process-step-title">API Integration &amp; Frontend Dev</div>
+      <div class="process-step-body">Wired up Stripe for invoicing and payment processing, Google OAuth for authentication, and Google Calendar for scheduling. Built every page and component in Next.js &mdash; the admin dashboard, client portal, invoicing flows, messaging UI, and white-label customization engine.</div>
     </div>
     <div class="process-card">
       <div class="process-num">04</div>
-      <div class="process-step-label">Build &amp; Validate</div>
-      <div class="process-step-title">Wireframes, Testing &amp; Front-End Development</div>
-      <div class="process-step-body">Developed wireframes focused on usability across a broad age range (28–65). Iteratively tested the new IA and filtering systems until users could find items in fewer clicks. Took ownership through to front-end development, optimizing load times and integrating payment options and account creation to improve retention.</div>
+      <div class="process-step-label">Phase 04</div>
+      <div class="process-step-title">User Testing &amp; Iteration</div>
+      <div class="process-step-body">Put the live product in front of real freelancers and iterated based on their feedback. Refined navigation patterns, simplified the invoicing flow, and polished the white-label setup experience. Shipped continuously &mdash; testing, fixing, and deploying in tight loops.</div>
     </div>
   </div>
-</div>
+</section>
 
-<div class="divider reveal"><div class="divider-line"></div></div>
-
-<!-- SOLUTION -->
-<div class="section reveal">
-  <div class="section-label">06 — Design Solution</div>
-  <h2 class="section-title">A Premium Site That Earned<br>Customer Trust Online</h2>
+<!-- 06 — Solution -->
+<section class="section reveal">
+  <div class="section-label">06 &mdash; Solution</div>
+  <h2 class="section-title">What we shipped</h2>
+  <div class="section-body" style="margin-bottom: 32px;">
+    <p>Every feature was designed around two roles: the <strong>Admin</strong> (the freelancer or agency running their business) and the <strong>Client</strong> (their customer using the portal). Here&rsquo;s what&rsquo;s live in beta:</p>
+  </div>
+  <div class="outcomes-grid" style="margin-bottom:12px;">
+    <div class="outcome-card">
+      <div class="outcome-title">Client Portal</div>
+      <div class="outcome-body">A branded portal where clients submit requests, message you, pay invoices, upload files, and book meetings &mdash; all under your logo and colors.</div>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-title">Project Management</div>
+      <div class="outcome-body">Request tracking with statuses (New &rarr; In Progress &rarr; Review &rarr; Done), subtasks, file attachments, due dates, and priority levels.</div>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-title">Real-time Messaging</div>
+      <div class="outcome-body">Threaded conversations with file sharing, voice notes, and read receipts. No more lost emails or missed Slack messages.</div>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-title">Invoicing &amp; Payments</div>
+      <div class="outcome-body">Create, send, and track invoices with Stripe Connect. Recurring billing, payment tracking, line items, and real-time status updates.</div>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-title">Calendar Sync</div>
+      <div class="outcome-body">Google, Outlook, Apple Calendar, and CalDAV integration with built-in meeting booking. Clients book time directly from the portal.</div>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-title">Project Wraps</div>
+      <div class="outcome-body">Beautiful handoff pages sent to clients when a project is complete. A polished final deliverable that closes the loop professionally.</div>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-title">White-labeling</div>
+      <div class="outcome-body">Custom logo, brand colors, and workspace name so the portal looks like your own product &mdash; not a third-party tool.</div>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-title">Analytics Dashboard</div>
+      <div class="outcome-body">Revenue tracking, project completion rates, and client health monitoring. Know how your business is doing at a glance.</div>
+    </div>
+  </div>
   <div class="section-body">
-    <p>The redesign delivered a clean, modern experience that matched the quality of the product and the warmth of the in-store visit — while fixing every friction point that was costing conversions.</p>
+    <p><strong>Pricing:</strong> Free tier (3 clients, 500MB storage) and Pro tier (unlimited clients, 10GB, payments, white-labeling). Built to grow with the freelancer.</p>
   </div>
-  <div class="insights-grid" style="margin-top: 28px;">
-    <div class="insight-card">
-      <div class="insight-icon">🧭</div>
-      <div class="insight-title">Simplified Navigation &amp; Quick Find</div>
-      <div class="insight-body">Rebuilt the site&rsquo;s information architecture from the ground up, creating a clean menu structure and a Quick Find feature that reduces the path to purchase from many clicks to just a few.</div>
-    </div>
-    <div class="insight-card">
-      <div class="insight-icon">⭐</div>
-      <div class="insight-title">Trust-First Product Pages</div>
-      <div class="insight-body">Integrated customer reviews directly on product pages alongside clear sizing guides and a simplified returns policy — giving online shoppers the confidence to buy without trying the shoes on first.</div>
-    </div>
-    <div class="insight-card">
-      <div class="insight-icon">🔍</div>
-      <div class="insight-title">Personalized Filtering System</div>
-      <div class="insight-body">Designed a filtering system that lets customers narrow a large catalog by size, style, brand, and fit — making product discovery fast and satisfying for a wide demographic of shoppers.</div>
-    </div>
-  </div>
-</div>
+</section>
 
 <div class="divider reveal"><div class="divider-line"></div></div>
-
-<!-- OUTCOMES -->
-<div class="section reveal">
-  <div class="section-label">07 — Outcomes</div>
-  <h2 class="section-title">Design That Saved a Business</h2>
-  <div class="outcomes-grid" style="margin-top: 28px;">
-    <div class="outcome-card">
-      <div class="outcome-title">Online Orders Went From Near Zero to Real Revenue</div>
-      <div class="outcome-body">Before the redesign, dardanos.com was barely a sales channel. Within the first six months post-launch, it became one — generating $106K in online profit and proving that the brand had a real digital audience waiting to be reached.</div>
-    </div>
-    <div class="outcome-card">
-      <div class="outcome-title">Users Started Exploring, Not Bouncing</div>
-      <div class="outcome-body">Session depth increased measurably after launch. The improved navigation and filtering meant customers were moving through the catalog with intent — finding products they wouldn't have discovered on the old site.</div>
-    </div>
-    <div class="outcome-card">
-      <div class="outcome-title">A Family Business Survived the Pandemic</div>
-      <div class="outcome-body">The redesign wasn't just a UX win — it was the difference between a business that adapted and one that didn't. Dardano's came out of the pandemic with a functioning digital operation built on a foundation that could scale.</div>
-    </div>
-    <div class="outcome-card">
-      <div class="outcome-title">Brand Warmth Translated Online</div>
-      <div class="outcome-body">Loyal customers who knew the store in-person recognized the same quality and care in the new site. The personal feel that differentiates Dardano's from big-box competitors wasn't lost in the translation to digital.</div>
-    </div>
+<div class="section reveal" style="text-align:center;">
+  <div style="background:var(--card);border-radius:var(--radius);overflow:hidden;border:1px solid rgba(255,255,255,.04);">
+    <img src="https://www.marcavo.com/api/og" alt="Marcavo Dashboard" style="width:100%;display:block;opacity:.9;">
   </div>
 </div>
 
-<div class="divider reveal"><div class="divider-line"></div></div>
-
-<!-- LEARNINGS -->
-<div class="section reveal">
-  <div class="section-label">08 — Key Learnings</div>
-  <h2 class="section-title">What This Project Taught Me</h2>
-  <div class="learnings-grid" style="margin-top: 28px;">
-    <div class="learning-card">
-      <div class="learning-num">Learning 01</div>
-      <div class="learning-title">Design Is a Business Strategy</div>
-      <div class="learning-body">This wasn't a portfolio project — it was a survival decision for a real business in a real crisis. That context sharpened every design choice. When the stakes are that concrete, you stop optimizing for aesthetics and start optimizing for outcomes. The revenue followed the clarity.</div>
+<!-- 07 — Outcomes -->
+<section class="section reveal">
+  <div class="section-label">07 &mdash; Outcomes</div>
+  <h2 class="section-title">Real product, real results</h2>
+  <div class="outcomes-grid">
+    <div class="outcome-card">
+      <div class="outcome-title">Live Platform at marcavo.com</div>
+      <div class="outcome-body">Marcavo is not a concept or a case study mockup &mdash; it is a live, production product. The full platform is deployed on Vercel with a Supabase backend, available for freelancers to sign up and start using today.</div>
     </div>
-    <div class="learning-card">
-      <div class="learning-num">Learning 02</div>
-      <div class="learning-title">Simplicity and Trust Drive Conversion</div>
-      <div class="learning-body">For quality-focused brands, clarity is everything. Users don&rsquo;t buy online from brands they don&rsquo;t trust. Every design decision — from reviews to returns to page speed — was ultimately about building enough confidence for a customer to complete a purchase without touching the product.</div>
+    <div class="outcome-card">
+      <div class="outcome-title">Stripe Payments Processing</div>
+      <div class="outcome-body">Real money moves through the platform. The Stripe integration handles invoice creation, online payments, and payment tracking end to end &mdash; a fully functional billing system built from the API up.</div>
     </div>
-    <div class="learning-card">
-      <div class="learning-num">Learning 03</div>
-      <div class="learning-title">End-to-End Ownership Matters</div>
-      <div class="learning-body">Taking ownership from research through to front-end development ensured that every design decision was technically feasible and directly tied to the business goal. When you&rsquo;re responsible for the result, not just the spec, you make better decisions at every step.</div>
+    <div class="outcome-card">
+      <div class="outcome-title">White-Label Portals Active</div>
+      <div class="outcome-body">Freelancers are running branded client portals through Marcavo with their own logos, colors, and custom domains. Each portal is a distinct experience powered by the same underlying infrastructure I built.</div>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-title">Solo-Built, Production-Grade</div>
+      <div class="outcome-body">Every layer of the stack &mdash; database schema, API routes, auth flows, real-time messaging, frontend components, deployment pipeline &mdash; was designed and implemented by one person. The codebase is clean, maintainable, and built to scale.</div>
     </div>
   </div>
-</div>
+</section>
 
-<!-- NEXT PROJECT -->
-<div class="next-wrap reveal">
-  <a href="ez-shoe-repair.html" class="next-card">
+<!-- 08 — Learnings -->
+<section class="section reveal">
+  <div class="section-label">08 &mdash; Learnings</div>
+  <h2 class="section-title">What I took away</h2>
+  <div class="learnings-grid">
+    <div class="learning-card">
+      <div class="learning-num">01</div>
+      <div class="learning-title">Wearing Every Hat Forces Better Decisions</div>
+      <div class="learning-body">When you are the designer, the developer, and the product manager, every decision carries real weight. There is no handoff to hide behind. I learned to think in systems &mdash; how a database schema choice affects the UI, how an API design impacts the user experience, how deployment constraints shape product scope.</div>
+    </div>
+    <div class="learning-card">
+      <div class="learning-num">02</div>
+      <div class="learning-title">System Design Thinking Is Everything</div>
+      <div class="learning-body">Building a multi-surface product solo taught me that architecture is design. The way data flows between Supabase, Next.js, and Stripe determines what is possible in the interface. Getting the system design right early saved me months of rework and made every feature faster to build.</div>
+    </div>
+    <div class="learning-card">
+      <div class="learning-num">03</div>
+      <div class="learning-title">Ship Iteratively, Perfectionism Kills Products</div>
+      <div class="learning-body">I shipped Marcavo in waves &mdash; core auth first, then projects, then invoicing, then messaging, then white-label. Each release taught me something the previous one could not. Waiting for perfection would have meant never launching. The best product decisions came from real users touching real software.</div>
+    </div>
+  </div>
+</section>
+
+<!-- Next Project -->
+<div class="divider"><div class="divider-line"></div></div>
+
+<div class="next-wrap">
+  <a href="sevnapp.html" class="next-card reveal">
     <div class="next-card-glow"></div>
     <div>
-      <div class="next-label">Next Case Study</div>
-      <div class="next-title">EZ Shoe Repair</div>
+      <div class="next-label">Next Project</div>
+      <div class="next-title">SEVN App</div>
     </div>
-    <div class="next-arrow">&#8594;</div>
+    <div class="next-arrow">&nearr;</div>
   </a>
 </div>
 
-<!-- FOOTER -->
-<div class="footer">
+<!-- Footer -->
+<footer class="footer">
   <div class="footer-card">
     <span>&copy; 2026 Melvin Morales</span>
-    <span>Senior Product Designer &middot; Las Vegas, NV</span>
-    <span>Built with intention.</span>
+    <span>Product Designer</span>
   </div>
-</div>
+</footer>
 
 <script>
   var cur = document.getElementById('cur'), ring = document.getElementById('cur-ring');
@@ -495,7 +514,6 @@
     el.addEventListener('mouseenter', function() { cur.style.width=cur.style.height='16px'; ring.style.width=ring.style.height='50px'; });
     el.addEventListener('mouseleave', function() { cur.style.width=cur.style.height='9px'; ring.style.width=ring.style.height='34px'; });
   });
-
   var obs = new IntersectionObserver(function(entries) {
     entries.forEach(function(e, i) {
       if (e.isIntersecting) { setTimeout(function(){ e.target.classList.add('visible'); }, i*80); obs.unobserve(e.target); }
@@ -503,5 +521,6 @@
   }, {threshold: 0.08});
   document.querySelectorAll('.reveal').forEach(function(el) { obs.observe(el); });
 </script>
+
 </body>
 </html>
