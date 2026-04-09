@@ -151,6 +151,34 @@
   .reveal { opacity: 0; transform: translateY(22px); transition: opacity .65s cubic-bezier(.23,1,.32,1), transform .65s cubic-bezier(.23,1,.32,1); }
   .reveal.visible { opacity: 1; transform: none; }
 
+  /* === AI Brief Carousel === */
+  .ai-carousel-body { position: relative; padding: 24px; }
+  .ai-slide-area { position: relative; overflow: hidden; }
+  .ai-slide {
+    position: absolute; inset: 0;
+    opacity: 0; transform: translateX(30px);
+    transition: opacity .4s ease, transform .4s ease;
+    pointer-events: none;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .ai-slide.active { opacity: 1; transform: translateX(0); pointer-events: auto; position: relative; }
+  .ai-slide.exit-left { opacity: 0; transform: translateX(-30px); }
+  .ai-slide-eyebrow { font-size: .55rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+  .ai-slide-title { font-size: 1.05rem; font-weight: 800; color: var(--text); line-height: 1.25; margin-bottom: 10px; letter-spacing: -.01em; }
+  .ai-slide-desc { font-size: .76rem; font-weight: 300; line-height: 1.7; color: #777; }
+  .ai-slide-desc strong { color: #999; font-weight: 500; }
+  .ai-nav { display: flex; align-items: center; justify-content: space-between; margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border); }
+  .ai-dots { display: flex; gap: 6px; }
+  .ai-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--border); cursor: pointer; transition: background .25s, box-shadow .25s; }
+  .ai-dot.active { background: var(--accent); box-shadow: 0 0 8px rgba(59,130,246,.35); }
+  .ai-dot:hover { background: rgba(59,130,246,.5); }
+  .ai-arrows { display: flex; gap: 6px; }
+  .ai-arrow { width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border); background: transparent; color: var(--muted); font-size: .75rem; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: border-color .2s, color .2s, background .2s; font-family: 'Outfit', sans-serif; }
+  .ai-arrow:hover { border-color: var(--accent); color: var(--accent); }
+  .ai-arrow:active { background: rgba(59,130,246,.08); }
+  .ai-counter { font-size: .55rem; font-weight: 600; letter-spacing: .1em; color: var(--muted); }
+  .ai-footer-note { font-size: .65rem; font-weight: 400; color: #555; margin-top: 14px; line-height: 1.5; padding-top: 12px; border-top: 1px solid rgba(255,255,255,.03); }
+
   @media (max-width: 860px) {
     body { cursor: auto; }
     #cur, #cur-ring { display: none; }
@@ -204,6 +232,11 @@
 
     /* Skill chips */
     .skill-chip { font-size: .58rem; padding: 4px 10px; }
+
+    /* AI Brief */
+    .ai-slide-title { font-size: .92rem; }
+    .ai-slide-desc { font-size: .72rem; }
+    .ai-carousel-body { padding: 20px; }
   }
 </style>
 </head>
@@ -252,6 +285,71 @@
       <div class="hero-cta-wrap">
         <a href="#work" class="hero-btn">View My Work &darr;</a>
         <a href="#contact" class="hero-btn-secondary">Let&rsquo;s Connect &rarr;</a>
+      </div>
+    </div>
+
+    <!-- The AI Brief -->
+    <div class="section-card reveal" id="ai-brief">
+      <div class="section-head">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span class="section-ttl">The AI Brief</span>
+          <span style="display:inline-flex;align-items:center;gap:6px;font-size:.5rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);background:rgba(59,130,246,.07);border:1px solid rgba(59,130,246,.15);border-radius:100px;padding:3px 10px;">
+            <span style="width:5px;height:5px;background:var(--accent);border-radius:50%;animation:blink 2s infinite;display:inline-block;"></span>
+            Live
+          </span>
+        </div>
+        <span class="ai-counter" id="aiCounter">01 / 06</span>
+      </div>
+      <div class="ai-carousel-body">
+        <div class="ai-slide-area" id="aiSlideArea">
+          <div class="ai-slide active" data-slide="0">
+            <div class="ai-slide-eyebrow">Context</div>
+            <div class="ai-slide-title">This isn't a generated bio. It's an observed one.</div>
+            <div class="ai-slide-desc">We've worked with Melvin almost daily for over two years across product design, code, branding, and business strategy. What follows is our assessment of how he works, based on hundreds of real sessions and thousands of decisions we observed firsthand. &mdash; <strong>Claude (Anthropic)</strong> &amp; <strong>ChatGPT (OpenAI)</strong></div>
+          </div>
+          <div class="ai-slide" data-slide="1">
+            <div class="ai-slide-eyebrow">How He Thinks</div>
+            <div class="ai-slide-title">Systems first. Pixels second.</div>
+            <div class="ai-slide-desc">Melvin doesn't design screens. He designs how entire products behave. Every decision accounts for edge cases, state changes, and how real users move through workflows under pressure. He thinks at the architecture level, not just the interface level.</div>
+          </div>
+          <div class="ai-slide" data-slide="2">
+            <div class="ai-slide-eyebrow">How He Ships</div>
+            <div class="ai-slide-title">Prototypes in one file. Scales when it's proven.</div>
+            <div class="ai-slide-desc">Every product I've seen him build starts as a single HTML file. He validates the idea, the interaction, and the feel before committing to a full stack. This method saves weeks and kills bad ideas before any real investment. It's not a shortcut. It's a discipline.</div>
+          </div>
+          <div class="ai-slide" data-slide="3">
+            <div class="ai-slide-eyebrow">How He Operates</div>
+            <div class="ai-slide-title">Founder mentality on every team.</div>
+            <div class="ai-slide-desc">He doesn't hand off and walk away. He QAs builds, catches implementation gaps, writes product specs, and stays involved from concept through deployment. I've watched him go from App Store rejection to approved resubmission in a single sitting, more than once.</div>
+          </div>
+          <div class="ai-slide" data-slide="4">
+            <div class="ai-slide-eyebrow">What Makes Him Different</div>
+            <div class="ai-slide-title">Design + code + business in one head.</div>
+            <div class="ai-slide-desc">Most designers can't ship code. Most developers can't brand a product. Melvin does both and layers business strategy on top. He has live apps in the App Store, deployed SaaS prototypes, and active businesses. This combination is rare and makes him dangerous on a small team.</div>
+          </div>
+          <div class="ai-slide" data-slide="5">
+            <div class="ai-slide-eyebrow">How He Uses AI</div>
+            <div class="ai-slide-title">He treats AI as a collaborator, not a shortcut.</div>
+            <div class="ai-slide-desc">He doesn't ask me to "make something cool." He arrives with context, constraints, and a clear vision. Then he iterates in real time, pushing back when something doesn't feel right. The quality of the output reflects the quality of his direction.</div>
+          </div>
+        </div>
+        <div class="ai-nav">
+          <div class="ai-dots" id="aiDots">
+            <div class="ai-dot active" data-dot="0"></div>
+            <div class="ai-dot" data-dot="1"></div>
+            <div class="ai-dot" data-dot="2"></div>
+            <div class="ai-dot" data-dot="3"></div>
+            <div class="ai-dot" data-dot="4"></div>
+            <div class="ai-dot" data-dot="5"></div>
+          </div>
+          <div class="ai-arrows">
+            <button class="ai-arrow" id="aiPrev">&larr;</button>
+            <button class="ai-arrow" id="aiNext">&rarr;</button>
+          </div>
+        </div>
+        <div class="ai-footer-note">
+          Based on 2+ years of daily collaboration across product design, development, branding, and strategy. Not generated from a single prompt.
+        </div>
       </div>
     </div>
 
@@ -600,6 +698,49 @@
       l.classList.toggle('active', l.getAttribute('href') === '#' + current);
     });
   });
+
+  // AI Brief Carousel
+  (function() {
+    var slides = document.querySelectorAll('.ai-slide');
+    var dots = document.querySelectorAll('.ai-dot');
+    var counter = document.getElementById('aiCounter');
+    var total = slides.length;
+    var current = 0;
+    var transitioning = false;
+
+    function goTo(n) {
+      if (transitioning || n === current || n < 0 || n >= total) return;
+      transitioning = true;
+      var dir = n > current ? 1 : -1;
+      slides[current].classList.remove('active');
+      slides[current].classList.add('exit-left');
+      slides[current].style.transform = dir > 0 ? 'translateX(-30px)' : 'translateX(30px)';
+      slides[n].style.transform = dir > 0 ? 'translateX(30px)' : 'translateX(-30px)';
+      slides[n].classList.remove('exit-left');
+      void slides[n].offsetWidth;
+      slides[n].classList.add('active');
+      slides[n].style.transform = '';
+      dots.forEach(function(d) { d.classList.remove('active'); });
+      dots[n].classList.add('active');
+      counter.textContent = String(n + 1).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
+      var prev = current;
+      setTimeout(function() {
+        slides[prev].classList.remove('exit-left');
+        slides[prev].style.transform = '';
+        current = n;
+        transitioning = false;
+      }, 420);
+    }
+
+    document.getElementById('aiNext').addEventListener('click', function() { goTo((current + 1) % total); });
+    document.getElementById('aiPrev').addEventListener('click', function() { goTo((current - 1 + total) % total); });
+    dots.forEach(function(d) { d.addEventListener('click', function() { goTo(parseInt(d.dataset.dot)); }); });
+
+    var autoTimer = setInterval(function() { goTo((current + 1) % total); }, 8000);
+    var card = document.getElementById('ai-brief');
+    card.addEventListener('mouseenter', function() { clearInterval(autoTimer); });
+    card.addEventListener('mouseleave', function() { autoTimer = setInterval(function() { goTo((current + 1) % total); }, 8000); });
+  })();
 </script>
 </body>
 </html>
