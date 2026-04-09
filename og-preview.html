@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #111; display: flex; align-items: center; justify-content: center; min-height: 100vh; font-family: 'Outfit', sans-serif; }
+  .preview-label { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); color: #666; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; }
+  .og-card {
+    width: 1200px;
+    height: 630px;
+    background: #3B82F6;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .og-card::before {
+    content: '';
+    position: absolute;
+    top: -200px;
+    right: -200px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255,255,255,.08) 0%, transparent 65%);
+  }
+  .og-card::after {
+    content: '';
+    position: absolute;
+    bottom: -150px;
+    left: -150px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(0,0,0,.1) 0%, transparent 65%);
+  }
+  .name {
+    font-size: 82px;
+    font-weight: 900;
+    letter-spacing: -.02em;
+    text-transform: uppercase;
+    color: #fff;
+    line-height: 1;
+    position: relative;
+    z-index: 1;
+  }
+  .role {
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.6);
+    margin-top: 16px;
+    position: relative;
+    z-index: 1;
+  }
+  .domain {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: .1em;
+    color: rgba(255,255,255,.35);
+    z-index: 1;
+  }
+
+  /* Scaled preview */
+  .scaled {
+    transform: scale(0.55);
+    transform-origin: center;
+    box-shadow: 0 40px 80px rgba(0,0,0,.6);
+  }
+</style>
+</head>
+<body>
+  <div class="preview-label">OG Image Preview (1200x630)</div>
+  <div class="og-card scaled">
+    <div class="name">Melvin Morales</div>
+    <div class="role">Product Designer</div>
+    <div class="domain">melvinmorales.com</div>
+  </div>
+</body>
+</html>

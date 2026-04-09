@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <radialGradient id="glow-tr" cx="100%" cy="0%" r="50%">
+      <stop offset="0%" stop-color="#fff" stop-opacity=".08"/>
+      <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow-bl" cx="0%" cy="100%" r="50%">
+      <stop offset="0%" stop-color="#000" stop-opacity=".1"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0"/>
+    </radialGradient>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;900&amp;display=swap');
+    </style>
+  </defs>
+  <rect width="1200" height="630" fill="#3B82F6"/>
+  <rect width="1200" height="630" fill="url(#glow-tr)"/>
+  <rect width="1200" height="630" fill="url(#glow-bl)"/>
+  <text x="600" y="300" text-anchor="middle" dominant-baseline="central" font-family="Outfit, system-ui, sans-serif" font-size="82" font-weight="900" letter-spacing="-1" fill="#fff" text-transform="uppercase">MELVIN MORALES</text>
+  <text x="600" y="345" text-anchor="middle" dominant-baseline="hanging" font-family="Outfit, system-ui, sans-serif" font-size="18" font-weight="400" letter-spacing="4.5" fill="rgba(255,255,255,.6)">PRODUCT DESIGNER</text>
+  <text x="600" y="590" text-anchor="middle" font-family="Outfit, system-ui, sans-serif" font-size="14" font-weight="500" letter-spacing="1.4" fill="rgba(255,255,255,.35)">melvinmorales.com</text>
+</svg>
