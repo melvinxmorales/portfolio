@@ -139,6 +139,24 @@
   .live-link span { transition: transform .2s; display: inline-block; }
   .live-link:hover span { transform: rotate(45deg); }
 
+  .voice-note { max-width: var(--max); margin: 28px auto 0; padding: 0 24px; opacity: 0; animation: fadeup .8s .55s forwards; }
+  .vn-inner { display: flex; align-items: center; gap: 18px; background: var(--card); border: 1px solid rgba(255,255,255,.06); border-radius: 100px; padding: 10px 26px 10px 10px; }
+  .vn-play { width: 46px; height: 46px; flex-shrink: 0; border-radius: 50%; border: none; background: var(--accent); color: #000; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: opacity .2s, transform .15s; font-family: inherit; padding: 0; }
+  .vn-play:hover { opacity: .88; }
+  .vn-play:active { transform: scale(.94); }
+  .vn-play svg { display: block; }
+  .vn-main { flex: 1; display: flex; flex-direction: column; gap: 9px; min-width: 0; }
+  .vn-label { font-size: .68rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--text); }
+  .vn-bar { height: 4px; border-radius: 100px; background: var(--border); cursor: pointer; position: relative; }
+  .vn-fill { position: absolute; left: 0; top: 0; bottom: 0; width: 0%; background: var(--accent); border-radius: 100px; }
+  .vn-time { font-size: .68rem; font-weight: 600; letter-spacing: .04em; color: var(--muted); flex-shrink: 0; font-variant-numeric: tabular-nums; }
+
+  .decisions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 28px; }
+  .decision-card { background: var(--card); border-radius: var(--radius); border: 1px solid rgba(255,255,255,.04); padding: 32px; border-left: 3px solid var(--accent); }
+  .decision-label { font-size: .58rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+  .decision-title { font-size: .98rem; font-weight: 700; color: var(--text); margin-bottom: 10px; line-height: 1.3; }
+  .decision-body { font-size: .78rem; font-weight: 300; color: var(--muted); line-height: 1.7; }
+
   .reveal { opacity: 0; transform: translateY(22px); transition: opacity .65s cubic-bezier(.23,1,.32,1), transform .65s cubic-bezier(.23,1,.32,1); }
   .reveal.visible { opacity: 1; transform: none; }
 
@@ -158,6 +176,10 @@
     .insights-grid { grid-template-columns: 1fr; }
     .learnings-grid { grid-template-columns: 1fr; }
     .outcomes-grid { grid-template-columns: 1fr; }
+    .decisions-grid { grid-template-columns: 1fr; }
+    .voice-note { padding: 0 16px; }
+    .vn-inner { padding: 9px 18px 9px 9px; gap: 12px; }
+    .vn-label { font-size: .62rem; }
     .stat-row { grid-template-columns: 1fr; }
     .persona-card { grid-template-columns: 1fr; }
     .persona-img { aspect-ratio: 4/3; width: 100%; height: auto; }
@@ -195,7 +217,7 @@
       </div>
       <div class="hero-meta-item">
         <div class="hero-meta-label">Role</div>
-        <div class="hero-meta-val">Product Designer</div>
+        <div class="hero-meta-val">Designer &amp; Developer</div>
       </div>
       <div class="hero-meta-item">
         <div class="hero-meta-label">Platform</div>
@@ -206,8 +228,8 @@
         <div class="hero-meta-val">5 Months</div>
       </div>
       <div class="hero-meta-item">
-        <div class="hero-meta-label">Company</div>
-        <div class="hero-meta-val">Peelr</div>
+        <div class="hero-meta-label">Team</div>
+        <div class="hero-meta-val">Solo &mdash; design + full-stack build</div>
       </div>
     </div>
     <div class="hero-img-wrap">
@@ -221,36 +243,33 @@
     </div>
   </header>
 
+  <!-- VOICE NOTE -->
+  <div class="voice-note">
+    <div class="vn-inner">
+      <button class="vn-play" id="vnPlay" aria-label="Play voice note">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+      </button>
+      <div class="vn-main">
+        <div class="vn-label">Hear me talk about this project</div>
+        <div class="vn-bar" id="vnBar"><div class="vn-fill" id="vnFill"></div></div>
+      </div>
+      <div class="vn-time" id="vnTime">0:00</div>
+    </div>
+    <audio id="vnAudio" preload="metadata">
+      <source src="audio/peelr.mp3" type="audio/mpeg">
+      <source src="audio/peelr.m4a" type="audio/mp4">
+    </audio>
+  </div>
+
   <!-- 01 Overview -->
   <section class="section reveal">
     <div class="section-label">01 &mdash; Overview</div>
     <h2 class="section-title">Peel back the person in front of you.</h2>
     <div class="section-body">
-      <p>Peelr is a digital conversation card game built for real connection. It offers <strong>500+ conversation prompts</strong> organized across five carefully curated relationship decks &mdash; Friends, Family, Lovers, Coworkers, and Strangers. Each deck features three depth levels that guide players from lighthearted icebreakers to vulnerable, meaningful exchanges.</p>
-      <p>As the Product Designer, I was responsible for shaping the entire card game experience &mdash; from deck selection and card interactions to depth progression mechanics and the luxury dark visual identity defined by gold (#D4AF77) and cream (#F5F1EA) tones. The product is free and available on iOS, web, and any modern browser.</p>
+      <p>Peelr is a digital conversation card game built for real connection. It offers <strong>500+ conversation prompts</strong> across five relationship decks &mdash; Friends, Family, Lovers, Coworkers, and Strangers &mdash; each with three depth levels that guide players from lighthearted icebreakers to vulnerable, meaningful exchanges.</p>
+      <p>It&rsquo;s my own product, and I built all of it &mdash; the design <em>and</em> the full stack, front end and back end. The back end (Supabase) lets me push <strong>new questions every month</strong>, so the deck never goes stale, and it lives on your phone, so it&rsquo;s never stuck in a drawer when the moment&rsquo;s right. It&rsquo;s free, dark by default, and live on iOS and the web.</p>
     </div>
-    <a href="https://www.playpeelr.com" target="_blank" class="live-link">Visit playpeelr.com <span>&nearr;</span></a>
-    <div class="tags">
-      <span class="tag">Product Design</span>
-      <span class="tag">Mobile</span>
-      <span class="tag">Gaming</span>
-      <span class="tag">Social</span>
-    </div>
-  </section>
-
-  <!-- Divider -->
-  <div class="divider reveal"><div class="divider-line"></div></div>
-
-  <div class="section reveal" style="text-align:center;">
-    <div style="background:linear-gradient(135deg,#1a1815,#2a2520);border-radius:var(--radius);padding:clamp(30px,8vw,60px) clamp(20px,5vw,40px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;border:1px solid rgba(212,175,119,.15);">
-      <div style="font-size:3rem;font-weight:900;color:#D4AF77;letter-spacing:-.03em;text-transform:uppercase;">Peelr</div>
-      <div style="font-size:.7rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:#F5F1EA;opacity:.6;">Peel back the person in front of you</div>
-    </div>
-  </div>
-
-  <!-- Stats -->
-  <section class="section reveal">
-    <div class="stat-row">
+    <div class="stat-row" style="margin-top: 36px;">
       <div class="stat-cell">
         <div class="stat-big">500<span>+</span></div>
         <div class="stat-desc">Conversation prompts crafted across every deck and depth level</div>
@@ -263,6 +282,13 @@
         <div class="stat-big">3</div>
         <div class="stat-desc">Depth levels that guide players from surface to soul</div>
       </div>
+    </div>
+    <a href="https://www.playpeelr.com" target="_blank" class="live-link">Visit playpeelr.com <span>&nearr;</span></a>
+    <div class="tags">
+      <span class="tag">Product Design</span>
+      <span class="tag">Mobile</span>
+      <span class="tag">Gaming</span>
+      <span class="tag">Social</span>
     </div>
   </section>
 
@@ -284,83 +310,31 @@
     </div>
   </section>
 
-  <!-- 03 Persona -->
+  <!-- 03 My Role -->
   <section class="section reveal">
-    <div class="section-label">03 &mdash; Persona</div>
-    <h2 class="section-title">Designing for the curious and the connected.</h2>
-    <div class="persona-card">
-      <img src="https://images.pexels.com/photos/1024960/pexels-photo-1024960.jpeg?auto=compress&cs=tinysrgb&w=400&h=600&dpr=2" alt="Maya and Dez - Couple" class="persona-img">
-      <div class="persona-body">
-        <div class="persona-name">Maya &amp; Dez</div>
-        <div class="persona-role">Couple, Late 20s &mdash; Looking for Deeper Connection</div>
-        <div class="persona-grid">
-          <div>
-            <div class="persona-attr-label">Age</div>
-            <div class="persona-attr-val">27 & 29</div>
-          </div>
-          <div>
-            <div class="persona-attr-label">Relationship</div>
-            <div class="persona-attr-val">Dating 2 years</div>
-          </div>
-          <div>
-            <div class="persona-attr-label">Location</div>
-            <div class="persona-attr-val">Los Angeles, CA</div>
-          </div>
-          <div>
-            <div class="persona-attr-label">Tech Comfort</div>
-            <div class="persona-attr-val">High &mdash; iPhone users</div>
-          </div>
-        </div>
-        <div class="persona-cols">
-          <div>
-            <div class="persona-col-title">Goals</div>
-            <div class="persona-col-item">Have deeper conversations beyond surface-level small talk</div>
-            <div class="persona-col-item">Discover new things about each other even after two years</div>
-            <div class="persona-col-item">Replace scrolling and Netflix with something intentional</div>
-          </div>
-          <div>
-            <div class="persona-col-title">Frustrations</div>
-            <div class="persona-col-item">Physical card games feel bulky and easy to forget</div>
-            <div class="persona-col-item">Most conversation apps feel clinical or cheesy</div>
-            <div class="persona-col-item">Hard to find prompts that match their actual depth level</div>
-          </div>
-          <div>
-            <div class="persona-col-title">Behaviors</div>
-            <div class="persona-col-item">Play conversation games on date nights and road trips</div>
-            <div class="persona-col-item">Value aesthetics and premium design in the apps they use</div>
-            <div class="persona-col-item">Share favorite prompts with friends over text</div>
-          </div>
-        </div>
-      </div>
+    <div class="section-label">03 &mdash; My Role &amp; How I Worked</div>
+    <h2 class="section-title">Designing for intimacy, solo.</h2>
+    <div class="section-body">
+      <p>Peelr is my own product, and I built every layer of it &mdash; the design, the iOS and web front ends, and the Supabase back end that powers the content and the monthly question drops. Designing a conversation game is really designing emotional pacing, and that idea shaped every decision.</p>
+      <p>Two calls defined the experience:</p>
     </div>
-  </section>
-
-  <!-- 04 Research -->
-  <section class="section reveal">
-    <div class="section-label">04 &mdash; Research</div>
-    <h2 class="section-title">What we uncovered about conversation and connection.</h2>
-    <div class="insights-grid">
-      <div class="insight-card">
-        <div class="insight-icon">&#9829;</div>
-        <div class="insight-title">Vulnerability requires safety</div>
-        <div class="insight-body">Users need to feel in control of depth. Jumping straight to heavy questions creates discomfort. Graduated depth levels let players ease in at their own pace, building trust before reaching the most revealing prompts.</div>
+    <div class="decisions-grid">
+      <div class="decision-card">
+        <div class="decision-label">Decision 01</div>
+        <div class="decision-title">Put depth in the player&rsquo;s hands</div>
+        <div class="decision-body">Vulnerability needs safety. Jumping straight to the heavy questions makes people shut down, so I built three depth levels and let players decide when to go deeper &mdash; warm-up, exploration, then vulnerability. Giving users control over the pace was the single most important decision in the product.</div>
       </div>
-      <div class="insight-card">
-        <div class="insight-icon">&#9733;</div>
-        <div class="insight-title">Context shapes the conversation</div>
-        <div class="insight-body">The questions you ask a coworker are wildly different from those for a lover. Users wanted distinct decks that felt tailored to specific relationships, not a generic one-size-fits-all question bank.</div>
-      </div>
-      <div class="insight-card">
-        <div class="insight-icon">&#9670;</div>
-        <div class="insight-title">Aesthetic drives adoption</div>
-        <div class="insight-body">In competitive testing, users consistently chose apps that felt premium and polished. A luxury dark aesthetic with gold accents communicated that Peelr was a curated experience &mdash; not just another party game.</div>
+      <div class="decision-card">
+        <div class="decision-label">Decision 02</div>
+        <div class="decision-title">An interface as calm as the conversation</div>
+        <div class="decision-body">I wanted the app to feel as quiet and intentional as the conversation it&rsquo;s trying to start, so I studied the most restrained software I know &mdash; the original iPod&rsquo;s menu simplicity and the Light Phone&rsquo;s calm, distraction-free UI &mdash; and designed around a dark, gold-and-cream palette. Tactile details &mdash; swipe-to-reveal, flip animations, haptics &mdash; make a screen feel like a real card; everything else gets out of the way.</div>
       </div>
     </div>
   </section>
 
   <!-- 05 Process -->
   <section class="section reveal">
-    <div class="section-label">05 &mdash; Process</div>
+    <div class="section-label">04 &mdash; Process</div>
     <h2 class="section-title">From concept to cards in hand.</h2>
     <div class="process-grid">
       <div class="process-card">
@@ -390,29 +364,6 @@
     </div>
   </section>
 
-  <!-- 06 Solution -->
-  <section class="section reveal">
-    <div class="section-label">06 &mdash; Solution</div>
-    <h2 class="section-title">A digital game that feels analog at heart.</h2>
-    <div class="insights-grid">
-      <div class="insight-card">
-        <div class="insight-icon">&#9823;</div>
-        <div class="insight-title">Intuitive deck selection</div>
-        <div class="insight-body">Players choose from five visually distinct relationship decks, each with its own color accent and personality. The selection screen communicates tone immediately &mdash; Lovers feels intimate, Strangers feels adventurous, Family feels warm.</div>
-      </div>
-      <div class="insight-card">
-        <div class="insight-icon">&#9826;</div>
-        <div class="insight-title">Tactile card interactions</div>
-        <div class="insight-body">Swipe-to-reveal mechanics and smooth flip animations recreate the satisfying physicality of drawing a real card. Haptic feedback on iOS reinforces every interaction, making the digital experience feel grounded and intentional.</div>
-      </div>
-      <div class="insight-card">
-        <div class="insight-icon">&#9824;</div>
-        <div class="insight-title">Progressive depth engine</div>
-        <div class="insight-body">Three depth levels guide players from lighthearted openers to soul-baring questions. The system remembers where you left off and suggests when you might be ready to go deeper, creating a natural conversational arc.</div>
-      </div>
-    </div>
-  </section>
-
   <div class="divider reveal"><div class="divider-line"></div></div>
   <div class="section reveal">
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:10px;">
@@ -426,7 +377,7 @@
 
   <!-- 07 Outcomes -->
   <section class="section reveal">
-    <div class="section-label">07 &mdash; Outcomes</div>
+    <div class="section-label">05 &mdash; Impact</div>
     <h2 class="section-title">Measurable impact on connection.</h2>
     <div class="outcomes-grid">
       <div class="outcome-card">
@@ -450,7 +401,7 @@
 
   <!-- 08 Learnings -->
   <section class="section reveal">
-    <div class="section-label">08 &mdash; Learnings</div>
+    <div class="section-label">06 &mdash; Reflection</div>
     <h2 class="section-title">What designing for intimacy taught me.</h2>
     <div class="learnings-grid">
       <div class="learning-card">
@@ -489,8 +440,8 @@
   <!-- Footer -->
   <footer class="footer reveal">
     <div class="footer-card">
-      <span>&copy; 2026 Melvin Maron</span>
-      <span>Designed in Figma. Built with care.</span>
+      <span>&copy; 2026 Melvin Morales</span>
+      <span>Lead Product Designer &middot; Las Vegas, NV</span>
     </div>
   </footer>
 
@@ -509,6 +460,52 @@
     });
   }, {threshold: 0.08});
   document.querySelectorAll('.reveal').forEach(function(el) { obs.observe(el); });
+
+  // Voice note player
+  (function() {
+    var audio = document.getElementById('vnAudio');
+    var play = document.getElementById('vnPlay');
+    var fill = document.getElementById('vnFill');
+    var bar = document.getElementById('vnBar');
+    var time = document.getElementById('vnTime');
+    var note = document.querySelector('.voice-note');
+    var label = note ? note.querySelector('.vn-label') : null;
+    if (!audio || !play) return;
+
+    var PLAY = '<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+    var PAUSE = '<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>';
+
+    function fmt(s) {
+      if (isNaN(s) || !isFinite(s)) s = 0;
+      var m = Math.floor(s / 60);
+      var sec = Math.floor(s % 60);
+      return m + ':' + (sec < 10 ? '0' : '') + sec;
+    }
+    function render() {
+      var dur = audio.duration || 0;
+      fill.style.width = (dur ? (audio.currentTime / dur) * 100 : 0) + '%';
+      time.textContent = fmt(audio.currentTime) + ' / ' + fmt(dur);
+    }
+    audio.addEventListener('error', function() {
+      if (label) label.textContent = 'Voice note coming soon';
+      if (note) note.style.opacity = '.55';
+      play.style.cursor = 'default';
+      play.disabled = true;
+    });
+    play.addEventListener('click', function() {
+      if (audio.paused) { audio.play(); } else { audio.pause(); }
+    });
+    audio.addEventListener('play', function() { play.innerHTML = PAUSE; play.setAttribute('aria-label', 'Pause voice note'); });
+    audio.addEventListener('pause', function() { play.innerHTML = PLAY; play.setAttribute('aria-label', 'Play voice note'); });
+    audio.addEventListener('timeupdate', render);
+    audio.addEventListener('loadedmetadata', render);
+    audio.addEventListener('ended', function() { audio.currentTime = 0; render(); });
+    bar.addEventListener('click', function(e) {
+      var rect = bar.getBoundingClientRect();
+      var pct = (e.clientX - rect.left) / rect.width;
+      if (audio.duration) audio.currentTime = Math.max(0, Math.min(1, pct)) * audio.duration;
+    });
+  })();
 </script>
 
 </body>

@@ -138,6 +138,24 @@
   .live-link span { transition: transform .2s; display: inline-block; }
   .live-link:hover span { transform: rotate(45deg); }
 
+  .voice-note { max-width: var(--max); margin: 28px auto 0; padding: 0 24px; opacity: 0; animation: fadeup .8s .55s forwards; }
+  .vn-inner { display: flex; align-items: center; gap: 18px; background: var(--card); border: 1px solid rgba(255,255,255,.06); border-radius: 100px; padding: 10px 26px 10px 10px; }
+  .vn-play { width: 46px; height: 46px; flex-shrink: 0; border-radius: 50%; border: none; background: var(--accent); color: #000; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: opacity .2s, transform .15s; font-family: inherit; padding: 0; }
+  .vn-play:hover { opacity: .88; }
+  .vn-play:active { transform: scale(.94); }
+  .vn-play svg { display: block; }
+  .vn-main { flex: 1; display: flex; flex-direction: column; gap: 9px; min-width: 0; }
+  .vn-label { font-size: .68rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--text); }
+  .vn-bar { height: 4px; border-radius: 100px; background: var(--border); cursor: pointer; position: relative; }
+  .vn-fill { position: absolute; left: 0; top: 0; bottom: 0; width: 0%; background: var(--accent); border-radius: 100px; }
+  .vn-time { font-size: .68rem; font-weight: 600; letter-spacing: .04em; color: var(--muted); flex-shrink: 0; font-variant-numeric: tabular-nums; }
+
+  .decisions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 28px; }
+  .decision-card { background: var(--card); border-radius: var(--radius); border: 1px solid rgba(255,255,255,.04); padding: 32px; border-left: 3px solid var(--accent); }
+  .decision-label { font-size: .58rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+  .decision-title { font-size: .98rem; font-weight: 700; color: var(--text); margin-bottom: 10px; line-height: 1.3; }
+  .decision-body { font-size: .78rem; font-weight: 300; color: var(--muted); line-height: 1.7; }
+
   .reveal { opacity: 0; transform: translateY(22px); transition: opacity .65s cubic-bezier(.23,1,.32,1), transform .65s cubic-bezier(.23,1,.32,1); }
   .reveal.visible { opacity: 1; transform: none; }
 
@@ -157,6 +175,10 @@
     .insights-grid { grid-template-columns: 1fr; }
     .learnings-grid { grid-template-columns: 1fr; }
     .outcomes-grid { grid-template-columns: 1fr; }
+    .decisions-grid { grid-template-columns: 1fr; }
+    .voice-note { padding: 0 16px; }
+    .vn-inner { padding: 9px 18px 9px 9px; gap: 12px; }
+    .vn-label { font-size: .62rem; }
     .stat-row { grid-template-columns: 1fr; }
     .persona-card { grid-template-columns: 1fr; }
     .persona-img { aspect-ratio: 4/3; width: 100%; height: auto; }
@@ -203,13 +225,31 @@
       <span class="hero-meta-val">6 Months</span>
     </div>
     <div class="hero-meta-item">
-      <span class="hero-meta-label">Company</span>
-      <span class="hero-meta-val">SEVN</span>
+      <span class="hero-meta-label">Team</span>
+      <span class="hero-meta-val">Solo product designer</span>
     </div>
   </div>
   <div class="hero-img-wrap">
     <img src="https://www.sevnapp.com/og-image.png" alt="SEVN App Preview" class="hero-img">
   </div>
+</div>
+
+<!-- VOICE NOTE -->
+<div class="voice-note">
+  <div class="vn-inner">
+    <button class="vn-play" id="vnPlay" aria-label="Play voice note">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+    </button>
+    <div class="vn-main">
+      <div class="vn-label">Hear me talk about this project</div>
+      <div class="vn-bar" id="vnBar"><div class="vn-fill" id="vnFill"></div></div>
+    </div>
+    <div class="vn-time" id="vnTime">0:00</div>
+  </div>
+  <audio id="vnAudio" preload="metadata">
+    <source src="audio/sevn.mp3" type="audio/mpeg">
+    <source src="audio/sevn.m4a" type="audio/mp4">
+  </audio>
 </div>
 
 <!-- OVERVIEW -->
@@ -220,40 +260,26 @@
     <p>SEVN is a curated travel guide app for Las Vegas that goes beyond the Strip. Instead of generic top-ten lists and algorithm-driven recommendations, SEVN surfaces hand-picked locations from locals who know the city &mdash; restaurants, bars, coffee shops, outdoor spots, and hidden gems organized by neighborhood and category.</p>
     <p>I joined as the product designer responsible for <strong>the end-to-end mobile-first experience</strong> &mdash; from the discovery flow and neighborhood exploration to personalized recommendations and category filtering. The goal was to make finding great places in Vegas feel effortless, trustworthy, and genuinely local.</p>
   </div>
+  <div class="stat-row" style="margin-top: 36px;">
+    <div class="stat-cell">
+      <div class="stat-big">500<span>+</span></div>
+      <div class="stat-desc">Curated locations across Las Vegas &mdash; hand-picked by locals, not scraped from directories or generated by algorithms</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-big">7<span> Hoods</span></div>
+      <div class="stat-desc">Neighborhoods mapped into distinct exploration zones &mdash; giving users a sense of place beyond just the Strip</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-big">0</div>
+      <div class="stat-desc">Sponsored placements &mdash; every spot is hand-picked by a local, never paid for. Trust was the whole product.</div>
+    </div>
+  </div>
   <a href="https://www.sevnapp.com" target="_blank" rel="noopener" class="live-link">View Live Site <span>&#8599;</span></a>
   <div class="tags">
     <span class="tag">Mobile Design</span>
     <span class="tag">Travel</span>
     <span class="tag">Local Discovery</span>
     <span class="tag">iOS</span>
-  </div>
-</div>
-
-<div class="divider reveal"><div class="divider-line"></div></div>
-
-<div class="section reveal" style="text-align:center;">
-  <div style="background:#e84b2b;border-radius:var(--radius);padding:clamp(30px,8vw,60px) clamp(20px,5vw,40px);display:flex;align-items:center;justify-content:center;gap:20px;border:1px solid rgba(255,255,255,.04);">
-    <img src="https://www.sevnapp.com/favicon-180.png" alt="SEVN Logo" style="width:64px;height:64px;border-radius:16px;">
-    <div style="font-size:2rem;font-weight:900;color:#f2f0eb;letter-spacing:-.02em;text-transform:uppercase;">SEVN</div>
-  </div>
-</div>
-
-<!-- IMPACT STATS -->
-<div class="section reveal">
-  <div class="section-label">By the Numbers</div>
-  <div class="stat-row">
-    <div class="stat-cell">
-      <div class="stat-big">500<span>+</span></div>
-      <div class="stat-desc">Curated locations across Las Vegas &mdash; hand-picked by locals, not scraped from directories or generated by algorithms</div>
-    </div>
-    <div class="stat-cell">
-      <div class="stat-big">7<span> Neighborhoods</span></div>
-      <div class="stat-desc">Mapped and organized into distinct exploration zones &mdash; giving users a sense of place beyond just the Strip</div>
-    </div>
-    <div class="stat-cell">
-      <div class="stat-big">4.8<span>/5</span></div>
-      <div class="stat-desc">App Store rating from users who found the guide genuinely useful &mdash; not just another travel app full of sponsored content</div>
-    </div>
   </div>
 </div>
 
@@ -279,89 +305,24 @@
 
 <div class="divider reveal"><div class="divider-line"></div></div>
 
-<!-- PERSONA -->
+<!-- MY ROLE -->
 <div class="section reveal">
-  <div class="section-label">03 &mdash; User Persona</div>
-  <h2 class="section-title">Who We Designed For</h2>
-  <div class="persona-card" style="margin-top: 28px;">
-    <img src="https://images.pexels.com/photos/1516680/pexels-photo-1516680.jpeg?auto=compress&cs=tinysrgb&w=400&h=600&dpr=2" alt="Jake Rivera - Tourist" class="persona-img">
-    <div class="persona-body">
-      <div class="persona-name">Jake Rivera</div>
-      <div class="persona-role">Tourist &middot; Marketing Manager</div>
-      <div class="persona-grid">
-        <div>
-          <div class="persona-attr-label">Age</div>
-          <div class="persona-attr-val">28</div>
-        </div>
-        <div>
-          <div class="persona-attr-label">Location</div>
-          <div class="persona-attr-val">Chicago, IL</div>
-        </div>
-        <div>
-          <div class="persona-attr-label">Tech Proficiency</div>
-          <div class="persona-attr-val">High</div>
-        </div>
-        <div>
-          <div class="persona-attr-label">Motivation</div>
-          <div class="persona-attr-val">Authentic local experiences</div>
-        </div>
-      </div>
-      <div class="persona-cols">
-        <div>
-          <div class="persona-col-title">Goals</div>
-          <div class="persona-col-item">Discover spots that locals actually go to</div>
-          <div class="persona-col-item">Explore neighborhoods beyond the Strip</div>
-          <div class="persona-col-item">Build a quick, shareable itinerary</div>
-        </div>
-        <div>
-          <div class="persona-col-title">Frustrations</div>
-          <div class="persona-col-item">Review apps dominated by tourist traps</div>
-          <div class="persona-col-item">Too many options with no clear curation</div>
-          <div class="persona-col-item">No way to filter by neighborhood or vibe</div>
-        </div>
-        <div>
-          <div class="persona-col-title">Behaviors</div>
-          <div class="persona-col-item">Asks friends and social media for recs</div>
-          <div class="persona-col-item">Prefers quality over quantity in results</div>
-          <div class="persona-col-item">Plans loosely &mdash; wants options, not schedules</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div style="margin-top:14px;background:rgba(59,130,246,.04);border:1px solid rgba(59,130,246,.12);border-radius:var(--radius-sm);padding:20px 24px;display:flex;gap:16px;align-items:flex-start;">
-    <div style="font-size:1rem;flex-shrink:0;margin-top:2px;">&#128161;</div>
-    <div>
-      <div style="font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;">How Jake shaped the design</div>
-      <div style="font-size:.78rem;font-weight:300;line-height:1.7;color:#bbb;">Jake doesn&rsquo;t want to scroll through 200 results &mdash; he wants five great ones. That insight drove two core decisions. First, <strong style="color:var(--text);font-weight:500;">recommendations had to be tightly curated, not algorithmically exhaustive.</strong> Second, neighborhood-based browsing had to feel like exploring a real map, not reading a spreadsheet. If a 28-year-old who researches everything on his phone can&rsquo;t find a great dinner spot in under 30 seconds, the app has failed.</div>
-    </div>
-  </div>
-</div>
-
-<div class="divider reveal"><div class="divider-line"></div></div>
-
-<!-- RESEARCH -->
-<div class="section reveal">
-  <div class="section-label">04 &mdash; Research &amp; Insights</div>
-  <h2 class="section-title">What Visitors and Locals Told Us</h2>
+  <div class="section-label">03 &mdash; My Role &amp; How I Worked</div>
+  <h2 class="section-title">Owning the End-to-End<br>Discovery Experience</h2>
   <div class="section-body">
-    <p>I conducted interviews with both tourists and Las Vegas residents, ran a competitive analysis of existing travel and discovery apps, and analyzed behavioral patterns from early beta testers. The findings were consistent: people wanted fewer, better recommendations from sources they could trust.</p>
+    <p>I owned the end-to-end mobile experience &mdash; the discovery flow, neighborhood exploration, category filtering, and personalized recommendations &mdash; grounded in interviews with both tourists and Las Vegas locals. The whole product rested on one belief: a real person&rsquo;s pick beats an algorithm&rsquo;s ranking.</p>
+    <p>Two decisions carried the design:</p>
   </div>
-  <div class="insights-grid" style="margin-top: 28px;">
-    <div class="insight-card">
-      <div class="insight-icon">&#127759;</div>
-      <div class="insight-title">Neighborhood Context Matters Most</div>
-      <div class="insight-body">Users consistently said they wanted to understand where a place was in relation to where they were staying. Neighborhood grouping &mdash; not just category filtering &mdash; was the missing layer in every competing app we analyzed.</div>
+  <div class="decisions-grid">
+    <div class="decision-card">
+      <div class="decision-label">Decision 01</div>
+      <div class="decision-title">Curation over volume</div>
+      <div class="decision-body">People don&rsquo;t want to scroll two hundred results &mdash; they want five great ones. In testing, users felt more confident choosing from a short curated list than a long algorithm-ranked one, because trust came from knowing a real local picked it. So I built the product to be deliberately selective, not exhaustive.</div>
     </div>
-    <div class="insight-card">
-      <div class="insight-icon">&#9733;</div>
-      <div class="insight-title">Curation Beats Volume Every Time</div>
-      <div class="insight-body">In user tests, people felt more confident choosing from a list of 8 curated spots than from 80 algorithm-ranked results. Trust came from knowing a real person selected the recommendation &mdash; not from star counts or review volume.</div>
-    </div>
-    <div class="insight-card">
-      <div class="insight-icon">&#128241;</div>
-      <div class="insight-title">Discovery Happens on the Go</div>
-      <div class="insight-body">Over 85% of beta users accessed the app on mobile while already in Las Vegas. The experience had to be designed for one-handed use, quick scanning, and fast decision-making &mdash; not lean-back browsing at home.</div>
+    <div class="decision-card">
+      <div class="decision-label">Decision 02</div>
+      <div class="decision-title">Neighborhood-first, for the moment of use</div>
+      <div class="decision-body">A taco spot means something different Downtown than in Chinatown, so I made the map and neighborhoods the spine of discovery rather than just a category list. And I designed for how people actually use it &mdash; one hand, bright sunlight, deciding where to go right now &mdash; which forced sharper hierarchy and bigger touch targets.</div>
     </div>
   </div>
 </div>
@@ -370,7 +331,7 @@
 
 <!-- PROCESS -->
 <div class="section reveal">
-  <div class="section-label">05 &mdash; Design Process</div>
+  <div class="section-label">04 &mdash; Design Process</div>
   <h2 class="section-title">From Insight to Interface</h2>
   <div class="process-grid" style="margin-top: 28px;">
     <div class="process-card">
@@ -401,34 +362,6 @@
 </div>
 
 <div class="divider reveal"><div class="divider-line"></div></div>
-
-<!-- SOLUTION -->
-<div class="section reveal">
-  <div class="section-label">06 &mdash; Design Solution</div>
-  <h2 class="section-title">A City Guide That Feels<br>Like a Friend&rsquo;s Recommendation</h2>
-  <div class="section-body">
-    <p>The final design delivers a focused, trustworthy discovery experience that makes finding great places in Las Vegas feel personal &mdash; not transactional. Every interaction was designed for speed, clarity, and confidence.</p>
-  </div>
-  <div class="insights-grid" style="margin-top: 28px;">
-    <div class="insight-card">
-      <div class="insight-icon">&#128506;</div>
-      <div class="insight-title">Neighborhood-First Exploration</div>
-      <div class="insight-body">Users browse Las Vegas through an interactive neighborhood map that gives spatial context to every recommendation. Tapping a neighborhood reveals its curated spots, local vibe description, and distance from the user&rsquo;s current location.</div>
-    </div>
-    <div class="insight-card">
-      <div class="insight-icon">&#127991;</div>
-      <div class="insight-title">Smart Category Filtering</div>
-      <div class="insight-body">A persistent filter bar lets users toggle between categories &mdash; food, drinks, coffee, outdoors, nightlife, and more &mdash; without losing their place. Filters combine with neighborhood selection for precise, relevant results in seconds.</div>
-    </div>
-    <div class="insight-card">
-      <div class="insight-icon">&#10024;</div>
-      <div class="insight-title">Personalized Suggestions</div>
-      <div class="insight-body">Based on saved spots and browsing patterns, SEVN surfaces personalized recommendations that evolve with the user. The suggestion engine prioritizes variety and proximity, helping users discover new neighborhoods they wouldn&rsquo;t have explored otherwise.</div>
-    </div>
-  </div>
-</div>
-
-<div class="divider reveal"><div class="divider-line"></div></div>
 <div class="section reveal" style="text-align:center;">
   <div style="background:var(--card);border-radius:var(--radius);overflow:hidden;border:1px solid rgba(255,255,255,.04);">
     <img src="https://www.sevnapp.com/og-image.png" alt="SEVN App Interface" style="width:100%;display:block;opacity:.9;">
@@ -439,16 +372,16 @@
 
 <!-- OUTCOMES -->
 <div class="section reveal">
-  <div class="section-label">07 &mdash; Outcomes</div>
+  <div class="section-label">05 &mdash; Impact</div>
   <h2 class="section-title">Turning Local Knowledge<br>Into a Product People Trust</h2>
   <div class="outcomes-grid" style="margin-top: 28px;">
     <div class="outcome-card">
-      <div class="outcome-title">Users Found Places in Under 30 Seconds</div>
-      <div class="outcome-body">The neighborhood-first flow and category filtering reduced time-to-decision dramatically. In usability tests, users went from opening the app to choosing a spot in under 30 seconds &mdash; compared to minutes of scrolling on competing platforms.</div>
+      <div class="outcome-title">Users Decided Fast</div>
+      <div class="outcome-body">The neighborhood-first flow and category filtering cut time-to-decision dramatically. In usability tests, users went from opening the app to choosing a spot in moments &mdash; instead of the minutes of scrolling that competing platforms demanded.</div>
     </div>
     <div class="outcome-card">
       <div class="outcome-title">Neighborhood Exploration Drove Deeper Engagement</div>
-      <div class="outcome-body">Users who started with the neighborhood map viewed 3x more locations per session than those who searched directly. The spatial browsing model encouraged exploration and discovery beyond the user&rsquo;s initial intent.</div>
+      <div class="outcome-body">Users who started with the neighborhood map explored noticeably more of the city per session than those who searched directly. The spatial browsing model encouraged discovery well beyond their initial intent.</div>
     </div>
     <div class="outcome-card">
       <div class="outcome-title">High Trust Signals From Day One</div>
@@ -465,7 +398,7 @@
 
 <!-- LEARNINGS -->
 <div class="section reveal">
-  <div class="section-label">08 &mdash; Key Learnings</div>
+  <div class="section-label">06 &mdash; Reflection</div>
   <h2 class="section-title">What This Project Taught Me</h2>
   <div class="learnings-grid" style="margin-top: 28px;">
     <div class="learning-card">
@@ -502,7 +435,7 @@
 <div class="footer">
   <div class="footer-card">
     <span>&copy; 2026 Melvin Morales</span>
-    <span>Senior Product Designer &middot; Las Vegas, NV</span>
+    <span>Lead Product Designer &middot; Las Vegas, NV</span>
     <span>Built with intention.</span>
   </div>
 </div>
@@ -522,6 +455,52 @@
     });
   }, {threshold: 0.08});
   document.querySelectorAll('.reveal').forEach(function(el) { obs.observe(el); });
+
+  // Voice note player
+  (function() {
+    var audio = document.getElementById('vnAudio');
+    var play = document.getElementById('vnPlay');
+    var fill = document.getElementById('vnFill');
+    var bar = document.getElementById('vnBar');
+    var time = document.getElementById('vnTime');
+    var note = document.querySelector('.voice-note');
+    var label = note ? note.querySelector('.vn-label') : null;
+    if (!audio || !play) return;
+
+    var PLAY = '<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+    var PAUSE = '<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>';
+
+    function fmt(s) {
+      if (isNaN(s) || !isFinite(s)) s = 0;
+      var m = Math.floor(s / 60);
+      var sec = Math.floor(s % 60);
+      return m + ':' + (sec < 10 ? '0' : '') + sec;
+    }
+    function render() {
+      var dur = audio.duration || 0;
+      fill.style.width = (dur ? (audio.currentTime / dur) * 100 : 0) + '%';
+      time.textContent = fmt(audio.currentTime) + ' / ' + fmt(dur);
+    }
+    audio.addEventListener('error', function() {
+      if (label) label.textContent = 'Voice note coming soon';
+      if (note) note.style.opacity = '.55';
+      play.style.cursor = 'default';
+      play.disabled = true;
+    });
+    play.addEventListener('click', function() {
+      if (audio.paused) { audio.play(); } else { audio.pause(); }
+    });
+    audio.addEventListener('play', function() { play.innerHTML = PAUSE; play.setAttribute('aria-label', 'Pause voice note'); });
+    audio.addEventListener('pause', function() { play.innerHTML = PLAY; play.setAttribute('aria-label', 'Play voice note'); });
+    audio.addEventListener('timeupdate', render);
+    audio.addEventListener('loadedmetadata', render);
+    audio.addEventListener('ended', function() { audio.currentTime = 0; render(); });
+    bar.addEventListener('click', function(e) {
+      var rect = bar.getBoundingClientRect();
+      var pct = (e.clientX - rect.left) / rect.width;
+      if (audio.duration) audio.currentTime = Math.max(0, Math.min(1, pct)) * audio.duration;
+    });
+  })();
 </script>
 </body>
 </html>

@@ -138,6 +138,24 @@
   .live-link span { transition: transform .2s; display: inline-block; }
   .live-link:hover span { transform: rotate(45deg); }
 
+  .voice-note { max-width: var(--max); margin: 28px auto 0; padding: 0 24px; opacity: 0; animation: fadeup .8s .55s forwards; }
+  .vn-inner { display: flex; align-items: center; gap: 18px; background: var(--card); border: 1px solid rgba(255,255,255,.06); border-radius: 100px; padding: 10px 26px 10px 10px; }
+  .vn-play { width: 46px; height: 46px; flex-shrink: 0; border-radius: 50%; border: none; background: var(--accent); color: #000; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: opacity .2s, transform .15s; font-family: inherit; padding: 0; }
+  .vn-play:hover { opacity: .88; }
+  .vn-play:active { transform: scale(.94); }
+  .vn-play svg { display: block; }
+  .vn-main { flex: 1; display: flex; flex-direction: column; gap: 9px; min-width: 0; }
+  .vn-label { font-size: .68rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--text); }
+  .vn-bar { height: 4px; border-radius: 100px; background: var(--border); cursor: pointer; position: relative; }
+  .vn-fill { position: absolute; left: 0; top: 0; bottom: 0; width: 0%; background: var(--accent); border-radius: 100px; }
+  .vn-time { font-size: .68rem; font-weight: 600; letter-spacing: .04em; color: var(--muted); flex-shrink: 0; font-variant-numeric: tabular-nums; }
+
+  .decisions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 28px; }
+  .decision-card { background: var(--card); border-radius: var(--radius); border: 1px solid rgba(255,255,255,.04); padding: 32px; border-left: 3px solid var(--accent); }
+  .decision-label { font-size: .58rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+  .decision-title { font-size: .98rem; font-weight: 700; color: var(--text); margin-bottom: 10px; line-height: 1.3; }
+  .decision-body { font-size: .78rem; font-weight: 300; color: var(--muted); line-height: 1.7; }
+
   .reveal { opacity: 0; transform: translateY(22px); transition: opacity .65s cubic-bezier(.23,1,.32,1), transform .65s cubic-bezier(.23,1,.32,1); }
   .reveal.visible { opacity: 1; transform: none; }
 
@@ -157,6 +175,10 @@
     .insights-grid { grid-template-columns: 1fr; }
     .learnings-grid { grid-template-columns: 1fr; }
     .outcomes-grid { grid-template-columns: 1fr; }
+    .decisions-grid { grid-template-columns: 1fr; }
+    .voice-note { padding: 0 16px; }
+    .vn-inner { padding: 9px 18px 9px 9px; gap: 12px; }
+    .vn-label { font-size: .62rem; }
     .stat-row { grid-template-columns: 1fr; }
     .persona-card { grid-template-columns: 1fr; }
     .persona-img { aspect-ratio: 4/3; width: 100%; height: auto; }
@@ -203,13 +225,31 @@
       <span class="hero-meta-val">4 Months</span>
     </div>
     <div class="hero-meta-item">
-      <span class="hero-meta-label">Company</span>
-      <span class="hero-meta-val">Mindbody</span>
+      <span class="hero-meta-label">Team</span>
+      <span class="hero-meta-val">Led design · with iOS &amp; Android eng</span>
     </div>
   </div>
   <div class="hero-img-wrap">
     <img src="https://framerusercontent.com/images/VISsLIQFk5HLCoxnMMCpFR4PU.jpg" alt="Mindbody Branded App" class="hero-img">
   </div>
+</div>
+
+<!-- VOICE NOTE -->
+<div class="voice-note">
+  <div class="vn-inner">
+    <button class="vn-play" id="vnPlay" aria-label="Play voice note">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+    </button>
+    <div class="vn-main">
+      <div class="vn-label">Hear me talk about this project</div>
+      <div class="vn-bar" id="vnBar"><div class="vn-fill" id="vnFill"></div></div>
+    </div>
+    <div class="vn-time" id="vnTime">0:00</div>
+  </div>
+  <audio id="vnAudio" preload="metadata">
+    <source src="audio/mindbody.mp3" type="audio/mpeg">
+    <source src="audio/mindbody.m4a" type="audio/mp4">
+  </audio>
 </div>
 
 <!-- OVERVIEW -->
@@ -219,6 +259,20 @@
   <div class="section-body">
     <p>Mindbody's Branded App product lets wellness businesses — gyms, yoga studios, spas — offer their clients a fully custom-branded native mobile app. The problem: the existing app was built on outdated architecture, delivering a confusing, clunky experience that was driving clients away and flooding support queues.</p>
     <p>I led the complete native redesign for both iOS and Android, focused on <strong>three core improvements:</strong> a cleaner interface that felt truly native, a map-based location discovery experience, and a dramatically simplified booking flow that reduced friction at every step.</p>
+  </div>
+  <div class="stat-row" style="margin-top: 36px;">
+    <div class="stat-cell">
+      <div class="stat-big">2</div>
+      <div class="stat-desc">Native platforms — iOS &amp; Android, rebuilt on one shared design system</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-big">4<span>mo</span></div>
+      <div class="stat-desc">Research to production — two platforms, a new design system, and full usability validation</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-big">↓<span style="font-size:1.4rem;vertical-align:middle;"> Support</span></div>
+      <div class="stat-desc">A drop in studio support calls — clients stopped needing to phone the front desk to book</div>
+    </div>
   </div>
   <a href="https://www.mindbodyonline.com/business/branded-app" target="_blank" rel="noopener" class="live-link">View Live Product <span>&#8599;</span></a>
   <div class="tags">
@@ -230,27 +284,6 @@
     <span class="tag">Material Design</span>
     <span class="tag">H.I.G.</span>
     <span class="tag">Usability Testing</span>
-  </div>
-</div>
-
-<div class="divider reveal"><div class="divider-line"></div></div>
-
-<!-- IMPACT STATS -->
-<div class="section reveal">
-  <div class="section-label">By the Numbers</div>
-  <div class="stat-row">
-    <div class="stat-cell">
-      <div class="stat-big">35<span>%</span></div>
-      <div class="stat-desc">Increase in client booking frequency — shifting engagement from web to the new native mobile experience</div>
-    </div>
-    <div class="stat-cell">
-      <div class="stat-big">4<span>mo</span></div>
-      <div class="stat-desc">Research to production — two platforms, a new design system, and full usability validation in one sprint cycle</div>
-    </div>
-    <div class="stat-cell">
-      <div class="stat-big">↓<span style="font-size:1.4rem;vertical-align:middle;"> Support</span></div>
-      <div class="stat-desc">Measurable drop in studio support calls — clients no longer needed to call when the app actually worked</div>
-    </div>
   </div>
 </div>
 
@@ -276,89 +309,24 @@
 
 <div class="divider reveal"><div class="divider-line"></div></div>
 
-<!-- PERSONA -->
+<!-- MY ROLE -->
 <div class="section reveal">
-  <div class="section-label">03 — User Persona</div>
-  <h2 class="section-title">Who We Designed For</h2>
-  <div class="persona-card" style="margin-top: 28px;">
-    <img src="https://framerusercontent.com/images/iULaowyvt2gOeftTV4PjLkd54.jpg" alt="Olivia Hayes" class="persona-img">
-    <div class="persona-body">
-      <div class="persona-name">Olivia Hayes</div>
-      <div class="persona-role">Dedicated Fitness Client</div>
-      <div class="persona-grid">
-        <div>
-          <div class="persona-attr-label">Location</div>
-          <div class="persona-attr-val">Urban / City Center</div>
-        </div>
-        <div>
-          <div class="persona-attr-label">Tech Proficiency</div>
-          <div class="persona-attr-val">High</div>
-        </div>
-        <div>
-          <div class="persona-attr-label">Primary Device</div>
-          <div class="persona-attr-val">iPhone</div>
-        </div>
-        <div>
-          <div class="persona-attr-label">Visits / Week</div>
-          <div class="persona-attr-val">3–5 classes</div>
-        </div>
-      </div>
-      <div class="persona-cols">
-        <div>
-          <div class="persona-col-title">Goals</div>
-          <div class="persona-col-item">Find &amp; switch studio locations via map</div>
-          <div class="persona-col-item">Book or cancel classes in under a minute</div>
-          <div class="persona-col-item">Get timely push notifications for updates</div>
-        </div>
-        <div>
-          <div class="persona-col-title">Frustrations</div>
-          <div class="persona-col-item">Slow, visually dated interfaces</div>
-          <div class="persona-col-item">Confusing schedule and time picker</div>
-          <div class="persona-col-item">App failing, forcing a call to the studio</div>
-        </div>
-        <div>
-          <div class="persona-col-title">Behaviors</div>
-          <div class="persona-col-item">Books classes 1–2 days in advance</div>
-          <div class="persona-col-item">Visits multiple studio locations</div>
-          <div class="persona-col-item">High expectations for app quality</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div style="margin-top:14px;background:rgba(59,130,246,.04);border:1px solid rgba(59,130,246,.12);border-radius:var(--radius-sm);padding:20px 24px;display:flex;gap:16px;align-items:flex-start;">
-    <div style="font-size:1rem;flex-shrink:0;margin-top:2px;">💡</div>
-    <div>
-      <div style="font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;">How Olivia shaped the design</div>
-      <div style="font-size:.78rem;font-weight:300;line-height:1.7;color:#bbb;">Olivia visits multiple locations and books on the go — which made the flat location list the first thing we killed. Her pattern of switching between studios drove the decision to <strong style="color:var(--text);font-weight:500;">lead the app with a map view rather than a list</strong>, and her frustration with the time picker made it the most iterated component in the entire project.</div>
-    </div>
-  </div>
-</div>
-
-<div class="divider reveal"><div class="divider-line"></div></div>
-
-<!-- RESEARCH -->
-<div class="section reveal">
-  <div class="section-label">04 — Research &amp; Insights</div>
-  <h2 class="section-title">Data First. Then Design.</h2>
+  <div class="section-label">03 — My Role &amp; How I Worked</div>
+  <h2 class="section-title">Leading the Redesign<br>Across Two Platforms</h2>
   <div class="section-body">
-    <p>Before touching Figma, I dug into quantitative analytics to find where users were dropping off, then paired that with qualitative interviews with both end clients and business owners. I also benchmarked leading booking and travel apps to understand what native mobile excellence looked like in 2022.</p>
+    <p>I led the native redesign end-to-end for both iOS and Android — starting from drop-off analytics and interviews with clients and studio owners, through to a shipped design system. I worked closely with platform engineering on both sides to keep the experience genuinely native, not a shared web view in disguise.</p>
+    <p>Two decisions did most of the work:</p>
   </div>
-  <div class="insights-grid" style="margin-top: 28px;">
-    <div class="insight-card">
-      <div class="insight-icon">📍</div>
-      <div class="insight-title">Location Discovery Was Broken</div>
-      <div class="insight-body">Users with access to multiple studio locations had no intuitive way to find or switch between them. A map-based discovery experience was the clear solution — and validated by every interview participant.</div>
+  <div class="decisions-grid">
+    <div class="decision-card">
+      <div class="decision-label">Decision 01</div>
+      <div class="decision-title">A map, not a list</div>
+      <div class="decision-body">Clients who visited multiple studios had no spatial way to find or switch between them — the flat list was the single most-cited frustration in research. Leading the app with a map view rather than a directory is what made discovery feel effortless for people booking on the go.</div>
     </div>
-    <div class="insight-card">
-      <div class="insight-icon">📅</div>
-      <div class="insight-title">Booking Flow Had Too Many Steps</div>
-      <div class="insight-body">Analytics showed significant drop-off during scheduling and checkout. Users were abandoning mid-flow due to a confusing time picker and too many confirmation screens before booking was complete.</div>
-    </div>
-    <div class="insight-card">
-      <div class="insight-icon">📱</div>
-      <div class="insight-title">Native Fidelity Was Non-Negotiable</div>
-      <div class="insight-body">Designing for both iOS and Android meant respecting Material Design and Apple's H.I.G. — not just visually but behaviorally. Users expected the app to feel like it belonged on their device, not like a web view in disguise.</div>
+    <div class="decision-card">
+      <div class="decision-label">Decision 02</div>
+      <div class="decision-title">Obsess over the booking flow</div>
+      <div class="decision-body">Analytics showed users abandoning mid-booking, mostly at a confusing time picker. I cut the flow to the fewest taps possible and iterated the time picker more than any other component in the project — because in scheduling, a single interaction pattern is the difference between a booking and a phone call.</div>
     </div>
   </div>
 </div>
@@ -367,7 +335,7 @@
 
 <!-- PROCESS -->
 <div class="section reveal">
-  <div class="section-label">05 — Design Process</div>
+  <div class="section-label">04 — Design Process</div>
   <h2 class="section-title">How We Rebuilt It</h2>
   <div class="process-grid" style="margin-top: 28px;">
     <div class="process-card">
@@ -399,42 +367,14 @@
 
 <div class="divider reveal"><div class="divider-line"></div></div>
 
-<!-- SOLUTION -->
+<!-- IMPACT -->
 <div class="section reveal">
-  <div class="section-label">06 — Design Solution</div>
-  <h2 class="section-title">Fewer Taps. Better Experience.<br>More Bookings.</h2>
-  <div class="section-body">
-    <p>The redesign delivered three core upgrades that addressed every major pain point surfaced in research. Each solution was built to feel native to its platform while maintaining the brand flexibility that Mindbody's business customers depend on.</p>
-  </div>
-  <div class="insights-grid" style="margin-top: 28px;">
-    <div class="insight-card">
-      <div class="insight-icon">🗺️</div>
-      <div class="insight-title">Map-Based Location Discovery</div>
-      <div class="insight-body">Replaced the flat list with an interactive map view that lets users find nearby studio locations at a glance and switch between them seamlessly — solving the most-cited frustration in research.</div>
-    </div>
-    <div class="insight-card">
-      <div class="insight-icon">⚡</div>
-      <div class="insight-title">Streamlined Booking Flow</div>
-      <div class="insight-body">Redesigned the entire booking journey — service selection, time picker, and checkout — to minimize required taps and remove ambiguity. Users can go from schedule to confirmed booking in seconds.</div>
-    </div>
-    <div class="insight-card">
-      <div class="insight-icon">🎨</div>
-      <div class="insight-title">Dual-Platform Design System</div>
-      <div class="insight-body">Built a scalable design system foundation using Material Design and H.I.G. principles that supports per-business branding customization — so every branded app feels native and on-brand simultaneously.</div>
-    </div>
-  </div>
-</div>
-
-<div class="divider reveal"><div class="divider-line"></div></div>
-
-<!-- OUTCOMES -->
-<div class="section reveal">
-  <div class="section-label">07 — Outcomes</div>
+  <div class="section-label">05 — Impact</div>
   <h2 class="section-title">What We Delivered</h2>
   <div class="outcomes-grid" style="margin-top: 28px;">
     <div class="outcome-card">
-      <div class="outcome-title">35% Increase in Booking Frequency</div>
-      <div class="outcome-body">Client usage and booking frequency increased 35% after launch — directly tied to the reduced friction in the new booking flow and location discovery experience.</div>
+      <div class="outcome-title">Booking Frequency Climbed</div>
+      <div class="outcome-body">Client usage and booking frequency rose meaningfully after launch — a direct result of the reduced friction in the new booking flow and map-based location discovery.</div>
     </div>
     <div class="outcome-card">
       <div class="outcome-title">Support Calls Dropped Noticeably</div>
@@ -453,9 +393,9 @@
 
 <div class="divider reveal"><div class="divider-line"></div></div>
 
-<!-- LEARNINGS -->
+<!-- REFLECTION -->
 <div class="section reveal">
-  <div class="section-label">08 — Key Learnings</div>
+  <div class="section-label">06 — Reflection</div>
   <h2 class="section-title">What This Project Taught Me</h2>
   <div class="learnings-grid" style="margin-top: 28px;">
     <div class="learning-card">
@@ -492,7 +432,7 @@
 <div class="footer">
   <div class="footer-card">
     <span>&copy; 2026 Melvin Morales</span>
-    <span>Senior Product Designer &middot; Las Vegas, NV</span>
+    <span>Lead Product Designer &middot; Las Vegas, NV</span>
     <span>Built with intention.</span>
   </div>
 </div>
@@ -513,6 +453,52 @@
     });
   }, {threshold: 0.08});
   document.querySelectorAll('.reveal').forEach(function(el) { obs.observe(el); });
+
+  // Voice note player
+  (function() {
+    var audio = document.getElementById('vnAudio');
+    var play = document.getElementById('vnPlay');
+    var fill = document.getElementById('vnFill');
+    var bar = document.getElementById('vnBar');
+    var time = document.getElementById('vnTime');
+    var note = document.querySelector('.voice-note');
+    var label = note ? note.querySelector('.vn-label') : null;
+    if (!audio || !play) return;
+
+    var PLAY = '<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+    var PAUSE = '<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>';
+
+    function fmt(s) {
+      if (isNaN(s) || !isFinite(s)) s = 0;
+      var m = Math.floor(s / 60);
+      var sec = Math.floor(s % 60);
+      return m + ':' + (sec < 10 ? '0' : '') + sec;
+    }
+    function render() {
+      var dur = audio.duration || 0;
+      fill.style.width = (dur ? (audio.currentTime / dur) * 100 : 0) + '%';
+      time.textContent = fmt(audio.currentTime) + ' / ' + fmt(dur);
+    }
+    audio.addEventListener('error', function() {
+      if (label) label.textContent = 'Voice note coming soon';
+      if (note) note.style.opacity = '.55';
+      play.style.cursor = 'default';
+      play.disabled = true;
+    });
+    play.addEventListener('click', function() {
+      if (audio.paused) { audio.play(); } else { audio.pause(); }
+    });
+    audio.addEventListener('play', function() { play.innerHTML = PAUSE; play.setAttribute('aria-label', 'Pause voice note'); });
+    audio.addEventListener('pause', function() { play.innerHTML = PLAY; play.setAttribute('aria-label', 'Play voice note'); });
+    audio.addEventListener('timeupdate', render);
+    audio.addEventListener('loadedmetadata', render);
+    audio.addEventListener('ended', function() { audio.currentTime = 0; render(); });
+    bar.addEventListener('click', function(e) {
+      var rect = bar.getBoundingClientRect();
+      var pct = (e.clientX - rect.left) / rect.width;
+      if (audio.duration) audio.currentTime = Math.max(0, Math.min(1, pct)) * audio.duration;
+    });
+  })();
 </script>
 </body>
 </html>

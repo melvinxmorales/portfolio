@@ -138,6 +138,24 @@
   .live-link span { transition: transform .2s; display: inline-block; }
   .live-link:hover span { transform: rotate(45deg); }
 
+  .voice-note { max-width: var(--max); margin: 28px auto 0; padding: 0 24px; opacity: 0; animation: fadeup .8s .55s forwards; }
+  .vn-inner { display: flex; align-items: center; gap: 18px; background: var(--card); border: 1px solid rgba(255,255,255,.06); border-radius: 100px; padding: 10px 26px 10px 10px; }
+  .vn-play { width: 46px; height: 46px; flex-shrink: 0; border-radius: 50%; border: none; background: var(--accent); color: #000; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: opacity .2s, transform .15s; font-family: inherit; padding: 0; }
+  .vn-play:hover { opacity: .88; }
+  .vn-play:active { transform: scale(.94); }
+  .vn-play svg { display: block; }
+  .vn-main { flex: 1; display: flex; flex-direction: column; gap: 9px; min-width: 0; }
+  .vn-label { font-size: .68rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--text); }
+  .vn-bar { height: 4px; border-radius: 100px; background: var(--border); cursor: pointer; position: relative; }
+  .vn-fill { position: absolute; left: 0; top: 0; bottom: 0; width: 0%; background: var(--accent); border-radius: 100px; }
+  .vn-time { font-size: .68rem; font-weight: 600; letter-spacing: .04em; color: var(--muted); flex-shrink: 0; font-variant-numeric: tabular-nums; }
+
+  .decisions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 28px; }
+  .decision-card { background: var(--card); border-radius: var(--radius); border: 1px solid rgba(255,255,255,.04); padding: 32px; border-left: 3px solid var(--accent); }
+  .decision-label { font-size: .58rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+  .decision-title { font-size: .98rem; font-weight: 700; color: var(--text); margin-bottom: 10px; line-height: 1.3; }
+  .decision-body { font-size: .78rem; font-weight: 300; color: var(--muted); line-height: 1.7; }
+
   .reveal { opacity: 0; transform: translateY(22px); transition: opacity .65s cubic-bezier(.23,1,.32,1), transform .65s cubic-bezier(.23,1,.32,1); }
   .reveal.visible { opacity: 1; transform: none; }
 
@@ -157,6 +175,10 @@
     .insights-grid { grid-template-columns: 1fr; }
     .learnings-grid { grid-template-columns: 1fr; }
     .outcomes-grid { grid-template-columns: 1fr; }
+    .decisions-grid { grid-template-columns: 1fr; }
+    .voice-note { padding: 0 16px; }
+    .vn-inner { padding: 9px 18px 9px 9px; gap: 12px; }
+    .vn-label { font-size: .62rem; }
     .stat-row { grid-template-columns: 1fr; }
     .persona-card { grid-template-columns: 1fr; }
     .persona-img { aspect-ratio: 4/3; width: 100%; height: auto; }
@@ -192,19 +214,19 @@
     </div>
     <div class="hero-meta-item">
       <span class="hero-meta-label">Role</span>
-      <span class="hero-meta-val">Lead Designer</span>
+      <span class="hero-meta-val">Lead Product Designer</span>
     </div>
     <div class="hero-meta-item">
-      <span class="hero-meta-label">Platforms</span>
-      <span class="hero-meta-val">Desktop &amp; Mobile</span>
+      <span class="hero-meta-label">Team</span>
+      <span class="hero-meta-val">Sole designer + 1 engineer</span>
     </div>
     <div class="hero-meta-item">
       <span class="hero-meta-label">Timeline</span>
       <span class="hero-meta-val">6 Months</span>
     </div>
     <div class="hero-meta-item">
-      <span class="hero-meta-label">Company</span>
-      <span class="hero-meta-val">Dardano&rsquo;s Shoes</span>
+      <span class="hero-meta-label">Platforms</span>
+      <span class="hero-meta-val">Desktop &amp; Mobile</span>
     </div>
   </div>
   <div class="hero-img-wrap">
@@ -212,13 +234,45 @@
   </div>
 </div>
 
-<!-- OVERVIEW -->
+<!-- VOICE NOTE -->
+<div class="voice-note">
+  <div class="vn-inner">
+    <button class="vn-play" id="vnPlay" aria-label="Play voice note">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+    </button>
+    <div class="vn-main">
+      <div class="vn-label">Hear me talk about this project</div>
+      <div class="vn-bar" id="vnBar"><div class="vn-fill" id="vnFill"></div></div>
+    </div>
+    <div class="vn-time" id="vnTime">0:00 / 1:07</div>
+  </div>
+  <audio id="vnAudio" preload="metadata">
+    <source src="audio/dardanos.mp3" type="audio/mpeg">
+    <source src="audio/dardanos.m4a" type="audio/mp4">
+  </audio>
+</div>
+
+<!-- OVERVIEW + SNAPSHOT -->
 <div class="section reveal">
   <div class="section-label">01 — Overview</div>
   <h2 class="section-title">Design as a Survival Strategy<br>for a Historic Brand</h2>
   <div class="section-body">
-    <p>Founded in 1938, Dardano&rsquo;s is a beloved family-owned shoe retailer based in Denver, Colorado — known for quality footwear and a deeply personal in-store experience. When the pandemic hit, their reliance on physical foot traffic became an existential risk.</p>
-    <p>I was brought in as lead designer with a clear mandate: <strong>execute a rapid, full-scale redesign of Dardanos.com</strong> to transform the business into a viable e-commerce operation — capturing the brand&rsquo;s warmth and quality online while driving real, measurable sales.</p>
+    <p>Founded in 1938, Dardano&rsquo;s is a beloved family-owned shoe retailer in Denver, Colorado — known for quality footwear and a deeply personal in-store experience. When the pandemic erased their foot traffic, that reliance on physical retail became an existential risk.</p>
+    <p>I led a rapid, full-scale redesign of Dardanos.com — turning a brochure-style site that had never really sold anything into a real e-commerce business that captured the brand&rsquo;s warmth online and drove measurable revenue.</p>
+  </div>
+  <div class="stat-row" style="margin-top: 36px;">
+    <div class="stat-cell">
+      <div class="stat-big">~3<span>x</span></div>
+      <div class="stat-desc">Increase in online orders in the first quarter — from a near-zero baseline to a real revenue channel</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-big">$106<span>K</span></div>
+      <div class="stat-desc">In online profit within the first six months — validating the pivot from physical-first to digital-first retail</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-big">↑<span style="font-size:1.4rem;vertical-align:middle;"> Engagement</span></div>
+      <div class="stat-desc">More pages per session — users explored the catalog instead of bouncing from the homepage</div>
+    </div>
   </div>
   <a href="https://www.dardanos.com" target="_blank" rel="noopener" class="live-link">View Live Site <span>&#8599;</span></a>
   <div class="tags">
@@ -226,42 +280,33 @@
     <span class="tag">UX Research</span>
     <span class="tag">Information Architecture</span>
     <span class="tag">Conversion Optimization</span>
-    <span class="tag">Desktop &amp; Mobile</span>
     <span class="tag">Brand Design</span>
-    <span class="tag">Front-End Development</span>
+    <span class="tag">Design Systems</span>
   </div>
 </div>
 
 <div class="divider reveal"><div class="divider-line"></div></div>
 
-<!-- IMPACT STATS -->
-<div class="section reveal">
-  <div class="section-label">By the Numbers</div>
-  <div class="stat-row">
-    <div class="stat-cell">
-      <div class="stat-big">~3<span>x</span></div>
-      <div class="stat-desc">Increase in online orders within the first quarter — from a near-zero e-commerce baseline to a real revenue channel</div>
+<!-- ECOSYSTEM LINK -->
+<div class="section reveal" style="padding-top: 0;">
+  <a href="ez-shoe-repair.html" style="display:flex;align-items:center;justify-content:space-between;gap:20px;background:var(--card);border:1px solid rgba(255,255,255,.06);border-left:3px solid var(--accent);border-radius:var(--radius);padding:24px 28px;text-decoration:none;transition:border-color .2s,background .2s;">
+    <div>
+      <div style="font-size:.58rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;">Part of a connected system</div>
+      <div style="font-size:.9rem;font-weight:500;color:var(--text);line-height:1.5;">Same owner, two storefronts. Dardano&rsquo;s is where you <strong>buy</strong> your shoes &mdash; <span style="color:var(--accent);font-weight:600;">EZ Shoe Repair</span> is where you get them <strong>fixed</strong>. I designed both ends of the journey.</div>
     </div>
-    <div class="stat-cell">
-      <div class="stat-big">$106<span>K</span></div>
-      <div class="stat-desc">In online profit sales in the first six months — validating the pivot from physical-first to digital-first retail</div>
-    </div>
-    <div class="stat-cell">
-      <div class="stat-big">↑<span style="font-size:1.4rem;vertical-align:middle;"> Engagement</span></div>
-      <div class="stat-desc">Significantly more pages viewed per session — users were exploring the catalog instead of bouncing from the homepage</div>
-    </div>
-  </div>
+    <div style="font-size:1.1rem;color:var(--muted);flex-shrink:0;">&rarr;</div>
+  </a>
 </div>
 
 <div class="divider reveal"><div class="divider-line"></div></div>
 
 <!-- PROBLEM -->
 <div class="section reveal">
-  <div class="section-label">02 — Problem Statement</div>
+  <div class="section-label">02 — The Problem</div>
   <h2 class="section-title">An Outdated Site Failing<br>a Premium Brand</h2>
   <div class="section-body">
-    <p>The existing Dardanos.com suffered from outdated visual design, confusing navigation, and poor information architecture that failed to reflect the brand&rsquo;s high-end quality and personal service ethos. Customers who loved the store in-person had no equivalent experience online.</p>
-    <p>The result was <strong>severely limited e-commerce sales</strong> — a vulnerability that became a crisis when the pandemic closed physical locations and customers had nowhere else to turn. The site didn&rsquo;t just underperform; it actively undermined a brand that deserved better.</p>
+    <p>The old Dardanos.com had outdated visuals, confusing navigation, and an information architecture that buried products. Customers who loved the store in person had no equivalent online — so e-commerce sales were negligible.</p>
+    <p>When the pandemic closed the physical store, <strong>that weakness became a crisis.</strong> The site didn&rsquo;t just underperform; it actively undermined a brand that deserved better — at the exact moment it was the only channel left.</p>
   </div>
 </div>
 
@@ -275,89 +320,24 @@
 
 <div class="divider reveal"><div class="divider-line"></div></div>
 
-<!-- PERSONA -->
+<!-- MY ROLE -->
 <div class="section reveal">
-  <div class="section-label">03 — User Persona</div>
-  <h2 class="section-title">Who We Designed For</h2>
-  <div class="persona-card" style="margin-top: 28px;">
-    <img src="https://framerusercontent.com/images/iU3LYQJagdtbvBiLczOm2vKwd0Q.jpg" alt="Robert Diaz" class="persona-img">
-    <div class="persona-body">
-      <div class="persona-name">Robert Diaz</div>
-      <div class="persona-role">Loyal Customer &middot; Electrician</div>
-      <div class="persona-grid">
-        <div>
-          <div class="persona-attr-label">Age</div>
-          <div class="persona-attr-val">48</div>
-        </div>
-        <div>
-          <div class="persona-attr-label">Location</div>
-          <div class="persona-attr-val">Denver Metro Area</div>
-        </div>
-        <div>
-          <div class="persona-attr-label">Tech Proficiency</div>
-          <div class="persona-attr-val">Moderate</div>
-        </div>
-        <div>
-          <div class="persona-attr-label">Motivation</div>
-          <div class="persona-attr-val">Quality &amp; fit confidence</div>
-        </div>
-      </div>
-      <div class="persona-cols">
-        <div>
-          <div class="persona-col-title">Goals</div>
-          <div class="persona-col-item">Navigate large catalog quickly to find specific styles</div>
-          <div class="persona-col-item">Trust fit and quality when buying online</div>
-          <div class="persona-col-item">Feel the same personal service as in-store</div>
-        </div>
-        <div>
-          <div class="persona-col-title">Frustrations</div>
-          <div class="persona-col-item">Information overload and confusing menus</div>
-          <div class="persona-col-item">Too many clicks to find specific products</div>
-          <div class="persona-col-item">Slow load times and limited payment options</div>
-        </div>
-        <div>
-          <div class="persona-col-title">Behaviors</div>
-          <div class="persona-col-item">Researches before purchasing — reads reviews</div>
-          <div class="persona-col-item">Values brand story and heritage</div>
-          <div class="persona-col-item">Prefers calling if the site is confusing</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div style="margin-top:14px;background:rgba(59,130,246,.04);border:1px solid rgba(59,130,246,.12);border-radius:var(--radius-sm);padding:20px 24px;display:flex;gap:16px;align-items:flex-start;">
-    <div style="font-size:1rem;flex-shrink:0;margin-top:2px;">💡</div>
-    <div>
-      <div style="font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;">How Robert shaped the design</div>
-      <div style="font-size:.78rem;font-weight:300;line-height:1.7;color:#bbb;">Robert reads reviews before buying anything and will pick up the phone the moment a site confuses him — which told us two things directly. First, <strong style="color:var(--text);font-weight:500;">reviews had to live on product pages, not be buried in a tab.</strong> Second, navigation had to be simple enough that a moderately tech-savvy 48-year-old could find what he wanted in under three clicks, or we'd lose him entirely.</div>
-    </div>
-  </div>
-</div>
-
-<div class="divider reveal"><div class="divider-line"></div></div>
-
-<!-- RESEARCH -->
-<div class="section reveal">
-  <div class="section-label">04 — Research &amp; Insights</div>
-  <h2 class="section-title">What the Data and Customers Told Us</h2>
+  <div class="section-label">03 — My Role &amp; How I Worked</div>
+  <h2 class="section-title">What I Owned</h2>
   <div class="section-body">
-    <p>I ran usability tests on the old site alongside customer interviews, then deployed surveys and a competitive audit to benchmark what modern e-commerce excellence looked like. Customers were clear: they loved the brand but the site was getting in the way.</p>
+    <p>I was the <strong>sole designer</strong> on the project, working directly with the Dardano&rsquo;s owners and partnering with one engineer through the build. I owned the entire design end-to-end — user research, information architecture, visual design, and the UI system — and worked side by side with the engineer to ship it without losing fidelity.</p>
+    <p>This wasn&rsquo;t a hand-off-the-mockups engagement. I set the strategy, made the hard calls, and stayed in the build until it shipped. Two of those calls shaped the entire outcome:</p>
   </div>
-  <div class="insights-grid" style="margin-top: 28px;">
-    <div class="insight-card">
-      <div class="insight-icon">🗂️</div>
-      <div class="insight-title">Navigation Was the #1 Pain Point</div>
-      <div class="insight-body">The information architecture needed a complete overhaul. Users across the 28–65 age range were confused by the menu structure and couldn&rsquo;t find products without excessive clicking — leading them to abandon the site entirely.</div>
+  <div class="decisions-grid">
+    <div class="decision-card">
+      <div class="decision-label">Decision 01</div>
+      <div class="decision-title">Trust before polish</div>
+      <div class="decision-body">You can&rsquo;t try shoes on online, so I prioritized trust-builders — real reviews, honest sizing guides, a clear returns policy — over a flashier homepage. I bet that confidence, not decoration, was what converted browsers into buyers. The revenue proved the bet right.</div>
     </div>
-    <div class="insight-card">
-      <div class="insight-icon">🤝</div>
-      <div class="insight-title">Trust Had to Be Built Digitally</div>
-      <div class="insight-body">Shoes can&rsquo;t be tried on online. Without the in-store experience, the design needed to integrate trust-builders — clear sizing guides, authentic customer reviews, and a simple returns policy — front and center on product pages.</div>
-    </div>
-    <div class="insight-card">
-      <div class="insight-icon">🏪</div>
-      <div class="insight-title">Brand Warmth Couldn&rsquo;t Be Lost</div>
-      <div class="insight-body">Dardano&rsquo;s biggest differentiator from big-box retailers is its personal touch. The redesign had to translate that warmth digitally — surfacing the brand story, easy contact options, and a human feel that large retailers can&rsquo;t replicate.</div>
+    <div class="decision-card">
+      <div class="decision-label">Decision 02</div>
+      <div class="decision-title">A Quick-Find IA for a deep catalog</div>
+      <div class="decision-body">With hundreds of SKUs, findability was the whole game. Rather than polish the existing menus, I rebuilt the navigation around a Quick-Find model that cut the path to purchase from many clicks to a few — designed to work for a 28–65 age range, not just the tech-fluent.</div>
     </div>
   </div>
 </div>
@@ -366,111 +346,79 @@
 
 <!-- PROCESS -->
 <div class="section reveal">
-  <div class="section-label">05 — Design Process</div>
+  <div class="section-label">04 — Process</div>
   <h2 class="section-title">From Research to Revenue</h2>
   <div class="process-grid" style="margin-top: 28px;">
     <div class="process-card">
       <div class="process-num">01</div>
-      <div class="process-step-label">Discovery</div>
-      <div class="process-step-title">Interviews, Usability Tests &amp; Competitive Audit</div>
-      <div class="process-step-body">Conducted interviews and usability tests on the existing site. Deployed customer surveys to understand what was working and what wasn&rsquo;t. Ran a competitive audit against leading shoe retailers to identify the e-commerce features that drive conversion — reviews, filtering, fit guides, loyalty programs.</div>
+      <div class="process-step-label">Discover</div>
+      <div class="process-step-title">Interviews, Usability Tests &amp; a Competitive Audit</div>
+      <div class="process-step-body">Interviewed loyal customers, ran usability tests on the live site, and deployed surveys to find what was breaking. Audited leading shoe retailers to benchmark the features that actually drive conversion — reviews, filtering, fit guides.</div>
     </div>
     <div class="process-card">
       <div class="process-num">02</div>
       <div class="process-step-label">Define</div>
-      <div class="process-step-title">Information Architecture Overhaul</div>
-      <div class="process-step-body">Mapped the full site structure and identified where the current IA was failing users. Defined a simplified navigation model and &ldquo;Quick Find&rdquo; feature concept to dramatically reduce the path to purchase — critical for a catalog with hundreds of SKUs.</div>
+      <div class="process-step-title">Rebuilding the Information Architecture</div>
+      <div class="process-step-body">Mapped the full site and pinpointed where the IA failed users. Defined a simplified navigation model and the Quick-Find concept to collapse the path to purchase — critical for a catalog with hundreds of SKUs.</div>
     </div>
     <div class="process-card">
       <div class="process-num">03</div>
       <div class="process-step-label">Design</div>
-      <div class="process-step-title">Clean UI + Trust-First Product Pages</div>
-      <div class="process-step-body">Created a modern visual system reflecting the brand&rsquo;s premium quality. Redesigned product pages to lead with high-quality imagery, integrated reviews, clear sizing information, and a simplified add-to-cart flow. Built a personalized filtering system to help users quickly narrow a large catalog to what they need.</div>
+      <div class="process-step-title">A Premium System, Trust-First Pages</div>
+      <div class="process-step-body">Built a visual system that matched the brand&rsquo;s quality and rebuilt product pages around trust — strong imagery, embedded reviews, clear sizing, a simplified add-to-cart, and filtering to narrow a large catalog fast.</div>
     </div>
     <div class="process-card">
       <div class="process-num">04</div>
-      <div class="process-step-label">Build &amp; Validate</div>
-      <div class="process-step-title">Wireframes, Testing &amp; Front-End Development</div>
-      <div class="process-step-body">Developed wireframes focused on usability across a broad age range (28–65). Iteratively tested the new IA and filtering systems until users could find items in fewer clicks. Took ownership through to front-end development, optimizing load times and integrating payment options and account creation to improve retention.</div>
+      <div class="process-step-label">Validate &amp; Ship</div>
+      <div class="process-step-title">Testing Across a Wide Audience</div>
+      <div class="process-step-body">Tested the new IA and filtering across the 28–65 age range, iterating until users found items in fewer clicks — then partnered closely with the engineer through the build to keep the shipped product true to the design.</div>
     </div>
   </div>
 </div>
 
 <div class="divider reveal"><div class="divider-line"></div></div>
 
-<!-- SOLUTION -->
+<!-- IMPACT -->
 <div class="section reveal">
-  <div class="section-label">06 — Design Solution</div>
-  <h2 class="section-title">A Premium Site That Earned<br>Customer Trust Online</h2>
-  <div class="section-body">
-    <p>The redesign delivered a clean, modern experience that matched the quality of the product and the warmth of the in-store visit — while fixing every friction point that was costing conversions.</p>
-  </div>
-  <div class="insights-grid" style="margin-top: 28px;">
-    <div class="insight-card">
-      <div class="insight-icon">🧭</div>
-      <div class="insight-title">Simplified Navigation &amp; Quick Find</div>
-      <div class="insight-body">Rebuilt the site&rsquo;s information architecture from the ground up, creating a clean menu structure and a Quick Find feature that reduces the path to purchase from many clicks to just a few.</div>
-    </div>
-    <div class="insight-card">
-      <div class="insight-icon">⭐</div>
-      <div class="insight-title">Trust-First Product Pages</div>
-      <div class="insight-body">Integrated customer reviews directly on product pages alongside clear sizing guides and a simplified returns policy — giving online shoppers the confidence to buy without trying the shoes on first.</div>
-    </div>
-    <div class="insight-card">
-      <div class="insight-icon">🔍</div>
-      <div class="insight-title">Personalized Filtering System</div>
-      <div class="insight-body">Designed a filtering system that lets customers narrow a large catalog by size, style, brand, and fit — making product discovery fast and satisfying for a wide demographic of shoppers.</div>
-    </div>
-  </div>
-</div>
-
-<div class="divider reveal"><div class="divider-line"></div></div>
-
-<!-- OUTCOMES -->
-<div class="section reveal">
-  <div class="section-label">07 — Outcomes</div>
+  <div class="section-label">05 — Impact</div>
   <h2 class="section-title">Design That Saved a Business</h2>
   <div class="outcomes-grid" style="margin-top: 28px;">
     <div class="outcome-card">
-      <div class="outcome-title">Online Orders Went From Near Zero to Real Revenue</div>
-      <div class="outcome-body">Before the redesign, dardanos.com was barely a sales channel. Within the first six months post-launch, it became one — generating $106K in online profit and proving that the brand had a real digital audience waiting to be reached.</div>
+      <div class="outcome-title">From Near-Zero to a Real Revenue Channel</div>
+      <div class="outcome-body">Before the redesign, dardanos.com barely sold anything. Within six months it generated $106K in online profit and roughly 3x the orders — proving the brand had a digital audience waiting to be reached.</div>
     </div>
     <div class="outcome-card">
-      <div class="outcome-title">Users Started Exploring, Not Bouncing</div>
-      <div class="outcome-body">Session depth increased measurably after launch. The improved navigation and filtering meant customers were moving through the catalog with intent — finding products they wouldn't have discovered on the old site.</div>
+      <div class="outcome-title">Users Explored Instead of Bouncing</div>
+      <div class="outcome-body">Session depth rose measurably after launch. The new navigation and filtering meant customers moved through the catalog with intent, finding products they&rsquo;d never have surfaced on the old site.</div>
     </div>
     <div class="outcome-card">
       <div class="outcome-title">A Family Business Survived the Pandemic</div>
-      <div class="outcome-body">The redesign wasn't just a UX win — it was the difference between a business that adapted and one that didn't. Dardano's came out of the pandemic with a functioning digital operation built on a foundation that could scale.</div>
-    </div>
-    <div class="outcome-card">
-      <div class="outcome-title">Brand Warmth Translated Online</div>
-      <div class="outcome-body">Loyal customers who knew the store in-person recognized the same quality and care in the new site. The personal feel that differentiates Dardano's from big-box competitors wasn't lost in the translation to digital.</div>
+      <div class="outcome-body">This wasn&rsquo;t just a UX win — it was the difference between a business that adapted and one that didn&rsquo;t. Dardano&rsquo;s came out of the pandemic with a functioning digital operation built to scale.</div>
     </div>
   </div>
 </div>
 
 <div class="divider reveal"><div class="divider-line"></div></div>
 
-<!-- LEARNINGS -->
+<!-- REFLECTION -->
 <div class="section reveal">
-  <div class="section-label">08 — Key Learnings</div>
+  <div class="section-label">06 — Reflection</div>
   <h2 class="section-title">What This Project Taught Me</h2>
   <div class="learnings-grid" style="margin-top: 28px;">
     <div class="learning-card">
       <div class="learning-num">Learning 01</div>
       <div class="learning-title">Design Is a Business Strategy</div>
-      <div class="learning-body">This wasn't a portfolio project — it was a survival decision for a real business in a real crisis. That context sharpened every design choice. When the stakes are that concrete, you stop optimizing for aesthetics and start optimizing for outcomes. The revenue followed the clarity.</div>
+      <div class="learning-body">This wasn&rsquo;t a portfolio project — it was a survival decision for a real business in a real crisis. When the stakes are that concrete, you stop optimizing for aesthetics and start optimizing for outcomes. The revenue followed the clarity.</div>
     </div>
     <div class="learning-card">
       <div class="learning-num">Learning 02</div>
-      <div class="learning-title">Simplicity and Trust Drive Conversion</div>
-      <div class="learning-body">For quality-focused brands, clarity is everything. Users don&rsquo;t buy online from brands they don&rsquo;t trust. Every design decision — from reviews to returns to page speed — was ultimately about building enough confidence for a customer to complete a purchase without touching the product.</div>
+      <div class="learning-title">Trust Is the Conversion Lever</div>
+      <div class="learning-body">For quality brands, people don&rsquo;t buy from a site they don&rsquo;t trust. Reviews, returns, sizing, page speed — every one of those decisions was really about giving a customer enough confidence to buy without touching the product.</div>
     </div>
     <div class="learning-card">
       <div class="learning-num">Learning 03</div>
-      <div class="learning-title">End-to-End Ownership Matters</div>
-      <div class="learning-body">Taking ownership from research through to front-end development ensured that every design decision was technically feasible and directly tied to the business goal. When you&rsquo;re responsible for the result, not just the spec, you make better decisions at every step.</div>
+      <div class="learning-title">I&rsquo;d Instrument the Funnel From Day One</div>
+      <div class="learning-body">Honestly, I was reading engagement qualitatively — I could feel the site working before I could fully prove why. With hard funnel analytics in place at launch, I&rsquo;d have known exactly which trust-builders drove conversion and iterated faster. On the next build, measurement goes in before launch, not after.</div>
     </div>
   </div>
 </div>
@@ -491,7 +439,7 @@
 <div class="footer">
   <div class="footer-card">
     <span>&copy; 2026 Melvin Morales</span>
-    <span>Senior Product Designer &middot; Las Vegas, NV</span>
+    <span>Lead Product Designer &middot; Las Vegas, NV</span>
     <span>Built with intention.</span>
   </div>
 </div>
@@ -512,6 +460,45 @@
     });
   }, {threshold: 0.08});
   document.querySelectorAll('.reveal').forEach(function(el) { obs.observe(el); });
+
+  // Voice note player
+  (function() {
+    var audio = document.getElementById('vnAudio');
+    var play = document.getElementById('vnPlay');
+    var fill = document.getElementById('vnFill');
+    var bar = document.getElementById('vnBar');
+    var time = document.getElementById('vnTime');
+    if (!audio || !play) return;
+
+    var PLAY = '<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+    var PAUSE = '<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>';
+
+    function fmt(s) {
+      if (isNaN(s) || !isFinite(s)) s = 0;
+      var m = Math.floor(s / 60);
+      var sec = Math.floor(s % 60);
+      return m + ':' + (sec < 10 ? '0' : '') + sec;
+    }
+    function render() {
+      var dur = audio.duration || 0;
+      fill.style.width = (dur ? (audio.currentTime / dur) * 100 : 0) + '%';
+      time.textContent = fmt(audio.currentTime) + ' / ' + fmt(dur);
+    }
+
+    play.addEventListener('click', function() {
+      if (audio.paused) { audio.play(); } else { audio.pause(); }
+    });
+    audio.addEventListener('play', function() { play.innerHTML = PAUSE; play.setAttribute('aria-label', 'Pause voice note'); });
+    audio.addEventListener('pause', function() { play.innerHTML = PLAY; play.setAttribute('aria-label', 'Play voice note'); });
+    audio.addEventListener('timeupdate', render);
+    audio.addEventListener('loadedmetadata', render);
+    audio.addEventListener('ended', function() { audio.currentTime = 0; render(); });
+    bar.addEventListener('click', function(e) {
+      var rect = bar.getBoundingClientRect();
+      var pct = (e.clientX - rect.left) / rect.width;
+      if (audio.duration) audio.currentTime = Math.max(0, Math.min(1, pct)) * audio.duration;
+    });
+  })();
 </script>
 </body>
 </html>

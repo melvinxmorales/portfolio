@@ -138,6 +138,24 @@
   .live-link span { transition: transform .2s; display: inline-block; }
   .live-link:hover span { transform: rotate(45deg); }
 
+  .voice-note { max-width: var(--max); margin: 28px auto 0; padding: 0 24px; opacity: 0; animation: fadeup .8s .55s forwards; }
+  .vn-inner { display: flex; align-items: center; gap: 18px; background: var(--card); border: 1px solid rgba(255,255,255,.06); border-radius: 100px; padding: 10px 26px 10px 10px; }
+  .vn-play { width: 46px; height: 46px; flex-shrink: 0; border-radius: 50%; border: none; background: var(--accent); color: #000; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: opacity .2s, transform .15s; font-family: inherit; padding: 0; }
+  .vn-play:hover { opacity: .88; }
+  .vn-play:active { transform: scale(.94); }
+  .vn-play svg { display: block; }
+  .vn-main { flex: 1; display: flex; flex-direction: column; gap: 9px; min-width: 0; }
+  .vn-label { font-size: .68rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--text); }
+  .vn-bar { height: 4px; border-radius: 100px; background: var(--border); cursor: pointer; position: relative; }
+  .vn-fill { position: absolute; left: 0; top: 0; bottom: 0; width: 0%; background: var(--accent); border-radius: 100px; }
+  .vn-time { font-size: .68rem; font-weight: 600; letter-spacing: .04em; color: var(--muted); flex-shrink: 0; font-variant-numeric: tabular-nums; }
+
+  .decisions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 28px; }
+  .decision-card { background: var(--card); border-radius: var(--radius); border: 1px solid rgba(255,255,255,.04); padding: 32px; border-left: 3px solid var(--accent); }
+  .decision-label { font-size: .58rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+  .decision-title { font-size: .98rem; font-weight: 700; color: var(--text); margin-bottom: 10px; line-height: 1.3; }
+  .decision-body { font-size: .78rem; font-weight: 300; color: var(--muted); line-height: 1.7; }
+
   .reveal { opacity: 0; transform: translateY(22px); transition: opacity .65s cubic-bezier(.23,1,.32,1), transform .65s cubic-bezier(.23,1,.32,1); }
   .reveal.visible { opacity: 1; transform: none; }
 
@@ -157,6 +175,10 @@
     .insights-grid { grid-template-columns: 1fr; }
     .learnings-grid { grid-template-columns: 1fr; }
     .outcomes-grid { grid-template-columns: 1fr; }
+    .decisions-grid { grid-template-columns: 1fr; }
+    .voice-note { padding: 0 16px; }
+    .vn-inner { padding: 9px 18px 9px 9px; gap: 12px; }
+    .vn-label { font-size: .62rem; }
     .stat-row { grid-template-columns: 1fr; }
     .persona-card { grid-template-columns: 1fr; }
     .persona-img { aspect-ratio: 4/3; width: 100%; height: auto; }
@@ -192,24 +214,42 @@
     </div>
     <div class="hero-meta-item">
       <span class="hero-meta-label">Role</span>
-      <span class="hero-meta-val">Lead Designer</span>
+      <span class="hero-meta-val">Lead Product Designer</span>
     </div>
     <div class="hero-meta-item">
-      <span class="hero-meta-label">Platform</span>
-      <span class="hero-meta-val">Web Application</span>
+      <span class="hero-meta-label">Team</span>
+      <span class="hero-meta-val">Sole designer + 1 engineer</span>
     </div>
     <div class="hero-meta-item">
       <span class="hero-meta-label">Timeline</span>
       <span class="hero-meta-val">5 Months</span>
     </div>
     <div class="hero-meta-item">
-      <span class="hero-meta-label">Company</span>
-      <span class="hero-meta-val">EZ Shoe Repair</span>
+      <span class="hero-meta-label">Platform</span>
+      <span class="hero-meta-val">Web Application</span>
     </div>
   </div>
   <div class="hero-img-wrap">
     <img src="https://framerusercontent.com/images/Y8EYX8ALmDEhWaDQDPE1EE2UQJY.jpg" alt="EZ Shoe Repair" class="hero-img">
   </div>
+</div>
+
+<!-- VOICE NOTE -->
+<div class="voice-note">
+  <div class="vn-inner">
+    <button class="vn-play" id="vnPlay" aria-label="Play voice note">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+    </button>
+    <div class="vn-main">
+      <div class="vn-label">Hear me talk about this project</div>
+      <div class="vn-bar" id="vnBar"><div class="vn-fill" id="vnFill"></div></div>
+    </div>
+    <div class="vn-time" id="vnTime">0:00</div>
+  </div>
+  <audio id="vnAudio" preload="metadata">
+    <source src="audio/ez-shoe-repair.mp3" type="audio/mpeg">
+    <source src="audio/ez-shoe-repair.m4a" type="audio/mp4">
+  </audio>
 </div>
 
 <!-- OVERVIEW -->
@@ -220,6 +260,20 @@
     <p>EZ Shoe Repair is an online shoe repair service — a category most people still associate with dropping shoes off at a local cobbler. The challenge was getting customers to trust the process enough to order online, navigate the repair options confidently, and complete checkout without confusion.</p>
     <p>I led the full design of their e-commerce experience, creating <strong>a clean, visual, and educational checkout flow</strong> that replaced a long, jargon-filled form with an intuitive tile-based selection system — making the service accessible to a wide range of customers regardless of tech proficiency.</p>
   </div>
+  <div class="stat-row" style="margin-top: 36px;">
+    <div class="stat-cell">
+      <div class="stat-big">↑<span style="font-size:1.4rem;vertical-align:middle;"> Orders</span></div>
+      <div class="stat-desc">Meaningful increase in completed online orders after launch — the old flow was actively blocking purchases from going through</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-big">&lt;5<span>min</span></div>
+      <div class="stat-desc">The design target — from landing to confirmed order, with no prior knowledge of shoe-repair terminology required</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-big">↑<span style="font-size:1.4rem;vertical-align:middle;"> AOV</span></div>
+      <div class="stat-desc">Average order value rose as clearer service discovery led customers to add repairs they previously wouldn&rsquo;t have found</div>
+    </div>
+  </div>
   <a href="https://ezshoerepair.com" target="_blank" rel="noopener" class="live-link">View Live Site <span>&#8599;</span></a>
   <div class="tags">
     <span class="tag">E-Commerce UX</span>
@@ -228,29 +282,20 @@
     <span class="tag">UX Research</span>
     <span class="tag">A/B Testing</span>
     <span class="tag">Mobile Design</span>
-    <span class="tag">Front-End Development</span>
   </div>
 </div>
 
 <div class="divider reveal"><div class="divider-line"></div></div>
 
-<!-- IMPACT STATS -->
-<div class="section reveal">
-  <div class="section-label">By the Numbers</div>
-  <div class="stat-row">
-    <div class="stat-cell">
-      <div class="stat-big">↑<span style="font-size:1.4rem;vertical-align:middle;"> Orders</span></div>
-      <div class="stat-desc">Meaningful increase in completed online orders after launch — the old flow was actively blocking purchases from going through</div>
+<!-- ECOSYSTEM LINK -->
+<div class="section reveal" style="padding-top: 0;">
+  <a href="dardanos.html" style="display:flex;align-items:center;justify-content:space-between;gap:20px;background:var(--card);border:1px solid rgba(255,255,255,.06);border-left:3px solid var(--accent);border-radius:var(--radius);padding:24px 28px;text-decoration:none;transition:border-color .2s,background .2s;">
+    <div>
+      <div style="font-size:.58rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;">Part of a connected system</div>
+      <div style="font-size:.9rem;font-weight:500;color:var(--text);line-height:1.5;">Same owner, two storefronts. EZ Shoe Repair is where you <strong>fix</strong> your shoes &mdash; <span style="color:var(--accent);font-weight:600;">Dardano&rsquo;s</span> is where you <strong>buy</strong> them. I designed both ends of the journey.</div>
     </div>
-    <div class="stat-cell">
-      <div class="stat-big">5<span>min</span></div>
-      <div class="stat-desc">Target checkout time — from landing to confirmed order, with no prior knowledge of shoe repair terminology required</div>
-    </div>
-    <div class="stat-cell">
-      <div class="stat-big">↑<span style="font-size:1.4rem;vertical-align:middle;"> AOV</span></div>
-      <div class="stat-desc">Average order value increased as better service discovery led customers to add repairs they previously wouldn&rsquo;t have found</div>
-    </div>
-  </div>
+    <div style="font-size:1.1rem;color:var(--muted);flex-shrink:0;">&rarr;</div>
+  </a>
 </div>
 
 <div class="divider reveal"><div class="divider-line"></div></div>
@@ -275,89 +320,24 @@
 
 <div class="divider reveal"><div class="divider-line"></div></div>
 
-<!-- PERSONA -->
+<!-- MY ROLE -->
 <div class="section reveal">
-  <div class="section-label">03 — User Persona</div>
-  <h2 class="section-title">Who We Designed For</h2>
-  <div class="persona-card" style="margin-top: 28px;">
-    <img src="https://framerusercontent.com/images/SoA6wGEB5r6FUaT11KxpWDAyzo.jpg" alt="Amelia Chen" class="persona-img">
-    <div class="persona-body">
-      <div class="persona-name">Amelia Chen</div>
-      <div class="persona-role">Goal-Oriented Professional</div>
-      <div class="persona-grid">
-        <div>
-          <div class="persona-attr-label">Age</div>
-          <div class="persona-attr-val">41</div>
-        </div>
-        <div>
-          <div class="persona-attr-label">Location</div>
-          <div class="persona-attr-val">Suburban Area</div>
-        </div>
-        <div>
-          <div class="persona-attr-label">Tech Proficiency</div>
-          <div class="persona-attr-val">Low</div>
-        </div>
-        <div>
-          <div class="persona-attr-label">Primary Device</div>
-          <div class="persona-attr-val">iPhone</div>
-        </div>
-      </div>
-      <div class="persona-cols">
-        <div>
-          <div class="persona-col-title">Goals</div>
-          <div class="persona-col-item">Find the right repair for her specific issue quickly</div>
-          <div class="persona-col-item">Understand pricing before committing</div>
-          <div class="persona-col-item">Trust the service with valuable shoes</div>
-        </div>
-        <div>
-          <div class="persona-col-title">Frustrations</div>
-          <div class="persona-col-item">Jargon-filled repair options she doesn&rsquo;t understand</div>
-          <div class="persona-col-item">Long irrelevant forms before checkout</div>
-          <div class="persona-col-item">Outdated sites that don&rsquo;t feel trustworthy</div>
-        </div>
-        <div>
-          <div class="persona-col-title">Behaviors</div>
-          <div class="persona-col-item">Wants tasks completed in under 5 minutes</div>
-          <div class="persona-col-item">Abandons flows that feel complicated</div>
-          <div class="persona-col-item">Trusts brands with clear, clean design</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div style="margin-top:14px;background:rgba(59,130,246,.04);border:1px solid rgba(59,130,246,.12);border-radius:var(--radius-sm);padding:20px 24px;display:flex;gap:16px;align-items:flex-start;">
-    <div style="font-size:1rem;flex-shrink:0;margin-top:2px;">💡</div>
-    <div>
-      <div style="font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;">How Amelia shaped the design</div>
-      <div style="font-size:.78rem;font-weight:300;line-height:1.7;color:#bbb;">Amelia doesn't know what "welt stitching" or "heel counter repair" means — and she shouldn't have to. That insight killed the text-based form entirely and drove the decision to <strong style="color:var(--text);font-weight:500;">lead every repair option with a photo and plain-language description</strong> before any price was shown. Her 5-minute patience threshold also set the hard ceiling for how many steps the entire flow could have.</div>
-    </div>
-  </div>
-</div>
-
-<div class="divider reveal"><div class="divider-line"></div></div>
-
-<!-- RESEARCH -->
-<div class="section reveal">
-  <div class="section-label">04 — Research &amp; Insights</div>
-  <h2 class="section-title">Finding the Friction</h2>
+  <div class="section-label">03 — My Role &amp; How I Worked</div>
+  <h2 class="section-title">What I Owned</h2>
   <div class="section-body">
-    <p>I conducted customer surveys and usability testing with both new and existing customers, mapping exactly where trust broke down and confusion arose. I also analyzed competitor flows and traditional service models to understand what made customers feel confident enough to order without physically seeing the business.</p>
+    <p>I led the design end-to-end &mdash; research, the checkout architecture, the visual system, and the interaction design &mdash; and partnered closely with one engineer to build it. The whole brief came down to a single problem: customers don&rsquo;t speak cobbler. Sole replacement, welt stitching, heel counters &mdash; that&rsquo;s industry language, not customer language.</p>
+    <p>Two decisions did the heavy lifting:</p>
   </div>
-  <div class="insights-grid" style="margin-top: 28px;">
-    <div class="insight-card">
-      <div class="insight-icon">🖼️</div>
-      <div class="insight-title">Users Needed Visual Guidance</div>
-      <div class="insight-body">Customers couldn&rsquo;t select the right repair from text alone — they needed visual and educational cues at the exact moment of decision. Showing what a repair looks like, not just naming it, was the key to confident selection.</div>
+  <div class="decisions-grid">
+    <div class="decision-card">
+      <div class="decision-label">Decision 01</div>
+      <div class="decision-title">Show, don&rsquo;t name</div>
+      <div class="decision-body">People couldn&rsquo;t pick the right repair from text alone, so I killed the jargon form entirely and led every option with a photo, a plain-language description, and an upfront price. Customers identify what they need at a glance instead of decoding technical terms &mdash; the single change that unlocked conversion.</div>
     </div>
-    <div class="insight-card">
-      <div class="insight-icon">⚡</div>
-      <div class="insight-title">Less Input, More Selection</div>
-      <div class="insight-body">The checkout flow needed to shift from text entry to quick selection touchpoints. Every form field was a potential drop-off. The goal was to let users tap their way to checkout rather than type their way through it.</div>
-    </div>
-    <div class="insight-card">
-      <div class="insight-icon">📱</div>
-      <div class="insight-title">Mobile Was the Primary Channel</div>
-      <div class="insight-body">Most users were ordering on mobile, often on the go. A responsive, thumb-friendly design with large touch targets wasn&rsquo;t a nice-to-have — it was the primary surface the entire flow had to be designed around.</div>
+    <div class="decision-card">
+      <div class="decision-label">Decision 02</div>
+      <div class="decision-title">Tap, don&rsquo;t type &mdash; on mobile</div>
+      <div class="decision-body">Every form field was a place to lose someone, and most people were ordering on their phone. So I rebuilt the flow around quick-tap selection over text entry, mobile-first, with trust signals &mdash; reviews, guarantees, turnaround times &mdash; built into the steps so confidence never required leaving the page.</div>
     </div>
   </div>
 </div>
@@ -366,7 +346,7 @@
 
 <!-- PROCESS -->
 <div class="section reveal">
-  <div class="section-label">05 — Design Process</div>
+  <div class="section-label">04 — Design Process</div>
   <h2 class="section-title">From Confusing Forms<br>to Visual Tiles</h2>
   <div class="process-grid" style="margin-top: 28px;">
     <div class="process-card">
@@ -398,37 +378,9 @@
 
 <div class="divider reveal"><div class="divider-line"></div></div>
 
-<!-- SOLUTION -->
-<div class="section reveal">
-  <div class="section-label">06 — Design Solution</div>
-  <h2 class="section-title">Tap, Select, Done.</h2>
-  <div class="section-body">
-    <p>The final design centered on one principle: remove every possible barrier between a customer and a completed order. The result was a conversion-optimized flow that guided even low-tech users through a complex service decision in minutes.</p>
-  </div>
-  <div class="insights-grid" style="margin-top: 28px;">
-    <div class="insight-card">
-      <div class="insight-icon">🪄</div>
-      <div class="insight-title">Visual Repair Tile System</div>
-      <div class="insight-body">Each repair option presented as a visual tile with a clear photo, plain-language description, and upfront price — eliminating jargon and letting customers identify what they need at a glance rather than decoding technical terms.</div>
-    </div>
-    <div class="insight-card">
-      <div class="insight-icon">💳</div>
-      <div class="insight-title">Transparent, Streamlined Checkout</div>
-      <div class="insight-body">Rebuilt the checkout flow to minimize form fields and maximize quick-tap selections. Integrated pricing cues, turnaround times, and service guarantees directly into the flow — so customers had all the information they needed without leaving the page.</div>
-    </div>
-    <div class="insight-card">
-      <div class="insight-icon">📲</div>
-      <div class="insight-title">Mobile-First Responsive UI</div>
-      <div class="insight-body">Designed the entire experience mobile-first with large touch targets, a thumb-friendly layout, and progressive disclosure that surfaces only what&rsquo;s needed at each step — keeping the flow fast and focused on any device.</div>
-    </div>
-  </div>
-</div>
-
-<div class="divider reveal"><div class="divider-line"></div></div>
-
 <!-- OUTCOMES -->
 <div class="section reveal">
-  <div class="section-label">07 — Outcomes</div>
+  <div class="section-label">05 — Impact</div>
   <h2 class="section-title">What We Delivered</h2>
   <div class="outcomes-grid" style="margin-top: 28px;">
     <div class="outcome-card">
@@ -454,7 +406,7 @@
 
 <!-- LEARNINGS -->
 <div class="section reveal">
-  <div class="section-label">08 — Key Learnings</div>
+  <div class="section-label">06 — Reflection</div>
   <h2 class="section-title">What This Project Taught Me</h2>
   <div class="learnings-grid" style="margin-top: 28px;">
     <div class="learning-card">
@@ -465,12 +417,12 @@
     <div class="learning-card">
       <div class="learning-num">Learning 02</div>
       <div class="learning-title">Ownership Drives Results</div>
-      <div class="learning-body">Being responsible for the full journey — from product strategy through front-end development — ensured every design decision was grounded in technical reality and tied directly to business outcomes. When you own the result, not just the spec, quality improves at every layer.</div>
+      <div class="learning-body">I owned the design from strategy through to the build, staying embedded with the engineer the whole way — so every decision was grounded in what we could actually ship and tied to a business outcome. When you own the result, not just the spec, quality improves at every layer.</div>
     </div>
     <div class="learning-card">
       <div class="learning-num">Learning 03</div>
-      <div class="learning-title">Detail-Oriented Discipline</div>
-      <div class="learning-body">Working on a product that is a core revenue source taught me a high level of dedication to validation. Every detail — image quality, pricing placement, button label — had a measurable impact on conversion. Thoroughness isn&rsquo;t perfectionism; it&rsquo;s respect for the user and the business.</div>
+      <div class="learning-title">I&rsquo;d Measure the Tiles Themselves</div>
+      <div class="learning-body">Working on a core revenue flow taught me real dedication to validation — every detail, from image quality to pricing placement to button labels, moved conversion. If I ran it again, I&rsquo;d instrument the funnel earlier and per-tile, so I could prove exactly which photos and trust signals drove the lift instead of reading it from aggregate orders.</div>
     </div>
   </div>
 </div>
@@ -491,7 +443,7 @@
 <div class="footer">
   <div class="footer-card">
     <span>&copy; 2026 Melvin Morales</span>
-    <span>Senior Product Designer &middot; Las Vegas, NV</span>
+    <span>Lead Product Designer &middot; Las Vegas, NV</span>
     <span>Built with intention.</span>
   </div>
 </div>
@@ -512,6 +464,52 @@
     });
   }, {threshold: 0.08});
   document.querySelectorAll('.reveal').forEach(function(el) { obs.observe(el); });
+
+  // Voice note player
+  (function() {
+    var audio = document.getElementById('vnAudio');
+    var play = document.getElementById('vnPlay');
+    var fill = document.getElementById('vnFill');
+    var bar = document.getElementById('vnBar');
+    var time = document.getElementById('vnTime');
+    var note = document.querySelector('.voice-note');
+    var label = note ? note.querySelector('.vn-label') : null;
+    if (!audio || !play) return;
+
+    var PLAY = '<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+    var PAUSE = '<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>';
+
+    function fmt(s) {
+      if (isNaN(s) || !isFinite(s)) s = 0;
+      var m = Math.floor(s / 60);
+      var sec = Math.floor(s % 60);
+      return m + ':' + (sec < 10 ? '0' : '') + sec;
+    }
+    function render() {
+      var dur = audio.duration || 0;
+      fill.style.width = (dur ? (audio.currentTime / dur) * 100 : 0) + '%';
+      time.textContent = fmt(audio.currentTime) + ' / ' + fmt(dur);
+    }
+    audio.addEventListener('error', function() {
+      if (label) label.textContent = 'Voice note coming soon';
+      if (note) note.style.opacity = '.55';
+      play.style.cursor = 'default';
+      play.disabled = true;
+    });
+    play.addEventListener('click', function() {
+      if (audio.paused) { audio.play(); } else { audio.pause(); }
+    });
+    audio.addEventListener('play', function() { play.innerHTML = PAUSE; play.setAttribute('aria-label', 'Pause voice note'); });
+    audio.addEventListener('pause', function() { play.innerHTML = PLAY; play.setAttribute('aria-label', 'Play voice note'); });
+    audio.addEventListener('timeupdate', render);
+    audio.addEventListener('loadedmetadata', render);
+    audio.addEventListener('ended', function() { audio.currentTime = 0; render(); });
+    bar.addEventListener('click', function(e) {
+      var rect = bar.getBoundingClientRect();
+      var pct = (e.clientX - rect.left) / rect.width;
+      if (audio.duration) audio.currentTime = Math.max(0, Math.min(1, pct)) * audio.duration;
+    });
+  })();
 </script>
 </body>
 </html>
