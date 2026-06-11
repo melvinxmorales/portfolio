@@ -343,40 +343,11 @@
 </section>
 
 <!-- 04 — Process -->
-<section class="section reveal">
-  <div class="section-label">04 &mdash; Process</div>
-  <h2 class="section-title">How I built it</h2>
-  <div class="process-grid">
-    <div class="process-card">
-      <div class="process-num">01</div>
-      <div class="process-step-label">Phase 01</div>
-      <div class="process-step-title">Architecture Planning</div>
-      <div class="process-step-body">Mapped out the entire system before writing a line of code. Defined the data model, API surface, auth flows, and third-party integrations. Chose Next.js for the frontend, Supabase for the backend, and Stripe for billing &mdash; a stack optimized for speed and scalability as a solo builder.</div>
-    </div>
-    <div class="process-card">
-      <div class="process-num">02</div>
-      <div class="process-step-label">Phase 02</div>
-      <div class="process-step-title">Database Design</div>
-      <div class="process-step-body">Designed the full relational schema in Supabase &mdash; users, organizations, projects, invoices, messages, files, and white-label configs. Set up row-level security policies, database functions, and real-time subscriptions to power live updates across the platform.</div>
-    </div>
-    <div class="process-card">
-      <div class="process-num">03</div>
-      <div class="process-step-label">Phase 03</div>
-      <div class="process-step-title">API Integration &amp; Frontend Dev</div>
-      <div class="process-step-body">Wired up Stripe for invoicing and payment processing, Google OAuth for authentication, and Google Calendar for scheduling. Built every page and component in Next.js &mdash; the admin dashboard, client portal, invoicing flows, messaging UI, and white-label customization engine.</div>
-    </div>
-    <div class="process-card">
-      <div class="process-num">04</div>
-      <div class="process-step-label">Phase 04</div>
-      <div class="process-step-title">User Testing &amp; Iteration</div>
-      <div class="process-step-body">Put the live product in front of real freelancers and iterated based on their feedback. Refined navigation patterns, simplified the invoicing flow, and polished the white-label setup experience. Shipped continuously &mdash; testing, fixing, and deploying in tight loops.</div>
-    </div>
-  </div>
-</section>
+
 
 <!-- 05 — Solution -->
 <section class="section reveal">
-  <div class="section-label">05 &mdash; Solution</div>
+  <div class="section-label">04 &mdash; What I Shipped</div>
   <h2 class="section-title">What I shipped</h2>
   <div class="section-body" style="margin-bottom: 32px;">
     <p>Every feature was designed around two roles: the <strong>Admin</strong> (the freelancer or agency running their business) and the <strong>Client</strong> (their customer using the portal). Here&rsquo;s what&rsquo;s live in beta:</p>
@@ -391,32 +362,13 @@
       <div class="outcome-body">Request tracking with statuses (New &rarr; In Progress &rarr; Review &rarr; Done), subtasks, file attachments, due dates, and priority levels.</div>
     </div>
     <div class="outcome-card">
-      <div class="outcome-title">Real-time Messaging</div>
-      <div class="outcome-body">Threaded conversations with file sharing, voice notes, and read receipts. No more lost emails or missed Slack messages.</div>
-    </div>
-    <div class="outcome-card">
       <div class="outcome-title">Invoicing &amp; Payments</div>
       <div class="outcome-body">Create, send, and track invoices with Stripe Connect. Recurring billing, payment tracking, line items, and real-time status updates.</div>
-    </div>
-    <div class="outcome-card">
-      <div class="outcome-title">Calendar Sync</div>
-      <div class="outcome-body">Google, Outlook, Apple Calendar, and CalDAV integration with built-in meeting booking. Clients book time directly from the portal.</div>
-    </div>
-    <div class="outcome-card">
-      <div class="outcome-title">Project Wraps</div>
-      <div class="outcome-body">Beautiful handoff pages sent to clients when a project is complete. A polished final deliverable that closes the loop professionally.</div>
     </div>
     <div class="outcome-card">
       <div class="outcome-title">White-labeling</div>
       <div class="outcome-body">Custom logo, brand colors, and workspace name so the portal looks like your own product &mdash; not a third-party tool.</div>
     </div>
-    <div class="outcome-card">
-      <div class="outcome-title">Analytics Dashboard</div>
-      <div class="outcome-body">Revenue tracking, project completion rates, and client health monitoring. Know how your business is doing at a glance.</div>
-    </div>
-  </div>
-  <div class="section-body">
-    <p><strong>Pricing:</strong> Free tier (3 clients, 500MB storage) and Pro tier (unlimited clients, 10GB, payments, white-labeling). Built to grow with the freelancer.</p>
   </div>
 </section>
 
@@ -429,7 +381,7 @@
 
 <!-- 06 — Impact -->
 <section class="section reveal">
-  <div class="section-label">06 &mdash; Impact</div>
+  <div class="section-label">05 &mdash; Impact</div>
   <h2 class="section-title">Real product, real results</h2>
   <div class="outcomes-grid">
     <div class="outcome-card">
@@ -452,27 +404,7 @@
 </section>
 
 <!-- 07 — Reflection -->
-<section class="section reveal">
-  <div class="section-label">07 &mdash; Reflection</div>
-  <h2 class="section-title">What I took away</h2>
-  <div class="learnings-grid">
-    <div class="learning-card">
-      <div class="learning-num">01</div>
-      <div class="learning-title">Wearing Every Hat Forces Better Decisions</div>
-      <div class="learning-body">When you are the designer, the developer, and the product manager, every decision carries real weight. There is no handoff to hide behind. I learned to think in systems &mdash; how a database schema choice affects the UI, how an API design impacts the user experience, how deployment constraints shape product scope.</div>
-    </div>
-    <div class="learning-card">
-      <div class="learning-num">02</div>
-      <div class="learning-title">System Design Thinking Is Everything</div>
-      <div class="learning-body">Building a multi-surface product solo taught me that architecture is design. The way data flows between Supabase, Next.js, and Stripe determines what is possible in the interface. Getting the system design right early saved me months of rework and made every feature faster to build.</div>
-    </div>
-    <div class="learning-card">
-      <div class="learning-num">03</div>
-      <div class="learning-title">Ship Iteratively, Perfectionism Kills Products</div>
-      <div class="learning-body">I shipped Marcavo in waves &mdash; core auth first, then projects, then invoicing, then messaging, then white-label. Each release taught me something the previous one could not. Waiting for perfection would have meant never launching. The best product decisions came from real users touching real software.</div>
-    </div>
-  </div>
-</section>
+
 
 <!-- Next Project -->
 <div class="divider"><div class="divider-line"></div></div>
