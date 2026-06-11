@@ -33,6 +33,9 @@
 
   .nav { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 200; display: flex; align-items: center; gap: 4px; background: rgba(255,255,255,.82); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(0,0,0,.07); border-radius: 100px; padding: 6px 8px; box-shadow: 0 8px 32px rgba(0,0,0,.08); white-space: nowrap; }
   .nav-logo { font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--text); text-decoration: none; padding: 8px 16px; border-radius: 100px; margin-right: 4px; border-right: 1px solid rgba(0,0,0,.07); }
+  .nav-link { font-size: .7rem; font-weight: 500; letter-spacing: .08em; color: var(--muted); text-decoration: none; padding: 8px 16px; border-radius: 100px; transition: background .2s, color .2s; }
+  .nav-link:hover { background: rgba(0,0,0,.07); color: var(--text); }
+  .nav-link.active { color: var(--text); }
   .nav-back { font-size: .7rem; font-weight: 500; letter-spacing: .08em; color: var(--muted); text-decoration: none; padding: 8px 16px; border-radius: 100px; transition: background .2s, color .2s; }
   .nav-back:hover { background: rgba(0,0,0,.07); color: var(--text); }
   .nav-cta { background: var(--accent); color: #fff; font-weight: 700; font-size: .7rem; letter-spacing: .08em; text-decoration: none; padding: 8px 16px; border-radius: 100px; margin-left: 4px; transition: opacity .2s; }
@@ -68,7 +71,8 @@
     body { cursor: auto; }
     #cur, #cur-ring { display: none; }
     .nav { gap: 0; padding: 5px 6px; }
-    .nav-back { display: none; }
+    .nav-link { display: none; }
+    .nav-link.mobile-show { display: inline-block; }
     .nav-logo { font-size: .68rem; padding: 8px 14px; margin-right: 0; border-right: none; }
     .nav-cta { font-size: .68rem; padding: 8px 14px; margin-left: 6px; }
     .proj-grid { grid-template-columns: 1fr 1fr; }
@@ -86,7 +90,9 @@
 
 <nav class="nav">
   <a href="../index.html" class="nav-logo">MM</a>
-  <a href="../index.html" class="nav-back">&#8592; Back Home</a>
+  <a href="../index.html#work" class="nav-link mobile-show">Work</a>
+  <a href="../index.html#experience" class="nav-link">Experience</a>
+  <a href="../index.html#education" class="nav-link">Education</a>
   <a href="../index.html#contact" class="nav-cta">Contact</a>
 </nav>
 
