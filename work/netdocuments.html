@@ -32,8 +32,8 @@
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-serif; font-weight: 400; min-height: 100vh; cursor: none; overflow-x: hidden; }
+  html { scroll-behavior: smooth; overflow-x: hidden; }
+  body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-serif; font-weight: 400; min-height: 100vh; cursor: none; overflow-x: hidden; max-width: 100%; }
 
   /* CURSOR */
   #cur { position: fixed; width: 9px; height: 9px; background: var(--accent); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width .2s, height .2s;  }
@@ -233,6 +233,7 @@
   .nav-cta { background: #3B82F6; color: #fff; font-weight: 700; font-size: .72rem; letter-spacing: .04em; text-decoration: none; padding: 9px 18px; border-radius: 100px; margin-left: 8px; transition: opacity .2s; }
   .nav-cta:hover { opacity: .85; }
   @media (max-width: 860px) {
+    [class$="-glow"] { display: none; }
     .nav { width: calc(100% - 24px); top: 12px; padding: 8px 10px 8px 14px; gap: 0; }
     .nav-name { font-size: .88rem; }
     .nav-menu .nav-link { display: none; }
