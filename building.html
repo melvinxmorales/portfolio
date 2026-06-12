@@ -14,9 +14,9 @@
 <meta name="twitter:image" content="https://www.melvinmorales.com/og-image.svg">
 <link rel="canonical" href="https://www.melvinmorales.com/building.html">
 <title>Building — Melvin Morales</title>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23141414'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='Outfit%2C system-ui%2C sans-serif' font-size='13' font-weight='700' letter-spacing='1' fill='%233B82F6'%3EMM%3C/text%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23141414'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='Inter%2C system-ui%2C sans-serif' font-size='13' font-weight='700' letter-spacing='1' fill='%233B82F6'%3EMM%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #ffffff; --card: #f7f7f8; --card2: #eeeef1;
@@ -25,7 +25,7 @@
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; overflow-x: hidden; }
-  body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-serif; font-weight: 400; min-height: 100vh; cursor: none; overflow-x: hidden; max-width: 100%; }
+  body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-weight: 400; min-height: 100vh; cursor: none; overflow-x: hidden; max-width: 100%; }
 
   #cur { position: fixed; width: 9px; height: 9px; background: var(--accent); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width .2s, height .2s; }
   #cur-ring { position: fixed; width: 34px; height: 34px; border: 1px solid rgba(59,130,246,.35); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: width .35s cubic-bezier(.23,1,.32,1), height .35s cubic-bezier(.23,1,.32,1); }
@@ -51,7 +51,7 @@
   .whero-sub { font-size: 1rem; font-weight: 300; line-height: 1.85; color: #6e6e76; max-width: 640px; }
   .whero-sub strong { color: #52525b; font-weight: 400; }
 
-  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
   .pcard { position: relative; border-radius: var(--radius); overflow: hidden; border: 1px solid rgba(0,0,0,.06); background: var(--card); text-decoration: none; color: var(--text); display: flex; flex-direction: column; transition: transform .35s cubic-bezier(.23,1,.32,1), box-shadow .35s; }
   .pcard:hover { transform: translateY(-5px); box-shadow: 0 24px 60px rgba(0,0,0,.12); }
   .pcard.wide { grid-column: span 2; }
@@ -103,7 +103,7 @@
     <a href="work/index.html" class="nav-link">Design</a>
     <a href="building.html" class="nav-link active">Building</a>
     <a href="photography.html" class="nav-link">Photography</a>
-    <a href="shop.html" class="nav-link">Shop</a>
+    <a href="print.html" class="nav-link">Print</a>
     <a href="about.html" class="nav-link">About</a>
     <a href="index.html#contact" class="nav-cta">Contact</a>
   </div>
@@ -115,20 +115,10 @@
     <div class="whero-glow"></div>
     <div class="whero-eyebrow">Building</div>
     <h1 class="whero-title">Products I <span class="acc">built.</span></h1>
-    <p class="whero-sub">Not just designed &mdash; <strong>built</strong>. These are full products I shipped solo, from <strong>database and API to the polished interface</strong>. Designing what you can build (and building what you design) makes every decision sharper.</p>
+    <p class="whero-sub">Not just designed &mdash; <strong>built</strong>. Full products and the businesses behind them, shipped solo &mdash; from <strong>database and API to the polished interface</strong>. Building what I design makes every decision sharper.</p>
   </div>
 
   <div class="grid">
-
-    <a href="work/marcavo.html" class="pcard wide reveal">
-      <div class="pimg-wrap"><img src="work/assets/marcavo-card.png" alt="Marcavo dashboard" class="pimg"></div>
-      <div class="pbody">
-        <div class="pcat">SaaS &middot; Client Management</div>
-        <div class="ptitle">Marcavo</div>
-        <div class="presult">A complete client-management platform &mdash; designed and built solo in one month.</div>
-        <div class="ptags"><span class="ptag">Product Design</span><span class="ptag">Full-Stack</span><span class="ptag">Next.js</span><span class="ptag">Supabase</span></div>
-      </div>
-    </a>
 
     <a href="work/peelr.html" class="pcard reveal">
       <div class="pimg-wrap"><img src="work/assets/peelr-card.png" alt="Peelr app screens" class="pimg"></div>
@@ -137,6 +127,16 @@
         <div class="ptitle">Peelr</div>
         <div class="presult">Live iOS + web conversation game &mdash; 500+ questions, built solo.</div>
         <div class="ptags"><span class="ptag">Product Design</span><span class="ptag">Mobile</span><span class="ptag">Full-Stack</span></div>
+      </div>
+    </a>
+
+    <a href="work/marcavo.html" class="pcard reveal">
+      <div class="pimg-wrap"><img src="work/assets/marcavo-card.png" alt="Marcavo dashboard" class="pimg"></div>
+      <div class="pbody">
+        <div class="pcat">SaaS &middot; Client Management</div>
+        <div class="ptitle">Marcavo</div>
+        <div class="presult">A complete client-management platform &mdash; designed and built solo in one month.</div>
+        <div class="ptags"><span class="ptag">Product Design</span><span class="ptag">Full-Stack</span><span class="ptag">Next.js</span></div>
       </div>
     </a>
 
@@ -155,6 +155,31 @@
         <div class="ptitle">SEVN</div>
         <div class="presult">A curated guide to Las Vegas &mdash; 500+ local spots, zero paid placements.</div>
         <div class="ptags"><span class="ptag">Product Design</span><span class="ptag">Mobile</span><span class="ptag">PWA</span></div>
+      </div>
+    </a>
+
+    <a href="https://www.proviewmediaco.com" target="_blank" rel="noopener" class="pcard reveal">
+      <div class="pimg-wrap">
+        <div style="width:100%;height:100%;background:linear-gradient(135deg,#16121f 0%,#5B3AE8 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;">
+          <div style="font-size:1.5rem;font-weight:900;letter-spacing:-.01em;color:#f2f0fb;text-transform:uppercase;">Proview</div>
+          <div style="font-size:.58rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(242,240,251,.65);">Media Co.</div>
+        </div>
+      </div>
+      <div class="pbody">
+        <div class="pcat">Studio &middot; Brand &amp; Web</div>
+        <div class="ptitle">Proview Media Co.</div>
+        <div class="presult">My creative studio &mdash; photography, brand, and web, built and run end to end.</div>
+        <div class="ptags"><span class="ptag">Brand</span><span class="ptag">Web</span><span class="ptag">Business</span></div>
+      </div>
+    </a>
+
+    <a href="https://milesawayprints.com" target="_blank" rel="noopener" class="pcard reveal">
+      <div class="pimg-wrap"><img src="work/assets/miles-away-card.png" alt="Miles Away Prints" class="pimg"></div>
+      <div class="pbody">
+        <div class="pcat">E-commerce &middot; Print Shop</div>
+        <div class="ptitle">Miles Away Prints</div>
+        <div class="presult">A print business I designed, built, and run &mdash; storefront to fulfillment.</div>
+        <div class="ptags"><span class="ptag">E-commerce</span><span class="ptag">Web</span><span class="ptag">Business</span></div>
       </div>
     </a>
 
