@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="About Melvin Morales — product designer, builder, and photographer based in Las Vegas.">
+<meta property="og:title" content="About — Melvin Morales">
+<meta property="og:description" content="Product designer, builder, and photographer based in Las Vegas.">
+<meta property="og:image" content="https://www.melvinmorales.com/og-image.svg">
+<meta property="og:url" content="https://www.melvinmorales.com/about.html">
+<meta property="og:type" content="profile">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="About — Melvin Morales">
+<meta name="twitter:image" content="https://www.melvinmorales.com/og-image.svg">
+<link rel="canonical" href="https://www.melvinmorales.com/about.html">
+<title>About — Melvin Morales</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23141414'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='Outfit%2C system-ui%2C sans-serif' font-size='13' font-weight='700' letter-spacing='1' fill='%233B82F6'%3EMM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff; --card: #f7f7f8; --card2: #eeeef1;
+    --border: #e6e6e9; --text: #18181b; --muted: #6e6e76;
+    --accent: #3B82F6; --radius: 20px; --radius-sm: 12px; --max: 920px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-serif; font-weight: 400; min-height: 100vh; cursor: none; overflow-x: hidden; }
+
+  #cur { position: fixed; width: 9px; height: 9px; background: var(--accent); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width .2s, height .2s; }
+  #cur-ring { position: fixed; width: 34px; height: 34px; border: 1px solid rgba(59,130,246,.35); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: width .35s cubic-bezier(.23,1,.32,1), height .35s cubic-bezier(.23,1,.32,1); }
+
+  .nav { position: fixed; top: 16px; left: 50%; transform: translateX(-50%); z-index: 200; display: flex; align-items: center; justify-content: space-between; width: calc(100% - 40px); max-width: 1300px; background: rgba(255,255,255,.82); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(0,0,0,.06); border-radius: var(--radius); padding: 11px 14px 11px 18px; box-shadow: 0 8px 32px rgba(0,0,0,.08); }
+  .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .nav-mark { width: 34px; height: 34px; border-radius: 9px; background: #141414; color: var(--accent); display: flex; align-items: center; justify-content: center; font-size: .68rem; font-weight: 800; letter-spacing: .08em; flex-shrink: 0; }
+  .nav-name { font-size: .95rem; font-weight: 700; color: var(--text); letter-spacing: -.01em; }
+  .nav-menu { display: flex; align-items: center; gap: 2px; }
+  .nav-link { font-size: .72rem; font-weight: 500; letter-spacing: .04em; color: var(--muted); text-decoration: none; padding: 9px 15px; border-radius: 100px; transition: background .2s, color .2s; }
+  .nav-link:hover { background: rgba(0,0,0,.05); color: var(--text); }
+  .nav-link.active { color: var(--text); background: rgba(0,0,0,.05); }
+  .nav-cta { background: var(--accent); color: #fff; font-weight: 700; font-size: .72rem; letter-spacing: .04em; text-decoration: none; padding: 9px 18px; border-radius: 100px; margin-left: 8px; transition: opacity .2s; }
+  .nav-cta:hover { opacity: .85; }
+
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 116px 24px 56px; display: flex; flex-direction: column; gap: 22px; }
+
+  .about-hero { background: var(--card); border-radius: var(--radius); border: 1px solid rgba(0,0,0,.04); padding: 52px 48px; position: relative; overflow: hidden; }
+  .about-glow { position: absolute; top: -60px; right: -60px; width: 320px; height: 320px; background: radial-gradient(circle, rgba(59,130,246,.07) 0%, transparent 65%); pointer-events: none; }
+  .about-eyebrow { font-size: .63rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
+  .about-title { font-size: clamp(2rem,4vw,3.2rem); font-weight: 900; letter-spacing: -.02em; text-transform: uppercase; line-height: 1; color: var(--text); margin-bottom: 24px; }
+  .about-title .acc { color: var(--accent); }
+  .about-bio { font-size: 1rem; font-weight: 300; line-height: 1.9; color: #6e6e76; max-width: 680px; }
+  .about-bio strong { color: #52525b; font-weight: 400; }
+
+  .section-card { background: var(--card); border-radius: var(--radius); border: 1px solid rgba(0,0,0,.04); overflow: hidden; }
+  .section-head { padding: 28px 32px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+  .section-ttl { font-size: .62rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
+
+  .approach-grid { padding: 36px 32px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 32px; }
+  .approach-h { font-size: 1.05rem; font-weight: 800; color: var(--text); letter-spacing: -.01em; line-height: 1.2; margin-bottom: 12px; }
+  .approach-h span { color: var(--accent); }
+  .approach-p { font-size: .9rem; font-weight: 300; line-height: 1.75; color: var(--muted); }
+  .approach-p a { color: var(--accent); text-decoration: none; }
+
+  .exp-item { display: flex; gap: 18px; padding: 28px 32px; border-bottom: 1px solid var(--border); transition: background .2s; }
+  .exp-item:last-child { border-bottom: none; }
+  .exp-item:hover { background: rgba(0,0,0,.015); }
+  .dot-col { display: flex; flex-direction: column; align-items: center; padding-top: 6px; flex-shrink: 0; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); }
+  .dot-accent { background: var(--accent); box-shadow: 0 0 10px rgba(59,130,246,.3); }
+  .dot-line { width: 1px; flex: 1; background: var(--border); margin-top: 6px; min-height: 30px; }
+  .dot-line-hide { visibility: hidden; }
+  .exp-body { flex: 1; min-width: 0; }
+  .exp-header { display: flex; flex-direction: column; gap: 3px; margin-bottom: 10px; }
+  .exp-company { font-size: .98rem; font-weight: 700; color: var(--text); }
+  .exp-role { font-size: .7rem; font-weight: 600; letter-spacing: .04em; color: var(--accent); }
+  .exp-date { font-size: .62rem; color: var(--muted); }
+  .exp-location { font-size: .62rem; color: #5f5f66; }
+  .exp-desc { font-size: .9rem; font-weight: 300; line-height: 1.7; color: #6e6e76; margin-top: 4px; }
+
+  .chips-wrap { padding: 30px 32px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill-chip { font-size: .68rem; font-weight: 500; padding: 7px 15px; background: var(--card2); border: 1px solid var(--border); border-radius: 100px; color: #6e6e76; transition: border-color .2s, color .2s; }
+  .skill-chip:hover { border-color: var(--accent); color: var(--accent); }
+  .chip-rule { width: 100%; height: 1px; background: var(--border); margin: 8px 0; }
+
+  .contact-card { background: var(--card); border-radius: var(--radius); border: 1px solid rgba(0,0,0,.04); padding: 52px 48px; position: relative; overflow: hidden; }
+  .contact-glow { position: absolute; bottom: -80px; right: -80px; width: 320px; height: 320px; background: radial-gradient(circle, rgba(59,130,246,.07) 0%, transparent 65%); pointer-events: none; }
+  .contact-heading { font-size: clamp(1.8rem,3.5vw,2.8rem); font-weight: 900; letter-spacing: -.02em; text-transform: uppercase; line-height: .95; color: var(--text); margin-bottom: 28px; }
+  .contact-heading .acc { color: var(--accent); }
+  .contact-email { display: inline-flex; align-items: center; gap: 10px; font-size: .9rem; font-weight: 600; letter-spacing: .06em; color: var(--text); text-decoration: none; background: var(--card2); border: 1px solid var(--border); border-radius: 100px; padding: 14px 24px; transition: border-color .2s, background .2s; }
+  .contact-email:hover { border-color: var(--accent); background: rgba(59,130,246,.05); }
+
+  .footer-card { background: var(--card); border-radius: var(--radius); border: 1px solid rgba(0,0,0,.04); padding: 22px 28px; display: flex; justify-content: space-between; align-items: center; font-size: .6rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+  .footer-card a { color: var(--accent); text-decoration: none; }
+
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity .65s cubic-bezier(.23,1,.32,1), transform .65s cubic-bezier(.23,1,.32,1); }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 860px) {
+    body { cursor: auto; }
+    #cur, #cur-ring { display: none; }
+    .nav { width: calc(100% - 24px); top: 12px; padding: 8px 10px 8px 14px; }
+    .nav-name { font-size: .88rem; }
+    .nav-menu .nav-link { display: none; }
+    .wrap { padding: 90px 16px 24px; gap: 16px; }
+    .about-hero { padding: 30px 22px; }
+    .about-title { font-size: clamp(1.7rem, 8vw, 2.4rem); }
+    .approach-grid { grid-template-columns: 1fr; gap: 26px; padding: 26px 20px; }
+    .section-head { padding: 20px 20px; }
+    .exp-item { padding: 20px; }
+    .chips-wrap { padding: 22px 20px; }
+    .contact-card { padding: 30px 22px; }
+    .footer-card { flex-direction: column; gap: 8px; text-align: center; padding: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+<div id="cur-ring"></div>
+
+<nav class="nav">
+  <a href="index.html" class="nav-brand">
+    <span class="nav-mark">MM</span>
+    <span class="nav-name">Melvin Morales</span>
+  </a>
+  <div class="nav-menu">
+    <a href="work/index.html" class="nav-link">Design</a>
+    <a href="building.html" class="nav-link">Building</a>
+    <a href="photography.html" class="nav-link">Photography</a>
+    <a href="shop.html" class="nav-link">Shop</a>
+    <a href="about.html" class="nav-link active">About</a>
+    <a href="index.html#contact" class="nav-cta">Contact</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <div class="about-hero reveal">
+    <div class="about-glow"></div>
+    <div class="about-eyebrow">About</div>
+    <h1 class="about-title">The person<br>behind the <span class="acc">work.</span></h1>
+    <p class="about-bio">Industrial designer turned product designer turned founder. I studied <strong>industrial &amp; product design at Wentworth</strong>, moved into product design across <strong>legal tech, wellness, and e-commerce</strong>, and somewhere along the way started building the things I design &mdash; front end to back end. Off the clock I shoot the landscapes of the American West, run a print shop, and chase the next idea.</p>
+  </div>
+
+  <div class="section-card reveal">
+    <div class="section-head"><div class="section-ttl">How I Work</div></div>
+    <div class="approach-grid">
+      <div>
+        <div class="approach-h">I design <span>and</span> build.</div>
+        <div class="approach-p">Front end to back end. <a href="work/marcavo.html">Marcavo</a> and <a href="work/peelr.html">Peelr</a> are full products I shipped solo &mdash; database, API, and interface. Understanding the whole stack makes every design decision sharper.</div>
+      </div>
+      <div>
+        <div class="approach-h">Systems, not screens.</div>
+        <div class="approach-p">I designed both ends of one footwear business &mdash; <a href="work/dardanos.html">Dardano&rsquo;s</a>, where you buy your shoes, and <a href="work/ez-shoe-repair.html">EZ Shoe Repair</a>, where you get them fixed &mdash; plus design systems spanning iOS and Android.</div>
+      </div>
+      <div>
+        <div class="approach-h">Design for outcomes.</div>
+        <div class="approach-p">Revenue, adoption, support load &mdash; design isn&rsquo;t done until it moves the business. I frame decisions in those terms, not just user terms.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-card reveal">
+    <div class="section-head"><div class="section-ttl">Experience</div></div>
+
+    <div class="exp-item">
+      <div class="dot-col"><div class="dot dot-accent"></div><div class="dot-line"></div></div>
+      <div class="exp-body">
+        <div class="exp-header">
+          <div class="exp-company">NetDocuments</div>
+          <div class="exp-role">Senior Product Designer</div>
+          <div class="exp-date">Sep 2023 &mdash; Present &middot; Remote</div>
+          <div class="exp-location">Las Vegas, Nevada</div>
+        </div>
+        <p class="exp-desc">Leading design for Microsoft 365 integrations &mdash; simplifying complex legal workflows for enterprise users globally.</p>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="dot-col"><div class="dot"></div><div class="dot-line"></div></div>
+      <div class="exp-body">
+        <div class="exp-header">
+          <div class="exp-company">Proview Media Co.</div>
+          <div class="exp-role">Founder &amp; Photographer</div>
+          <div class="exp-date">Jun 2019 &mdash; Present &middot; Self-employed</div>
+          <div class="exp-location">Las Vegas, Nevada</div>
+        </div>
+        <p class="exp-desc">My creative studio &mdash; photography, web design, and brand identity for businesses and individuals.</p>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="dot-col"><div class="dot"></div><div class="dot-line"></div></div>
+      <div class="exp-body">
+        <div class="exp-header">
+          <div class="exp-company">Mindbody</div>
+          <div class="exp-role">Product Designer</div>
+          <div class="exp-date">Aug 2021 &mdash; Sep 2023 &middot; Remote</div>
+          <div class="exp-location">Las Vegas, Nevada</div>
+        </div>
+        <p class="exp-desc">Redesigned the branded mobile app across iOS and Android, plus the point-of-sale system.</p>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="dot-col"><div class="dot"></div><div class="dot-line"></div></div>
+      <div class="exp-body">
+        <div class="exp-header">
+          <div class="exp-company">Dardano&rsquo;s Shoes</div>
+          <div class="exp-role">Web &amp; Marketing Designer</div>
+          <div class="exp-date">Jul 2020 &mdash; Aug 2021 &middot; On-site</div>
+          <div class="exp-location">Denver, Colorado</div>
+        </div>
+        <p class="exp-desc">Rebuilt the e-commerce site with user-centric flows that drove a 70% lift in online sales in five months.</p>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="dot-col"><div class="dot"></div><div class="dot-line dot-line-hide"></div></div>
+      <div class="exp-body">
+        <div class="exp-header">
+          <div class="exp-company">First Family Insurance</div>
+          <div class="exp-role">Web Designer</div>
+          <div class="exp-date">Jul 2019 &mdash; Jul 2020 &middot; On-site</div>
+          <div class="exp-location">Cape Coral, Florida</div>
+        </div>
+        <p class="exp-desc">Designed web and marketing solutions that translated business goals into user-centered experiences.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-card reveal">
+    <div class="section-head"><div class="section-ttl">Education</div></div>
+    <div class="exp-item">
+      <div class="dot-col"><div class="dot dot-accent"></div><div class="dot-line dot-line-hide"></div></div>
+      <div class="exp-body">
+        <div class="exp-header">
+          <div class="exp-company">Wentworth Institute of Technology</div>
+          <div class="exp-role">B.S. &middot; Industrial &amp; Product Design</div>
+          <div class="exp-date">2014 &mdash; 2018 &middot; Boston, MA</div>
+        </div>
+        <p class="exp-desc">Focused on industrial and product design; active in student leadership, campus radio, and Air Force ROTC.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-card reveal">
+    <div class="section-head"><div class="section-ttl">Expertise &amp; Tools</div></div>
+    <div class="chips-wrap">
+      <span class="skill-chip">Product Strategy</span>
+      <span class="skill-chip">Systems Thinking</span>
+      <span class="skill-chip">Design Systems</span>
+      <span class="skill-chip">UX Architecture</span>
+      <span class="skill-chip">Full-Stack Design</span>
+      <span class="skill-chip">User Research</span>
+      <span class="skill-chip">Prototyping</span>
+      <span class="skill-chip">AI Workflows</span>
+      <span class="chip-rule"></span>
+      <span class="skill-chip">Figma</span>
+      <span class="skill-chip">Claude</span>
+      <span class="skill-chip">Supabase</span>
+      <span class="skill-chip">Vercel</span>
+      <span class="skill-chip">Notion</span>
+      <span class="skill-chip">Jira</span>
+    </div>
+  </div>
+
+  <div class="section-card reveal">
+    <div class="section-head"><div class="section-ttl">Beyond the Screen</div></div>
+    <div class="chips-wrap">
+      <span class="skill-chip" style="border-color:rgba(59,130,246,.2);color:var(--accent);">FAA Licensed Drone Pilot</span>
+      <span class="skill-chip" style="border-color:rgba(59,130,246,.2);color:var(--accent);">Certified Scuba Diver</span>
+      <span class="skill-chip">Motorcyclist</span>
+      <span class="skill-chip">Marathon Runner</span>
+      <span class="skill-chip">Sprint Triathlons</span>
+      <span class="skill-chip">Hiking</span>
+    </div>
+  </div>
+
+  <div class="contact-card reveal">
+    <div class="contact-glow"></div>
+    <h2 class="contact-heading">Let&rsquo;s<br><span class="acc">connect.</span></h2>
+    <a href="mailto:melvinmoralesx@gmail.com" class="contact-email">Contact Me &rarr;</a>
+  </div>
+
+  <div class="footer-card">
+    <span>&copy; 2026 Melvin Morales</span>
+    <span>Product Designer &amp; Builder &middot; Las Vegas, NV</span>
+    <span>Created by <a href="https://www.proviewmediaco.com" target="_blank" rel="noopener">Proview Media Co.</a></span>
+  </div>
+
+</div>
+
+<script>
+  var cur = document.getElementById('cur'), ring = document.getElementById('cur-ring');
+  var mx=0, my=0, rx=0, ry=0;
+  document.addEventListener('mousemove', function(e) { mx=e.clientX; my=e.clientY; cur.style.left=mx+'px'; cur.style.top=my+'px'; });
+  (function loop() { rx+=(mx-rx)*0.1; ry+=(my-ry)*0.1; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(loop); })();
+  document.querySelectorAll('a,button').forEach(function(el) {
+    el.addEventListener('mouseenter', function() { cur.style.width=cur.style.height='16px'; ring.style.width=ring.style.height='50px'; });
+    el.addEventListener('mouseleave', function() { cur.style.width=cur.style.height='9px'; ring.style.width=ring.style.height='34px'; });
+  });
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e, i) {
+      if (e.isIntersecting) { setTimeout(function(){ e.target.classList.add('visible'); }, i*60); obs.unobserve(e.target); }
+    });
+  }, {threshold: 0.06});
+  document.querySelectorAll('.reveal').forEach(function(el) { obs.observe(el); });
+</script>
+</body>
+</html>

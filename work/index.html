@@ -81,6 +81,24 @@
     .proj-grid { grid-template-columns: 1fr; }
     .footer-card { flex-direction: column; gap: 6px; text-align: center; }
   }
+
+  /* === bento nav bar override === */
+  .nav { position: fixed; top: 16px; left: 50%; transform: translateX(-50%); z-index: 200; display: flex; align-items: center; justify-content: space-between; width: calc(100% - 40px); max-width: 1300px; background: rgba(255,255,255,.82); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(0,0,0,.06); border-radius: 20px; padding: 11px 14px 11px 18px; box-shadow: 0 8px 32px rgba(0,0,0,.08); gap: 0; }
+  .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .nav-mark { width: 34px; height: 34px; border-radius: 9px; background: #141414; color: #3B82F6; display: flex; align-items: center; justify-content: center; font-size: .68rem; font-weight: 800; letter-spacing: .08em; flex-shrink: 0; }
+  .nav-name { font-size: .95rem; font-weight: 700; color: #18181b; letter-spacing: -.01em; }
+  .nav-menu { display: flex; align-items: center; gap: 2px; }
+  .nav-link { font-size: .72rem; font-weight: 500; letter-spacing: .04em; color: #6e6e76; text-decoration: none; padding: 9px 15px; border-radius: 100px; transition: background .2s, color .2s; }
+  .nav-link:hover { background: rgba(0,0,0,.05); color: #18181b; }
+  .nav-link.active { color: #18181b; background: rgba(0,0,0,.05); }
+  .nav-cta { background: #3B82F6; color: #fff; font-weight: 700; font-size: .72rem; letter-spacing: .04em; text-decoration: none; padding: 9px 18px; border-radius: 100px; margin-left: 8px; transition: opacity .2s; }
+  .nav-cta:hover { opacity: .85; }
+  @media (max-width: 860px) {
+    .nav { width: calc(100% - 24px); top: 12px; padding: 8px 10px 8px 14px; gap: 0; }
+    .nav-name { font-size: .88rem; }
+    .nav-menu .nav-link { display: none; }
+    .nav-menu .nav-cta { display: inline-block; }
+  }
 </style>
 </head>
 <body>
@@ -89,16 +107,23 @@
 <div id="cur-ring"></div>
 
 <nav class="nav">
-  <a href="../index.html" class="nav-logo">MM</a>
-  <a href="../index.html#work" class="nav-link mobile-show">Work</a>
-  <a href="../index.html#experience" class="nav-link">Experience</a>
-  <a href="../index.html#education" class="nav-link">Education</a>
-  <a href="../index.html#contact" class="nav-cta">Contact</a>
+  <a href="../index.html" class="nav-brand">
+    <span class="nav-mark">MM</span>
+    <span class="nav-name">Melvin Morales</span>
+  </a>
+  <div class="nav-menu">
+    <a href="index.html" class="nav-link active">Design</a>
+    <a href="../building.html" class="nav-link">Building</a>
+    <a href="../photography.html" class="nav-link">Photography</a>
+    <a href="../shop.html" class="nav-link">Shop</a>
+    <a href="../about.html" class="nav-link">About</a>
+    <a href="../index.html#contact" class="nav-cta">Contact</a>
+  </div>
 </nav>
 
 <div class="page">
-  <h1 class="page-title" style="opacity:0;animation:fadeup .6s .1s forwards;">All Work</h1>
-  <p class="page-sub" style="opacity:0;animation:fadeup .6s .2s forwards;">A collection of product design, development, and creative projects.</p>
+  <h1 class="page-title" style="opacity:0;animation:fadeup .6s .1s forwards;">Design</h1>
+  <p class="page-sub" style="opacity:0;animation:fadeup .6s .2s forwards;">Client and career product-design work &mdash; case studies that lead with outcomes. For products I built, see <a href="../building.html" style="color:var(--accent);text-decoration:none;">Building</a>.</p>
 
   <div class="proj-grid">
         <a href="netdocuments.html" class="proj-card">
@@ -143,54 +168,6 @@
             <div class="proj-arrow">&rarr;</div>
           </div>
         </a>
-        <a href="peelr.html" class="proj-card">
-          <div class="proj-img-wrap">
-            <img src="assets/peelr-card.png" alt="Peelr app screens" class="proj-img">
-          </div>
-          <div class="proj-info">
-            <div>
-              <div class="proj-cat">Social &middot; Gaming</div>
-              <div class="proj-title">Peelr</div>
-              <div class="proj-result">Live iOS + web app · designed &amp; built solo</div>
-              <div class="proj-tags"><span class="ptag">Product Design</span><span class="ptag">Mobile</span><span class="ptag">Gaming</span></div>
-            </div>
-            <div class="proj-arrow">&rarr;</div>
-          </div>
-        </a>
-        <a href="marcavo.html" class="proj-card">
-          <div class="proj-img-wrap">
-            <img src="assets/marcavo-card.png" alt="Marcavo dashboard" class="proj-img">
-          </div>
-          <div class="proj-info">
-            <div>
-              <div class="proj-cat">SaaS &middot; Client Management</div>
-              <div class="proj-title">Marcavo</div>
-              <div class="proj-result">Full client SaaS · built solo in 1 month</div>
-              <div class="proj-tags"><span class="ptag">Product Design</span><span class="ptag">SaaS</span><span class="ptag">Web App</span></div>
-            </div>
-            <div class="proj-arrow">&rarr;</div>
-          </div>
-        </a>
-        <a href="sevnapp.html" class="proj-card">
-          <div class="proj-img-wrap">
-            <div style="width:100%;height:100%;background:#e84b2b;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;">
-              <div style="display:flex;align-items:center;gap:12px;">
-                <img src="https://www.sevnapp.com/favicon-180.png" alt="SEVN Logo" style="width:48px;height:48px;border-radius:12px;">
-                <div style="font-size:1.8rem;font-weight:900;letter-spacing:-.02em;color:#f2f0eb;text-transform:uppercase;">SEVN</div>
-              </div>
-              <div style="font-size:.6rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(242,240,235,.6);">Curated Las Vegas travel guide</div>
-            </div>
-          </div>
-          <div class="proj-info">
-            <div>
-              <div class="proj-cat">Travel &middot; Mobile</div>
-              <div class="proj-title">SEVN App</div>
-              <div class="proj-result">500+ curated spots · 0 paid placements</div>
-              <div class="proj-tags"><span class="ptag">Mobile</span><span class="ptag">iOS</span><span class="ptag">Travel</span></div>
-            </div>
-            <div class="proj-arrow">&rarr;</div>
-          </div>
-        </a>
         <a href="ez-shoe-repair.html" class="proj-card">
           <div class="proj-img-wrap">
             <img src="https://framerusercontent.com/images/Y8EYX8ALmDEhWaDQDPE1EE2UQJY.jpg" alt="EZ Shoe Repair checkout" class="proj-img">
@@ -205,41 +182,14 @@
             <div class="proj-arrow">&rarr;</div>
           </div>
         </a>
-        <a href="vistas.html" class="proj-card">
-          <div class="proj-img-wrap">
-            <img src="assets/vistas-card.jpg" alt="Vistas: Beauty of the Desert — Nevada landscape photography" class="proj-img">
-          </div>
-          <div class="proj-info">
-            <div>
-              <div class="proj-cat">Art Exhibit &middot; Brand &amp; Web</div>
-              <div class="proj-title">Vistas: Beauty of the Desert</div>
-              <div class="proj-result">Solo exhibit · brand, site &amp; print</div>
-              <div class="proj-tags"><span class="ptag">Brand</span><span class="ptag">Web</span><span class="ptag">Photography</span></div>
-            </div>
-            <div class="proj-arrow">&rarr;</div>
-          </div>
-        </a>
-<a href="https://www.etsy.com/shop/MilesAwayPrints" target="_blank" rel="noopener" class="proj-card">
-          <div class="proj-img-wrap">
-            <img src="assets/miles-away-card.png" alt="Miles Away Prints shop" class="proj-img">
-          </div>
-          <div class="proj-info">
-            <div>
-              <div class="proj-cat">Print Shop &middot; E-commerce &middot; Etsy</div>
-              <div class="proj-title">Miles Away Prints</div>
-              <div class="proj-tags"><span class="ptag">Etsy</span><span class="ptag">Print Shop</span><span class="ptag">Photography</span></div>
-            </div>
-            <div class="proj-arrow">&#8599;</div>
-          </div>
-        </a>
   </div>
 </div>
 
 <div class="footer">
   <div class="footer-card">
     <span>&copy; 2026 Melvin Morales</span>
-    <span>Senior Product Designer &middot; Las Vegas, NV</span>
-    <span>Built with intention.</span>
+    <span>Product Designer &amp; Builder &middot; Las Vegas, NV</span>
+    <span>Created by <a href="https://www.proviewmediaco.com" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;">Proview Media Co.</a></span>
   </div>
 </div>
 
