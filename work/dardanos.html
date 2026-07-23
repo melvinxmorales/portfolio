@@ -197,7 +197,7 @@
   /* === bento nav bar override === */
   .nav { position: fixed; top: 16px; left: 50%; transform: translateX(-50%); z-index: 200; display: flex; align-items: center; justify-content: space-between; width: calc(100% - 40px); max-width: 1300px; background: rgba(255,255,255,.82); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(0,0,0,.06); border-radius: 20px; padding: 11px 14px 11px 18px; box-shadow: 0 8px 32px rgba(0,0,0,.08); gap: 0; }
   .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-  .nav-mark { width: 34px; height: 34px; border-radius: 9px; background: #141414; color: #3B82F6; display: flex; align-items: center; justify-content: center; font-size: .68rem; font-weight: 800; letter-spacing: .08em; flex-shrink: 0; }
+  .nav-mark { width: 34px; height: 34px; border-radius: 50%; background: #141414; color: #fff; display: flex; align-items: center; justify-content: center; font-size: .68rem; font-weight: 800; letter-spacing: .08em; flex-shrink: 0; }
   .nav-name { font-size: .95rem; font-weight: 700; color: #18181b; letter-spacing: -.01em; }
   .nav-menu { display: flex; align-items: center; gap: 2px; }
   .nav-link { font-size: .72rem; font-weight: 500; letter-spacing: .04em; color: #6e6e76; text-decoration: none; padding: 9px 15px; border-radius: 100px; transition: background .2s, color .2s; }
@@ -393,15 +393,31 @@
 
 
 <!-- NEXT PROJECT -->
-<div class="next-wrap reveal">
-  <a href="peelr.html" class="next-card">
-    <div class="next-card-glow"></div>
-    <div>
-      <div class="next-label">Next Case Study</div>
-      <div class="next-title">Peelr</div>
-    </div>
-    <div class="next-arrow">&#8594;</div>
-  </a>
+<div class="next-wrap">
+  <style>
+    .next-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .next-nav.single { grid-template-columns: 1fr; max-width: 560px; }
+    .prev-card { flex-direction: row-reverse; text-align: right; }
+    .prev-card:hover .next-arrow { background: var(--accent); color: #000; transform: rotate(-45deg); }
+    @media (max-width: 640px) { .next-nav { grid-template-columns: 1fr; } }
+  </style>
+  <div class="next-nav">
+    <a href="mindbody.html" class="next-card prev-card reveal">
+      <div class="next-arrow">&swarr;</div>
+      <div>
+        <div class="next-label">Previous Project</div>
+        <div class="next-title">Mindbody</div>
+      </div>
+    </a>
+    <a href="ez-shoe-repair.html" class="next-card reveal">
+      <div class="next-card-glow"></div>
+      <div>
+        <div class="next-label">Next Project</div>
+        <div class="next-title">EZ Shoe Repair</div>
+      </div>
+      <div class="next-arrow">&nearr;</div>
+    </a>
+  </div>
 </div>
 
 <!-- FOOTER -->
