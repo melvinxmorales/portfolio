@@ -118,6 +118,12 @@
   .cla { transition: transform .2s; display: inline-block; }
   .contact-link:hover .cla { transform: rotate(45deg); }
 
+  .connect-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: stretch; }
+  .about-card { display: flex; flex-direction: column; justify-content: center; text-decoration: none; color: var(--text); }
+  .about-blurb { font-size: .95rem; font-weight: 300; line-height: 1.7; color: var(--muted); margin-bottom: 22px; }
+  .about-card .world-meta { margin-top: 0; }
+  .about-card:hover .wm-arrow { transform: translateX(4px); }
+
   .footer-card { background: var(--card); border-radius: var(--radius); border: 1px solid rgba(0,0,0,.04); padding: 22px 28px; display: flex; justify-content: space-between; align-items: center; font-size: .6rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
   .footer-card a { color: var(--accent); text-decoration: none; }
 
@@ -151,6 +157,7 @@
     .world-card.wide { grid-column: unset; }
     .world-card.wide .world-img-wrap { aspect-ratio: 16/9; }
 
+    .connect-row { grid-template-columns: 1fr; }
     .contact-card { padding: 30px 22px; }
     .contact-heading { font-size: clamp(1.7rem, 8vw, 2.4rem); }
     .contact-links { grid-template-columns: 1fr; }
@@ -192,9 +199,12 @@
     </div>
 
     <div class="stats-card reveal">
-      <div class="stat"><div class="stat-num">8<sup>+</sup></div><div class="stat-label">Years</div></div>
-      <div class="stat"><div class="stat-num">8</div><div class="stat-label">Case Studies</div></div>
+      <div class="stat"><div class="stat-num">8<sup>+</sup></div><div class="stat-label">Years in Product</div></div>
       <div class="stat"><div class="stat-num">5</div><div class="stat-label">Companies</div></div>
+      <div class="stat"><div class="stat-num">8</div><div class="stat-label">Case Studies</div></div>
+      <div class="stat"><div class="stat-num">3</div><div class="stat-label">Products Built Solo</div></div>
+      <div class="stat"><div class="stat-num">26.2</div><div class="stat-label">Marathoner</div></div>
+      <div class="stat"><div class="stat-num">FAA</div><div class="stat-label">Drone Pilot</div></div>
     </div>
 
   </aside>
@@ -245,25 +255,27 @@
         </div>
       </a>
 
-      <a href="about.html" class="world-card wide reveal">
-        <div class="world-img-wrap"><img src="https://framerusercontent.com/images/lIPyJYHmkd7Senrx88Xw9UbdXxY.jpg" alt="About Melvin" class="world-img"></div>
-        <div class="world-body">
-          <div class="world-name">About</div>
-          <div class="world-desc">8+ years, five companies, and the person behind the work.</div>
-          <span class="world-meta">More About Me <span class="wm-arrow">&rarr;</span></span>
-        </div>
-      </a>
-
     </div>
 
-    <div class="contact-card reveal" id="contact">
-      <div class="contact-glow"></div>
-      <h2 class="contact-heading">Let&rsquo;s<br><span class="acc">connect.</span></h2>
-      <div><a href="mailto:melvinmoralesx@gmail.com" class="contact-email">Contact Me &rarr;</a></div>
-      <div class="contact-links">
-        <a href="https://www.linkedin.com/in/melvinmorales/" target="_blank" rel="noopener" class="contact-link">LinkedIn <span class="cla">&#8599;</span></a>
-        <a href="https://www.instagram.com/milesawaywithmel/" target="_blank" rel="noopener" class="contact-link">Instagram <span class="cla">&#8599;</span></a>
+    <div class="connect-row">
+
+      <a href="about.html" class="contact-card about-card reveal">
+        <div class="contact-glow"></div>
+        <h2 class="contact-heading">About<br><span class="acc">me.</span></h2>
+        <p class="about-blurb">Eight-plus years across five companies &mdash; a product designer who builds what he designs, and shoots desert landscapes on the side.</p>
+        <span class="world-meta">More About Me <span class="wm-arrow">&rarr;</span></span>
+      </a>
+
+      <div class="contact-card reveal" id="contact">
+        <div class="contact-glow"></div>
+        <h2 class="contact-heading">Let&rsquo;s<br><span class="acc">connect.</span></h2>
+        <div><a href="mailto:melvinmoralesx@gmail.com" class="contact-email">Contact Me &rarr;</a></div>
+        <div class="contact-links">
+          <a href="https://www.linkedin.com/in/melvinmorales/" target="_blank" rel="noopener" class="contact-link">LinkedIn <span class="cla">&#8599;</span></a>
+          <a href="https://www.instagram.com/milesawaywithmel/" target="_blank" rel="noopener" class="contact-link">Instagram <span class="cla">&#8599;</span></a>
+        </div>
       </div>
+
     </div>
 
     <div class="footer-card">
