@@ -67,11 +67,15 @@
   .status-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: blink 2s infinite; }
   @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
 
-  .stats-card { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border-radius: var(--radius); overflow: hidden; border: 1px solid rgba(0,0,0,.04); }
-  .stat { background: var(--card); padding: 20px 16px; }
-  .stat-num { font-size: 1.55rem; font-weight: 800; color: var(--text); line-height: 1; letter-spacing: -.02em; }
-  .stat-num sup { font-size: .72rem; color: var(--accent); }
-  .stat-label { font-size: .58rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-top: 6px; line-height: 1.4; }
+  .side-about { background: var(--card); border-radius: var(--radius); border: 1px solid rgba(0,0,0,.04); padding: 24px; }
+  .side-about-title { font-size: .58rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+  .side-about-text { font-size: .82rem; font-weight: 300; line-height: 1.7; color: var(--muted); margin-bottom: 18px; }
+  .side-about-actions { display: flex; flex-direction: column; gap: 9px; }
+  .side-about-actions a { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-decoration: none; border-radius: 100px; padding: 12px 18px; transition: opacity .2s, border-color .2s, background .2s, color .2s; }
+  .side-resume { background: var(--accent); color: #fff; }
+  .side-resume:hover { opacity: .88; }
+  .side-more { background: var(--card2); border: 1px solid var(--border); color: var(--text); }
+  .side-more:hover { border-color: var(--accent); color: var(--accent); }
 
   .hero-card { background: var(--card); border-radius: var(--radius); border: 1px solid rgba(0,0,0,.04); padding: 52px 48px; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: center; }
   .hero-glow { position: absolute; top: -60px; right: -60px; width: 320px; height: 320px; background: radial-gradient(circle, rgba(59,130,246,.07) 0%, transparent 65%); pointer-events: none; }
@@ -198,13 +202,13 @@
       </div>
     </div>
 
-    <div class="stats-card reveal">
-      <div class="stat"><div class="stat-num">8<sup>+</sup></div><div class="stat-label">Years in Product</div></div>
-      <div class="stat"><div class="stat-num">5</div><div class="stat-label">Companies</div></div>
-      <div class="stat"><div class="stat-num">230<sup>+</sup></div><div class="stat-label">Users Researched</div></div>
-      <div class="stat"><div class="stat-num">$106K</div><div class="stat-label">Revenue Driven</div></div>
-      <div class="stat"><div class="stat-num">3</div><div class="stat-label">Products Shipped Solo</div></div>
-      <div class="stat"><div class="stat-num">2</div><div class="stat-label">Businesses Founded</div></div>
+    <div class="side-about reveal">
+      <div class="side-about-title">About Me</div>
+      <p class="side-about-text">Product designer and developer, eight years across legal tech, wellness, and e-commerce. I design and build, front end to back end.</p>
+      <div class="side-about-actions">
+        <a href="https://docs.google.com/document/d/1kDKUMTTbw66xGhVlcbYOJ0pZcbZh5MhTikqm4QS6lTI/preview" target="_blank" rel="noopener" class="side-resume">R&eacute;sum&eacute; &nearr;</a>
+        <a href="about.html" class="side-more">More About Me &rarr;</a>
+      </div>
     </div>
 
   </aside>
@@ -257,28 +261,14 @@
 
     </div>
 
-    <div class="connect-row">
-
-      <div class="contact-card about-card reveal">
-        <div class="contact-glow"></div>
-        <h2 class="contact-heading">About<br><span class="acc">me.</span></h2>
-        <p class="about-blurb">Eight-plus years across five companies, a product designer who builds what he designs, and shoots desert landscapes on the side.</p>
-        <div style="display:flex;flex-wrap:wrap;gap:10px;">
-          <a href="about.html" class="contact-email" style="margin-bottom:0;">More About Me &rarr;</a>
-          <a href="https://docs.google.com/document/d/1kDKUMTTbw66xGhVlcbYOJ0pZcbZh5MhTikqm4QS6lTI/preview" target="_blank" rel="noopener" class="contact-email" style="margin-bottom:0;background:var(--accent);color:#fff;border-color:var(--accent);">R&eacute;sum&eacute; &nearr;</a>
-        </div>
+    <div class="contact-card reveal" id="contact">
+      <div class="contact-glow"></div>
+      <h2 class="contact-heading">Let&rsquo;s<br><span class="acc">connect.</span></h2>
+      <div><a href="mailto:melvinmoralesx@gmail.com" class="contact-email">Contact Me &rarr;</a></div>
+      <div class="contact-links">
+        <a href="https://www.linkedin.com/in/melvinmorales/" target="_blank" rel="noopener" class="contact-link">LinkedIn <span class="cla">&#8599;</span></a>
+        <a href="https://www.instagram.com/milesawaywithmel/" target="_blank" rel="noopener" class="contact-link">Instagram <span class="cla">&#8599;</span></a>
       </div>
-
-      <div class="contact-card reveal" id="contact">
-        <div class="contact-glow"></div>
-        <h2 class="contact-heading">Let&rsquo;s<br><span class="acc">connect.</span></h2>
-        <div><a href="mailto:melvinmoralesx@gmail.com" class="contact-email">Contact Me &rarr;</a></div>
-        <div class="contact-links">
-          <a href="https://www.linkedin.com/in/melvinmorales/" target="_blank" rel="noopener" class="contact-link">LinkedIn <span class="cla">&#8599;</span></a>
-          <a href="https://www.instagram.com/milesawaywithmel/" target="_blank" rel="noopener" class="contact-link">Instagram <span class="cla">&#8599;</span></a>
-        </div>
-      </div>
-
     </div>
 
     <div class="footer-card">
