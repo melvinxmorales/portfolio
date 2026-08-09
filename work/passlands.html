@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Passlands, Melvin Morales</title>
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=3">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="../editorial.css">
+</head>
+<body>
+
+<header class="mast">
+  <div class="wrap">
+    <a href="../index.html" class="mast-name"><span class="mast-mark">MM</span>Melvin Morales</a>
+    <button class="mast-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu"><span class="bars"></span></button>
+    <nav class="mast-nav" id="site-nav" aria-label="Pages">
+      <a href="index.html" aria-current="page">Work</a>
+      <a href="../photography.html">Photography</a>
+      <a href="../print.html">Print</a>
+      <a href="../about.html">About</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="phead"><div class="wrap">
+<span class="eyebrow">Case study</span>
+<h1>Passlands</h1>
+<p class="lede muted">Does the $80 America the Beautiful pass actually work at this site? A straight answer, with a source and the date it was last checked.</p>
+<dl class="cs-meta" style="margin-top:clamp(34px,4.5vw,64px);--cols:5">
+<div><dt>Industry</dt><dd>Travel / Public lands</dd></div>
+<div><dt>Role</dt><dd>Designer and developer</dd></div>
+<div><dt>Platform</dt><dd>Web app, installable PWA</dd></div>
+<div><dt>Team</dt><dd>Solo: design and full-stack build</dd></div>
+<div><dt>Status</dt><dd>Live at passlands.com</dd></div>
+</dl>
+</div></section>
+<div class="wrap"><figure class="cs-hero"><img src="assets/passlands-hero.jpg" alt="Passlands"></figure></div>
+<section class="sec"><div class="wrap">
+<div class="sec-h measure"><span class="eyebrow">01 &nbsp;Overview</span><h2 class="fade">Know where your pass works.</h2></div>
+<div class="measure fade">
+<p class="lede muted" style="margin-top:0">The America the Beautiful pass costs $80 and covers federal recreation sites across six agencies: the Park Service, Forest Service, Fish and Wildlife Service, BLM, Bureau of Reclamation and the Army Corps of Engineers. No official comprehensive list of which sites actually honor it exists. That gap is the entire reason this product exists.</p>
+<p class="muted" style="margin-top:22px">Passlands answers one question per site: is the pass honored here? Every answer carries a confidence tier, a source and the date it was last checked. I designed and built all of it, and it installs as an offline app with no account and no server.</p>
+</div><div class="metrics fade">
+<div class="metric"><b>2,928</b><p>Federal recreation sites, every answer carrying its source and a last-checked date</p></div>
+<div class="metric"><b>6</b><p>Managing agencies covered: NPS, USFS, USFWS, BLM, USBR and USACE</p></div>
+<div class="metric"><b>0</b><p>Accounts, servers and API keys. Saved sites live on your own device</p></div>
+</div>
+<div class="tags" style="margin-top:30px">
+<span>Product Design</span>
+<span>Astro</span>
+<span>TypeScript</span>
+<span>Leaflet</span>
+<span>Offline PWA</span>
+<span>Information Design</span>
+</div>
+<div class="hero-act" style="margin-top:clamp(30px,3.6vw,44px)"><a class="btn" href="https://passlands.com" target="_blank" rel="noopener">Visit passlands.com</a></div>
+</div></section>
+<section class="sec"><div class="wrap">
+<div class="sec-h measure"><span class="eyebrow">02 &nbsp;The problem</span><h2 class="fade">Nobody publishes a list of where the pass works.</h2></div>
+<div class="measure fade">
+<p class="muted" style="margin-top:0">People buy the $80 pass and then guess. Each agency publishes its own fee information in its own format, and no one publishes a single list of which sites honor the pass. The result is people paying twice at the gate, or skipping a place they had already paid to enter.</p>
+<p class="muted" style="margin-top:22px">The honest problem is that the underlying data is incomplete. Any product claiming certainty here would be lying. So the real design problem was not showing the answer, it was showing how much we actually know.</p>
+</div>
+<div class="quote fade"><p>Search any federal recreation site for a straight answer, with the source and the date we last checked.</p><cite>The promise on the Passlands home page</cite></div>
+</div></section>
+<section class="sec"><div class="wrap">
+<div class="sec-h measure"><span class="eyebrow">03 &nbsp;My role and how I worked</span><h2 class="fade">Designed and built solo, data included.</h2></div>
+<div class="measure fade">
+<p class="muted" style="margin-top:0">I designed the product and built it: an Astro static site with typo-tolerant client-side search, Leaflet maps on OpenStreetMap so there is no API key to leak or pay for, and a service worker that makes the whole thing installable and usable offline, which matters because it gets used in places with no signal.</p>
+<p class="muted" style="margin-top:22px">Two decisions shaped it.</p>
+</div><div class="decisions">
+<div class="dec fade"><span class="num">Decision 01</span><h3>Confidence tiers instead of a yes or no</h3><p>The data is genuinely uncertain, so the interface says so. Every site reads as confirmed, likely or check, with its source and date attached. Of 2,928 sites only 734 are confirmed. Hiding that behind a green checkmark would have been the easier design and the dishonest one.</p></div>
+<div class="dec fade"><span class="num">Decision 02</span><h3>Offline first, because of where it gets used</h3><p>You look this up at a trailhead or a gate, not at a desk. So it is a static site with on-device storage and no server call at the moment of use. The app shell and your saved sites work with no signal at all.</p></div>
+</div></div></section>
+<section class="sec"><div class="wrap">
+<div class="sec-h measure"><span class="eyebrow">04 &nbsp;Impact</span><h2 class="fade">A reference that did not exist before.</h2></div>
+<div class="impact">
+<div class="fade"><h3>Every federal agency in one place</h3><p>2,928 sites across all six managing agencies, searchable together for the first time, with instant typo-tolerant search.</p></div>
+<div class="fade"><h3>Sourced and dated, never asserted</h3><p>Every record carries its source and the date it was last verified, so people can judge an answer instead of trusting it blindly.</p></div>
+<div class="fade"><h3>Works where there is no signal</h3><p>Installable as a PWA with an offline app shell and on-device saved sites, so it works at the gate rather than only at home.</p></div>
+<div class="fade"><h3>Built to be replaced by better data</h3><p>The record schema is frozen so a future data pipeline can swap in better sourcing without redesigning the product around it.</p></div>
+</div></div></section>
+<section class="sec last"><div class="wrap">
+<div class="pn">
+<a href="sevnapp.html"><span class="eyebrow">Previous project</span><b>SEVN</b></a>
+</div><div style="margin-top:clamp(30px,4vw,52px)"><a href="index.html" class="go" style="color:var(--ink)">All work <i>&rarr;</i></a></div>
+</div></section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p>&copy; 2026 Melvin Morales</p>
+    <p>Product designer and builder<br>Las Vegas, NV</p>
+    <p>Created by <a href="https://www.proviewmediaco.com" class="link" target="_blank" rel="noopener">Proview Media Co.</a></p>
+  </div>
+</footer>
+
+<script src="../editorial.js"></script>
+</body>
+</html>
