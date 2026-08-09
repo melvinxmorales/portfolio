@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vistas: Beauty of the Desert, Melvin Morales</title>
 <meta name="description" content="Vistas: Beauty of the Desert, designing and building the full brand, website, and collateral for a solo Nevada landscape photography exhibit. Case study by Melvin Morales.">
 <meta property="og:title" content="Vistas: Beauty of the Desert, Melvin Morales">
 <meta property="og:description" content="Photographer, designer, and developer for a solo Nevada landscape exhibit: identity, an 8-page editorial site, and print collateral, built end to end.">
@@ -14,521 +15,120 @@
 <meta name="twitter:description" content="Designing and building the full brand, site, and collateral for a solo Nevada landscape photography exhibit.">
 <meta name="twitter:image" content="https://www.melvinmorales.com/work/assets/vistas-hero.jpg">
 <link rel="canonical" href="https://www.melvinmorales.com/work/vistas.html">
-<title>Vistas: Beauty of the Desert, Melvin Morales</title>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg:        #ffffff;
-    --card:      #f7f7f8;
-    --card2:     #eeeef1;
-    --border:    #e6e6e9;
-    --text:      #18181b;
-    --muted:     #6e6e76;
-    --accent:    #3B82F6;
-    --radius:    20px;
-    --radius-sm: 12px;
-    --max:       860px;
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; overflow-x: hidden; }
-  body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-weight: 400; min-height: 100vh; cursor: none; overflow-x: hidden; max-width: 100%; }
-
-  #cur { position: fixed; width: 9px; height: 9px; background: var(--accent); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width .2s, height .2s;  }
-  #cur-ring { position: fixed; width: 34px; height: 34px; border: 1px solid rgba(59,130,246,.35); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: width .35s cubic-bezier(.23,1,.32,1), height .35s cubic-bezier(.23,1,.32,1); }
-
-  .nav { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 200; display: flex; align-items: center; gap: 4px; background: rgba(255,255,255,.82); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(0,0,0,.07); border-radius: 100px; padding: 6px 8px; box-shadow: 0 8px 32px rgba(0,0,0,.08); white-space: nowrap; }
-  .nav-logo { font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--text); text-decoration: none; padding: 8px 16px; border-radius: 100px; margin-right: 4px; border-right: 1px solid rgba(0,0,0,.07); }
-  .nav-link { font-size: .7rem; font-weight: 500; letter-spacing: .08em; color: var(--muted); text-decoration: none; padding: 8px 16px; border-radius: 100px; transition: background .2s, color .2s; }
-  .nav-link:hover { background: rgba(0,0,0,.07); color: var(--text); }
-  .nav-link.active { color: var(--text); }
-  .nav-back { font-size: .7rem; font-weight: 500; letter-spacing: .08em; color: var(--muted); text-decoration: none; padding: 8px 16px; border-radius: 100px; transition: background .2s, color .2s; }
-  .nav-back:hover { background: rgba(0,0,0,.07); color: var(--text); }
-  .nav-cta { background: var(--accent); color: #fff; font-weight: 700; font-size: .7rem; letter-spacing: .08em; text-decoration: none; padding: 8px 16px; border-radius: 100px; margin-left: 4px; transition: opacity .2s; }
-  .nav-cta:hover { opacity: .85; }
-
-  .hero { padding: 120px 24px 0; max-width: var(--max); margin: 0 auto; }
-  .hero-tag { display: inline-flex; align-items: center; gap: 8px; font-size: .62rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; opacity: 0; animation: fadeup .6s .1s forwards; }
-  .hero-tag::before { content: ''; width: 24px; height: 1px; background: var(--accent); display: block; }
-  .hero-title { font-size: clamp(2.4rem, 6vw, 4.8rem); font-weight: 900; letter-spacing: -.03em; text-transform: uppercase; line-height: .95; color: var(--text); margin-bottom: 24px; opacity: 0; animation: fadeup .6s .2s forwards; }
-  .hero-title span { color: var(--accent); }
-  .hero-sub { font-size: 1.1rem; font-weight: 300; line-height: 1.7; color: var(--muted); max-width: 580px; margin-bottom: 40px; opacity: 0; animation: fadeup .6s .3s forwards; }
-  .hero-meta { display: flex; gap: 32px; flex-wrap: wrap; opacity: 0; animation: fadeup .6s .4s forwards; margin-bottom: 56px; }
-  .hero-meta-item { display: flex; flex-direction: column; gap: 4px; }
-  .hero-meta-label { font-size: .64rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
-  .hero-meta-val { font-size: .92rem; font-weight: 600; color: var(--text); }
-  .hero-img-wrap { width: 100%; border-radius: var(--radius); overflow: hidden; border: 1px solid rgba(0,0,0,.04); opacity: 0; animation: fadeup .8s .5s forwards; }
-  .hero-img { width: 100%; display: block; object-fit: cover; }
-
-  .section { max-width: var(--max); margin: 0 auto; padding: 80px 24px 0; }
-  .section-label { font-size: .58rem; font-weight: 700; letter-spacing: .25em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
-  .section-label::before { content: ''; width: 20px; height: 1px; background: var(--accent); display: block; }
-  .section-title { font-size: clamp(1.6rem, 3.5vw, 2.6rem); font-weight: 800; letter-spacing: -.02em; line-height: 1.05; color: var(--text); margin-bottom: 24px; }
-  .section-body { font-size: .98rem; font-weight: 300; line-height: 1.85; color: var(--muted); }
-  .section-body p + p { margin-top: 16px; }
-  .section-body strong { color: #3f3f46; font-weight: 500; }
-
-  .divider { max-width: var(--max); margin: 80px auto 0; padding: 0 24px; }
-  .divider-line { height: 1px; background: var(--border); }
-
-  .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border-radius: var(--radius); overflow: hidden; border: 1px solid rgba(0,0,0,.04); }
-  .stat-cell { background: var(--card); padding: 32px 28px; }
-  .stat-big { font-size: 2.8rem; font-weight: 900; color: var(--text); letter-spacing: -.03em; line-height: 1; }
-  .stat-big span { color: var(--accent); }
-  .stat-desc { font-size: .85rem; font-weight: 400; color: var(--muted); margin-top: 8px; line-height: 1.5; }
-
-  .callout { background: var(--card); border-radius: var(--radius); border: 1px solid rgba(0,0,0,.04); padding: 40px; position: relative; overflow: hidden; }
-  .callout-glow { position: absolute; top: -60px; right: -60px; width: 280px; height: 280px; background: radial-gradient(circle, rgba(59,130,246,.06) 0%, transparent 65%); pointer-events: none; }
-  .callout-quote { font-size: 1.15rem; font-weight: 300; line-height: 1.75; color: #3f3f46; font-style: italic; position: relative; }
-  .callout-quote::before { content: '"'; font-size: 4rem; font-weight: 900; color: var(--accent); line-height: .5; display: block; margin-bottom: 16px; font-style: normal; }
-  .callout-attr { font-size: .65rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); margin-top: 20px; }
-
-  .process-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .process-card { background: var(--card); border-radius: var(--radius); border: 1px solid rgba(0,0,0,.04); padding: 32px; position: relative; overflow: hidden; }
-  .process-num { font-size: 4rem; font-weight: 900; color: rgba(59,130,246,.06); position: absolute; top: 16px; right: 20px; line-height: 1; letter-spacing: -.04em; }
-  .process-step-label { font-size: .6rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
-  .process-step-title { font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 14px; line-height: 1.2; }
-  .process-step-body { font-size: .9rem; font-weight: 300; line-height: 1.75; color: var(--muted); }
-
-  .persona-card { background: var(--card); border-radius: var(--radius); border: 1px solid rgba(0,0,0,.04); overflow: hidden; display: grid; grid-template-columns: 220px 1fr; }
-  .persona-img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; filter: grayscale(20%); }
-  .persona-body { padding: 36px; }
-  .persona-name { font-size: 1.3rem; font-weight: 800; color: var(--text); margin-bottom: 4px; }
-  .persona-role { font-size: .7rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
-  .persona-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px; }
-  .persona-attr-label { font-size: .57rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
-  .persona-attr-val { font-size: .8rem; font-weight: 500; color: var(--text); }
-  .persona-cols { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; border-top: 1px solid var(--border); padding-top: 20px; }
-  .persona-col-title { font-size: .6rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
-  .persona-col-item { font-size: .75rem; font-weight: 300; color: #3f3f46; line-height: 1.6; display: flex; gap: 8px; align-items: flex-start; margin-bottom: 6px; }
-  .persona-col-item::before { content: '-'; color: var(--accent); flex-shrink: 0; font-size: .6rem; margin-top: 3px; }
-
-  .insights-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
-  .insight-card { background: var(--card); border-radius: var(--radius); border: 1px solid rgba(0,0,0,.04); padding: 28px; }
-  .insight-icon { font-size: 1.4rem; margin-bottom: 14px; }
-  .insight-title { font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 10px; line-height: 1.3; }
-  .insight-body { font-size: .9rem; font-weight: 300; color: var(--muted); line-height: 1.7; }
-
-  .outcomes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .outcome-card { background: var(--card); border-radius: var(--radius); border: 1px solid rgba(0,0,0,.04); padding: 32px; border-left: 3px solid var(--accent); }
-  .outcome-title { font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 10px; line-height: 1.3; }
-  .outcome-body { font-size: .9rem; font-weight: 300; color: var(--muted); line-height: 1.7; }
-
-  .learnings-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
-  .learning-card { background: var(--card); border-radius: var(--radius); border: 1px solid rgba(0,0,0,.04); padding: 28px; }
-  .learning-num { font-size: .6rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
-  .learning-title { font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 10px; line-height: 1.3; }
-  .learning-body { font-size: .9rem; font-weight: 300; color: var(--muted); line-height: 1.7; }
-
-  .next-wrap { max-width: var(--max); margin: 80px auto 0; padding: 0 24px 80px; }
-  .next-card { background: var(--card); border-radius: var(--radius); border: 1px solid rgba(0,0,0,.04); padding: 48px; display: flex; justify-content: space-between; align-items: center; gap: 24px; text-decoration: none; transition: border-color .2s, background .2s; position: relative; overflow: hidden; }
-  .next-card:hover { border-color: rgba(59,130,246,.2); background: rgba(59,130,246,.02); }
-  .next-card-glow { position: absolute; right: -80px; top: -80px; width: 280px; height: 280px; background: radial-gradient(circle, rgba(59,130,246,.05) 0%, transparent 65%); pointer-events: none; }
-  .next-label { font-size: .6rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
-  .next-title { font-size: 1.4rem; font-weight: 800; color: var(--text); letter-spacing: -.01em; }
-  .next-arrow { width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--muted); flex-shrink: 0; transition: background .2s, color .2s, transform .3s; }
-  .next-card:hover .next-arrow { background: var(--accent); color: #000; transform: rotate(45deg); }
-
-  .footer { max-width: var(--max); margin: 0 auto; padding: 0 24px 40px; }
-  .footer-card { background: var(--card); border-radius: var(--radius); border: 1px solid rgba(0,0,0,.04); padding: 18px 26px; display: flex; justify-content: space-between; align-items: center; font-size: .6rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
-
-  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 20px; }
-  .tag { font-size: .68rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: 5px 12px; border-radius: 100px; background: rgba(0,0,0,.04); color: var(--muted); border: 1px solid var(--border); }
-
-  .live-link { display: inline-flex; align-items: center; gap: 10px; font-size: .75rem; font-weight: 600; letter-spacing: .06em; color: var(--accent); text-decoration: none; border: 1px solid rgba(59,130,246,.2); border-radius: 100px; padding: 10px 20px; transition: background .2s, border-color .2s; margin-top: 28px; }
-  .live-link:hover { background: rgba(59,130,246,.06); border-color: rgba(59,130,246,.4); }
-  .live-link span { transition: transform .2s; display: inline-block; }
-  .live-link:hover span { transform: rotate(45deg); }
-
-  .voice-note { max-width: var(--max); margin: 28px auto 0; padding: 0 24px; opacity: 0; animation: fadeup .8s .55s forwards; }
-  .vn-inner { display: flex; align-items: center; gap: 18px; background: var(--card); border: 1px solid rgba(0,0,0,.06); border-radius: 100px; padding: 10px 26px 10px 10px; }
-  .vn-play { width: 46px; height: 46px; flex-shrink: 0; border-radius: 50%; border: none; background: var(--accent); color: #000; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: opacity .2s, transform .15s; font-family: inherit; padding: 0; }
-  .vn-play:hover { opacity: .88; }
-  .vn-play:active { transform: scale(.94); }
-  .vn-play svg { display: block; }
-  .vn-main { flex: 1; display: flex; flex-direction: column; gap: 9px; min-width: 0; }
-  .vn-label { font-size: .75rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--text); }
-  .vn-bar { height: 4px; border-radius: 100px; background: var(--border); cursor: pointer; position: relative; }
-  .vn-fill { position: absolute; left: 0; top: 0; bottom: 0; width: 0%; background: var(--accent); border-radius: 100px; }
-  .vn-time { font-size: .68rem; font-weight: 600; letter-spacing: .04em; color: var(--muted); flex-shrink: 0; font-variant-numeric: tabular-nums; }
-
-  .decisions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 28px; }
-  .decision-card { background: var(--card); border-radius: var(--radius); border: 1px solid rgba(0,0,0,.04); padding: 32px; border-left: 3px solid var(--accent); }
-  .decision-label { font-size: .58rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
-  .decision-title { font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 10px; line-height: 1.3; }
-  .decision-body { font-size: .9rem; font-weight: 300; color: var(--muted); line-height: 1.7; }
-
-  .reveal { opacity: 0; transform: translateY(22px); transition: opacity .65s cubic-bezier(.23,1,.32,1), transform .65s cubic-bezier(.23,1,.32,1); }
-  .reveal.visible { opacity: 1; transform: none; }
-
-  @keyframes fadeup { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:none; } }
-
-  @media (max-width: 700px) {
-    body { cursor: auto; }
-    #cur, #cur-ring { display: none; }
-    .nav { gap: 0; padding: 5px 6px; }
-    .nav-link { display: none; }
-    .nav-link.mobile-show { display: inline-block; }
-    .nav-logo { font-size: .68rem; padding: 8px 14px; margin-right: 0; border-right: none; }
-    .nav-cta { font-size: .68rem; padding: 8px 14px; margin-left: 6px; }
-    .hero { padding: 100px 16px 0; }
-    .section { padding: 56px 16px 0; }
-    .divider { padding: 0 16px; margin-top: 56px; }
-    .process-grid { grid-template-columns: 1fr; }
-    .insights-grid { grid-template-columns: 1fr; }
-    .learnings-grid { grid-template-columns: 1fr; }
-    .outcomes-grid { grid-template-columns: 1fr; }
-    .decisions-grid { grid-template-columns: 1fr; }
-    .voice-note { padding: 0 16px; }
-    .vn-inner { padding: 9px 18px 9px 9px; gap: 12px; }
-    .vn-label { font-size: .62rem; }
-    .stat-row { grid-template-columns: 1fr; }
-    .persona-card { grid-template-columns: 1fr; }
-    .persona-img { aspect-ratio: 4/3; width: 100%; height: auto; }
-    .persona-cols { grid-template-columns: 1fr; }
-    .persona-grid { grid-template-columns: 1fr 1fr; }
-    .next-card { flex-direction: column; align-items: flex-start; padding: 28px; }
-    .footer-card { flex-direction: column; gap: 6px; text-align: center; }
-    .next-wrap { padding: 0 16px 56px; }
-    .footer { padding: 0 16px 32px; }
-  }
-
-  /* === bento nav bar override === */
-  .nav { position: fixed; top: 16px; left: 50%; transform: translateX(-50%); z-index: 200; display: flex; align-items: center; justify-content: space-between; width: calc(100% - 40px); max-width: 1300px; background: rgba(255,255,255,.82); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(0,0,0,.06); border-radius: 20px; padding: 11px 14px 11px 18px; box-shadow: 0 8px 32px rgba(0,0,0,.08); gap: 0; }
-  .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-  .nav-mark { width: 34px; height: 34px; border-radius: 50%; background: #3B82F6; color: #fff; display: flex; align-items: center; justify-content: center; font-size: .68rem; font-weight: 800; letter-spacing: .08em; flex-shrink: 0; }
-  .nav-name { font-size: .95rem; font-weight: 700; color: #18181b; letter-spacing: -.01em; }
-  .nav-menu { display: flex; align-items: center; gap: 2px; }
-  .nav-link { font-size: .72rem; font-weight: 500; letter-spacing: .04em; color: #6e6e76; text-decoration: none; padding: 9px 15px; border-radius: 100px; transition: background .2s, color .2s; }
-  .nav-link:hover { background: rgba(0,0,0,.05); color: #18181b; }
-  .nav-link.active { color: #18181b; background: rgba(0,0,0,.05); }
-  .nav-cta { background: #3B82F6; color: #fff; font-weight: 700; font-size: .72rem; letter-spacing: .04em; text-decoration: none; padding: 9px 18px; border-radius: 100px; margin-left: 8px; transition: opacity .2s; }
-  .nav-cta:hover { opacity: .85; }
-  @media (max-width: 860px) {
-    [class$="-glow"] { display: none; }
-    .nav { width: calc(100% - 24px); top: 12px; padding: 8px 10px 8px 14px; gap: 0; }
-    .nav-name { font-size: .88rem; }
-    .nav-menu .nav-link { display: none; }
-    .nav-menu .nav-cta { display: inline-block; }
-  }
-</style>
+<link rel="stylesheet" href="../editorial.css">
 </head>
 <body>
 
-<div id="cur"></div>
-<div id="cur-ring"></div>
+<header class="mast">
+  <div class="wrap">
+    <a href="../index.html" class="mast-name">Melvin Morales</a>
+    <nav class="mast-nav" aria-label="Pages">
+      <a href="index.html">Work</a>
+      <a href="../photography.html" aria-current="page">Photography</a>
+      <a href="../print.html">Print</a>
+      <a href="../about.html">About</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
 
-<nav class="nav">
-  <a href="../index.html" class="nav-brand">
-    <span class="nav-mark">MM</span>
-    <span class="nav-name">Melvin Morales</span>
-  </a>
-  <div class="nav-menu">
-    <a href="index.html" class="nav-link active">Work</a>
-    <a href="../photography.html" class="nav-link active">Photography</a>
-    <a href="../print.html" class="nav-link">Print</a>
-    <a href="../about.html" class="nav-link">About</a>
-    <a href="../index.html#contact" class="nav-cta">Contact</a>
-  </div>
-</nav>
-
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-tag">Case Study</div>
-  <h1 class="hero-title">Vistas<br><span>Beauty of the Desert</span></h1>
-  <p class="hero-sub">A solo Nevada landscape exhibit, plus the brand, website, and print collateral I built for it. Seventeen photographs, one identity, wall to web.</p>
-  <div class="hero-meta">
-    <div class="hero-meta-item">
-      <span class="hero-meta-label">Discipline</span>
-      <span class="hero-meta-val">Art Exhibit / Brand</span>
-    </div>
-    <div class="hero-meta-item">
-      <span class="hero-meta-label">Role</span>
-      <span class="hero-meta-val">Photographer, Designer &amp; Developer</span>
-    </div>
-    <div class="hero-meta-item">
-      <span class="hero-meta-label">Team</span>
-      <span class="hero-meta-val">Solo: concept to print</span>
-    </div>
-    <div class="hero-meta-item">
-      <span class="hero-meta-label">Platform</span>
-      <span class="hero-meta-val">Exhibit &middot; Web &middot; Print</span>
-    </div>
-    <div class="hero-meta-item">
-      <span class="hero-meta-label">Venue</span>
-      <span class="hero-meta-val">West Charleston Library, LV</span>
-    </div>
-    <div class="hero-meta-item">
-      <span class="hero-meta-label">Timeline</span>
-      <span class="hero-meta-val">2026</span>
-    </div>
-  </div>
-  <div class="hero-img-wrap">
-    <img src="assets/vistas-hero.jpg" alt="Cathedral Gorge State Park, Nevada, from the Vistas: Beauty of the Desert exhibit" class="hero-img">
-  </div>
+<main>
+<section class="phead"><div class="wrap">
+<span class="eyebrow">Case study</span>
+<h1>Vistas: Beauty of the Desert</h1>
+<p class="lede muted">A solo Nevada landscape exhibit, plus the brand, website and print collateral I built for it. Seventeen photographs, one identity, wall to web.</p>
+<dl class="cs-meta" style="margin-top:clamp(34px,4.5vw,64px);--cols:6">
+<div><dt>Discipline</dt><dd>Art exhibit / Brand</dd></div>
+<div><dt>Role</dt><dd>Photographer, designer and developer</dd></div>
+<div><dt>Team</dt><dd>Solo: concept to print</dd></div>
+<div><dt>Platform</dt><dd>Exhibit, web and print</dd></div>
+<div><dt>Venue</dt><dd>West Charleston Library, LV</dd></div>
+<div><dt>Timeline</dt><dd>2026</dd></div>
+</dl>
+<div class="vn-wrap"><span class="vn-label">Hear me talk about this project</span>
+<div class="vn">
+<audio preload="metadata"><source src="audio/vistas.m4a" type="audio/mp4"><source src="audio/vistas.mp3" type="audio/mpeg"></audio>
+<button class="vn-btn" type="button" aria-label="Play voice note"></button>
+<div class="vn-bar"><div class="vn-fill"></div></div>
+<span class="vn-time">0:00</span></div></div>
+</div></section>
+<div class="wrap"><figure class="cs-hero"><img src="assets/vistas-hero.jpg" alt="Vistas: Beauty of the Desert"></figure></div>
+<section class="sec"><div class="wrap">
+<div class="sec-h measure"><span class="eyebrow">01 &nbsp;Overview</span><h2 class="fade">A solo show, built like an institution.</h2></div>
+<div class="measure fade">
+<p class="lede muted" style="margin-top:0">Vistas: Beauty of the Desert is my own landscape photography exhibit, seventeen large-format photographs of Nevada, from the red sandstone of the south to the alpine north, showing at the West Charleston Library Art Gallery in Las Vegas.</p>
+<p class="muted" style="margin-top:22px">For this one I was not only the photographer. I shot it, curated it, branded it, built it and printed it. I designed the full identity, built an eight-page editorial website, and produced the physical collateral, wall cards, QR codes and a media kit, so a self-funded solo show could carry the polish of an institutional one.</p>
+</div><div class="metrics fade">
+<div class="metric"><b>17</b><p>Photographs of Nevada, shot and curated into a single south-to-north journey across the state</p></div>
+<div class="metric"><b>8<i>-page</i></b><p>Editorial website designed and built end to end: scrolling gallery, exhibit details, media kit and photobook</p></div>
+<div class="metric"><b>Free</b><p>Public exhibit, open 77 days, June 16 to September 1, 2026, spanning July 4th and America's 250th</p></div>
 </div>
-
-<!-- VOICE NOTE -->
-<div class="voice-note">
-  <div class="vn-inner">
-    <button class="vn-play" id="vnPlay" aria-label="Play voice note">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-    </button>
-    <div class="vn-main">
-      <div class="vn-label">Hear me talk about this project</div>
-      <div class="vn-bar" id="vnBar"><div class="vn-fill" id="vnFill"></div></div>
-    </div>
-    <div class="vn-time" id="vnTime">0:00</div>
-  </div>
-  <audio id="vnAudio" preload="metadata">
-    <source src="audio/vistas.mp3" type="audio/mpeg">
-    <source src="audio/vistas.m4a" type="audio/mp4">
-  </audio>
+<div class="tags" style="margin-top:30px">
+<span>Brand Identity</span>
+<span>Web Design</span>
+<span>Editorial</span>
+<span>Art Direction</span>
+<span>Print Collateral</span>
+<span>Photography</span>
 </div>
-
-<!-- OVERVIEW -->
-<div class="section reveal">
-  <div class="section-label">01: Overview</div>
-  <h2 class="section-title">A Solo Show,<br>Built Like an Institution</h2>
-  <div class="section-body">
-    <p><em>Vistas: Beauty of the Desert</em> is my own landscape photography exhibit, seventeen large-format photographs of Nevada, from the red sandstone of the south to the alpine north, showing at the West Charleston Library Art Gallery in Las Vegas, June through September 2026.</p>
-    <p>For this one I wasn&rsquo;t only the photographer. <strong>I shot it, curated it, branded it, built it, and printed it.</strong> I designed the full identity, built an eight-page editorial website, and produced the physical collateral, wall cards, QR codes, and a media kit, so a self-funded solo show could carry the polish of an institutional one.</p>
-  </div>
-  <div class="stat-row" style="margin-top: 36px;">
-    <div class="stat-cell">
-      <div class="stat-big">17</div>
-      <div class="stat-desc">Photographs of Nevada, shot and curated into a single south-to-north journey across the state</div>
-    </div>
-    <div class="stat-cell">
-      <div class="stat-big">8<span>-page</span></div>
-      <div class="stat-desc">Editorial website designed and built end to end: scrolling gallery, exhibit details, media kit, and photobook</div>
-    </div>
-    <div class="stat-cell">
-      <div class="stat-big">Free</div>
-      <div class="stat-desc">Public exhibit, open 77 days, June 16 to September 1, 2026, spanning July 4th and America&rsquo;s 250th</div>
-    </div>
-  </div>
-  <a href="https://vistasexhibit.com" target="_blank" rel="noopener" class="live-link">View Live Exhibit Site <span>&#8599;</span></a>
-  <div class="tags">
-    <span class="tag">Brand Identity</span>
-    <span class="tag">Web Design</span>
-    <span class="tag">Editorial</span>
-    <span class="tag">Art Direction</span>
-    <span class="tag">Print Collateral</span>
-    <span class="tag">Photography</span>
-  </div>
+<div class="hero-act" style="margin-top:clamp(30px,3.6vw,44px)"><a class="btn" href="https://vistasexhibit.com" target="_blank" rel="noopener">View live exhibit site</a></div>
+</div></section>
+<section class="sec"><div class="wrap">
+<div class="sec-h measure"><span class="eyebrow">02 &nbsp;The problem</span><h2 class="fade">No museum's design department to lean on.</h2></div>
+<div class="measure fade">
+<p class="muted" style="margin-top:0">A solo artist mounting a public gallery show is competing for attention with institutions that have staff for exactly this. The photographs are only half of it. A real exhibit also needs an identity, wall labels people can read and scan, a digital home that does the work justice, and a clear path to learn more and buy prints.</p>
+<p class="muted" style="margin-top:22px">I had no team and no budget for any of that. So the challenge was not just hanging good photos. It was giving a one-person show the coherence and polish of an institutional one, across the wall, the web and the printed page, without anything feeling stitched together.</p>
 </div>
-
-<div class="divider reveal"><div class="divider-line"></div></div>
-
-<!-- PROBLEM -->
-<div class="section reveal">
-  <div class="section-label">02: The Problem</div>
-  <h2 class="section-title">No Museum&rsquo;s Design<br>Department to Lean On</h2>
-  <div class="section-body">
-    <p>A solo artist mounting a public-gallery show is competing for attention with institutions that have staff for exactly this. The photographs are only half of it. A real exhibit also needs an identity, wall labels people can read and scan, a digital home that does the work justice, and a clear path to learn more and buy prints.</p>
-    <p>I had no team and no budget for any of that. So the challenge wasn&rsquo;t just hanging good photos. It was giving a one-person show the <strong>coherence and polish of an institutional one</strong>, across the wall, the web, and the printed page, without anything feeling stitched together.</p>
-  </div>
+<div class="quote fade"><p>Photography is an act of slowing down and paying attention to the surroundings. My intention is to bring these landscapes closer, to reduce the sense of separation between viewers and place.</p><cite>From my artist statement</cite></div>
+</div></section>
+<section class="sec"><div class="wrap">
+<div class="sec-h measure"><span class="eyebrow">03 &nbsp;My role and how I worked</span><h2 class="fade">Photographer, designer, developer, all of it.</h2></div>
+<div class="measure fade">
+<p class="muted" style="margin-top:0">I owned every layer of this exhibit: I shot the photographs over years of fieldwork, curated the seventeen, designed the identity, wrote and built the website, and produced the print collateral that hangs in the gallery. With no handoffs, the show and the way it is presented became a single, continuous design problem.</p>
+<p class="muted" style="margin-top:22px">Two decisions shaped the whole thing.</p>
+</div><div class="decisions">
+<div class="dec fade"><span class="num">Decision 01</span><h3>One editorial voice across every surface</h3><p>I built a single, restrained identity, warm off-white type on near-black, Times italic for the captions and Inter for everything functional, and carried it from the gallery wall cards to the website to the QR codes. Whether you are standing in the room or scrolling on your phone, it reads as one exhibit.</p></div>
+<div class="dec fade"><span class="num">Decision 02</span><h3>A website built like a walk through Nevada</h3><p>Instead of a photo grid, I built the gallery as a scroll down the state, south to north. Each of the seventeen images arrives with its own motion, with short written passages in between, notes from the drive. The site does not just display the work; it recreates the experience of standing in the landscape and slowing down.</p></div>
+</div></div></section>
+<section class="sec"><div class="wrap">
+<div class="sec-h measure"><span class="eyebrow">04 &nbsp;Process</span><h2 class="fade">How the show came together.</h2></div>
+<div class="measure fade">
+<p class="muted" style="margin-top:0">This was not a studio project. It was years of driving, planning and producing before a single frame ever hit a wall. The path from an idea to an approved public exhibit ran roughly like this.</p>
 </div>
-
-<div class="section reveal" style="padding-top: 28px;">
-  <div class="callout">
-    <div class="callout-glow"></div>
-    <p class="callout-quote">Photography is an act of slowing down and paying attention to the surroundings. My intention is to bring these landscapes closer, to reduce the sense of separation between viewers and place.</p>
-    <div class="callout-attr">From my artist statement</div>
-  </div>
+<div class="figs">
+<figure class="fig fade"><img src="assets/vistas-card.jpg" alt="One of the seventeen, printed large-format on glossy photographic paper"><figcaption class="cap">One of the seventeen, printed large-format on glossy photographic paper</figcaption></figure>
 </div>
-
-<div class="divider reveal"><div class="divider-line"></div></div>
-
-<!-- MY ROLE -->
-<div class="section reveal">
-  <div class="section-label">03: My Role &amp; How I Worked</div>
-  <h2 class="section-title">Photographer, Designer,<br>Developer, All of It</h2>
-  <div class="section-body">
-    <p>I owned every layer of this exhibit: I shot the photographs over years of fieldwork, curated the seventeen, designed the identity, wrote and built the website, and produced the print collateral that hangs in the gallery. With no handoffs, the show and the way it&rsquo;s presented became a single, continuous design problem.</p>
-    <p>Two decisions shaped the whole thing:</p>
-  </div>
-  <div class="decisions-grid">
-    <div class="decision-card">
-      <div class="decision-label">Decision 01</div>
-      <div class="decision-title">One editorial voice across every surface</div>
-      <div class="decision-body">I built a single, restrained identity, warm off-white type on near-black, Times italic for the captions and Inter for everything functional, and carried it from the gallery wall cards to the website to the QR codes. Whether you&rsquo;re standing in the room or scrolling on your phone, it reads as one exhibit.</div>
-    </div>
-    <div class="decision-card">
-      <div class="decision-label">Decision 02</div>
-      <div class="decision-title">A website built like a walk through Nevada</div>
-      <div class="decision-body">Instead of a photo grid, I built the gallery as a scroll down the state, south to north. Each of the seventeen images arrives with its own motion, with short written passages in between, notes from the drive. The site doesn&rsquo;t just display the work; it recreates the experience of standing in the landscape and slowing down.</div>
-    </div>
-  </div>
+<div class="impact">
+<div class="fade"><div><span class="num">01 &nbsp;Gear</span><h3 style="margin-top:10px">Built to print big</h3></div><p>Shot on a full-frame Sony A7R IV, sixty-one megapixels, chosen so the work could be printed large without losing detail. A long lens to compress distant ridgelines and a wide lens for the big open foregrounds covered the range Nevada demands.</p></div>
+<div class="fade"><div><span class="num">02 &nbsp;Research</span><h3 style="margin-top:10px">Finding the places worth the drive</h3></div><p>Researched Nevada well beyond the postcard spots: canyons, dunes, alpine lakes, wetlands and dark-sky sites, many of them hours from the nearest town. Built a shortlist of locations worth chasing the light for.</p></div>
+<div class="fade"><div><span class="num">03 &nbsp;The road</span><h3 style="margin-top:10px">Routes, road trips and time in the field</h3></div><p>Planned routes and multi-day road trips across the state, often returning to the same place for the right conditions. Most of these images are the product of patience: driving far, waiting on light, and shooting at the edges of the day.</p></div>
+<div class="fade"><div><span class="num">04 &nbsp;Pitch and approval</span><h3 style="margin-top:10px">Statement, intent and the library</h3></div><p>Reached out to the Las Vegas-Clark County Library District, wrote the artist statement and exhibit intent, and went through their review to secure the West Charleston Library gallery, turning a personal body of work into an approved public exhibit.</p></div>
+<div class="fade"><div><span class="num">05 &nbsp;Curate and produce</span><h3 style="margin-top:10px">Selecting, printing and framing</h3></div><p>Pulled the full body of work down to the final seventeen, ordered large-format prints on glossy photographic paper, and ordered and prepared the frames, the point where the photographs stop being files and become objects for a wall.</p></div>
+<div class="fade"><div><span class="num">06 &nbsp;Install and showcase</span><h3 style="margin-top:10px">Hanging the show</h3></div><p>The last step is the install: hanging all seventeen, mounting the wall cards and QR codes, and the opening reception at the gallery in June 2026.</p></div>
 </div>
+</div></section>
+<section class="sec"><div class="wrap">
+<div class="sec-h measure"><span class="eyebrow">05 &nbsp;Impact</span><h2 class="fade">A one-person show that reads like an institution.</h2></div>
+<div class="impact">
+<div class="fade"><h3>A real, public exhibit</h3><p>Accepted into a public library gallery and open free to the public for 77 days, June 16 to September 1, 2026, with the run timed to span July 4th and America's 250th anniversary. The show has since been renewed for a second run at the Clark County Library, September 22 to December 15, 2026.</p></div>
+<div class="fade"><h3>One identity, wall to web</h3><p>A complete, self-built system, brand, eight-page website, wall cards, QR codes and media kit, that holds together across every surface, giving a solo show the coherence of a staffed institution.</p></div>
+<div class="fade"><h3>The site is the second gallery</h3><p>The website extends the exhibit past the library walls: a scrollable walk through Nevada anyone can experience from anywhere, with each photograph available as a print.</p></div>
+<div class="fade"><h3>Proof of range</h3><p>Concept, photography, curation, brand identity, editorial web and print, carried end to end by one person. The kind of full-stack ownership that is hard to fake and rare to find.</p></div>
+</div></div></section>
+<section class="sec last"><div class="wrap">
+<a href="../photography.html" class="go" style="color:var(--ink)">All photography <i>&rarr;</i></a>
+</div></section>
+</main>
 
-<div class="divider reveal"><div class="divider-line"></div></div>
-
-<!-- PROCESS -->
-<div class="section reveal">
-  <div class="section-label">04: Process</div>
-  <h2 class="section-title">How the Show<br>Came Together</h2>
-  <div class="section-body">
-    <p>This wasn&rsquo;t a studio project. It was years of driving, planning, and producing before a single frame ever hit a wall. The path from an idea to an approved public exhibit ran roughly like this:</p>
+<footer class="foot">
+  <div class="wrap">
+    <p>&copy; 2026 Melvin Morales</p>
+    <p>Product designer and builder<br>Las Vegas, NV</p>
+    <p>Created by <a href="https://www.proviewmediaco.com" class="link">Proview Media Co.</a></p>
   </div>
-  <div class="process-grid" style="margin-top: 28px;">
-    <div class="process-card">
-      <div class="process-num">01</div>
-      <div class="process-step-label">Gear</div>
-      <div class="process-step-title">Built to Print Big</div>
-      <div class="process-step-body">Shot on a full-frame <strong>Sony A7R IV</strong>, sixty-one megapixels, chosen so the work could be printed large without losing detail. A long lens to compress distant ridgelines and a wide lens for the big open foregrounds covered the range Nevada demands.</div>
-    </div>
-    <div class="process-card">
-      <div class="process-num">02</div>
-      <div class="process-step-label">Research</div>
-      <div class="process-step-title">Finding the Places Worth the Drive</div>
-      <div class="process-step-body">Researched Nevada well beyond the postcard spots: canyons, dunes, alpine lakes, wetlands, and dark-sky sites, many of them hours from the nearest town. Built a shortlist of locations worth chasing the light for.</div>
-    </div>
-    <div class="process-card">
-      <div class="process-num">03</div>
-      <div class="process-step-label">The Road</div>
-      <div class="process-step-title">Routes, Road Trips &amp; Time in the Field</div>
-      <div class="process-step-body">Planned routes and multi-day road trips across the state, often returning to the same place for the right conditions. Most of these images are the product of patience: driving far, waiting on light, and shooting at the edges of the day.</div>
-    </div>
-    <div class="process-card">
-      <div class="process-num">04</div>
-      <div class="process-step-label">Pitch &amp; Approval</div>
-      <div class="process-step-title">Statement, Intent &amp; the Library</div>
-      <div class="process-step-body">Reached out to the Las Vegas-Clark County Library District, wrote the artist statement and exhibit intent, and went through their review to secure the West Charleston Library gallery, turning a personal body of work into an approved public exhibit.</div>
-    </div>
-    <div class="process-card">
-      <div class="process-num">05</div>
-      <div class="process-step-label">Curate &amp; Produce</div>
-      <div class="process-step-title">Selecting, Printing &amp; Framing</div>
-      <div class="process-step-body">Pulled the full body of work down to the final seventeen, ordered large-format prints on glossy photographic paper, and ordered and prepared the frames, the point where the photographs stop being files and become objects for a wall.</div>
-    </div>
-    <div class="process-card">
-      <div class="process-num">06</div>
-      <div class="process-step-label">Install &amp; Showcase</div>
-      <div class="process-step-title">Hanging the Show: TBD</div>
-      <div class="process-step-body">The last step is the install: hanging all seventeen, mounting the wall cards and QR codes, and the opening reception at the gallery in June 2026. <strong>To be documented</strong>, photos of the space coming together are on the way.</div>
-    </div>
-  </div>
-</div>
+</footer>
 
-<div class="divider reveal"><div class="divider-line"></div></div>
-
-<!-- OUTCOMES -->
-<div class="section reveal">
-  <div class="section-label">05: Impact</div>
-  <h2 class="section-title">A One-Person Show<br>That Reads Like an Institution</h2>
-  <div class="outcomes-grid" style="margin-top: 28px;">
-    <div class="outcome-card">
-      <div class="outcome-title">A Real, Public Exhibit</div>
-      <div class="outcome-body">Accepted into a public library gallery and open free to the public for 77 days, June 16 to September 1, 2026, with the run timed to span July 4th and America&rsquo;s 250th anniversary.</div>
-    </div>
-    <div class="outcome-card">
-      <div class="outcome-title">One Identity, Wall to Web</div>
-      <div class="outcome-body">A complete, self-built system, brand, eight-page website, wall cards, QR codes, and media kit, that holds together across every surface, giving a solo show the coherence of a staffed institution.</div>
-    </div>
-    <div class="outcome-card">
-      <div class="outcome-title">The Site Is the Second Gallery</div>
-      <div class="outcome-body">The website extends the exhibit past the library walls: a scrollable walk through Nevada anyone can experience from anywhere, with each photograph available as a print.</div>
-    </div>
-    <div class="outcome-card">
-      <div class="outcome-title">Proof of Range</div>
-      <div class="outcome-body">Concept, photography, curation, brand identity, editorial web, and print, carried end to end by one person. The kind of full-stack ownership that&rsquo;s hard to fake and rare to find.</div>
-    </div>
-  </div>
-</div>
-
-<div class="divider reveal"><div class="divider-line"></div></div>
-
-<!-- LEARNINGS -->
-
-
-<!-- NEXT PROJECT -->
-<div class="next-wrap">
-  <div class="next-nav single">
-    <a href="../photography.html" class="next-card reveal">
-      <div class="next-card-glow"></div>
-      <div>
-        <div class="next-label">Back</div>
-        <div class="next-title">All Photography</div>
-      </div>
-      <div class="next-arrow">&larr;</div>
-    </a>
-  </div>
-</div>
-
-<!-- FOOTER -->
-<div class="footer">
-  <div class="footer-card">
-    <span>&copy; 2026 Melvin Morales</span>
-    <span>Lead Product Designer &middot; Las Vegas, NV</span>
-    <span>Built with intention.</span>
-  </div>
-</div>
-
-<script>
-  var cur = document.getElementById('cur'), ring = document.getElementById('cur-ring');
-  var mx=0, my=0, rx=0, ry=0;
-  document.addEventListener('mousemove', function(e) { mx=e.clientX; my=e.clientY; cur.style.left=mx+'px'; cur.style.top=my+'px'; });
-  (function loop() { rx+=(mx-rx)*0.1; ry+=(my-ry)*0.1; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(loop); })();
-  document.querySelectorAll('a,button').forEach(function(el) {
-    el.addEventListener('mouseenter', function() { cur.style.width=cur.style.height='16px'; ring.style.width=ring.style.height='50px'; });
-    el.addEventListener('mouseleave', function() { cur.style.width=cur.style.height='9px'; ring.style.width=ring.style.height='34px'; });
-  });
-  var obs = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e, i) {
-      if (e.isIntersecting) { setTimeout(function(){ e.target.classList.add('visible'); }, i*80); obs.unobserve(e.target); }
-    });
-  }, {threshold: 0.08});
-  document.querySelectorAll('.reveal').forEach(function(el) { obs.observe(el); });
-
-  // Voice note player
-  (function() {
-    var audio = document.getElementById('vnAudio');
-    var play = document.getElementById('vnPlay');
-    var fill = document.getElementById('vnFill');
-    var bar = document.getElementById('vnBar');
-    var time = document.getElementById('vnTime');
-    var note = document.querySelector('.voice-note');
-    var label = note ? note.querySelector('.vn-label') : null;
-    if (!audio || !play) return;
-
-    var PLAY = '<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
-    var PAUSE = '<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>';
-
-    function fmt(s) {
-      if (isNaN(s) || !isFinite(s)) s = 0;
-      var m = Math.floor(s / 60);
-      var sec = Math.floor(s % 60);
-      return m + ':' + (sec < 10 ? '0' : '') + sec;
-    }
-    function render() {
-      var dur = audio.duration || 0;
-      fill.style.width = (dur ? (audio.currentTime / dur) * 100 : 0) + '%';
-      time.textContent = fmt(audio.currentTime) + ' / ' + fmt(dur);
-    }
-    audio.addEventListener('error', function() {
-      if (label) label.textContent = 'Voice note coming soon';
-      if (note) note.style.opacity = '.55';
-      play.style.cursor = 'default';
-      play.disabled = true;
-    });
-    play.addEventListener('click', function() {
-      if (audio.paused) { audio.play(); } else { audio.pause(); }
-    });
-    audio.addEventListener('play', function() { play.innerHTML = PAUSE; play.setAttribute('aria-label', 'Pause voice note'); });
-    audio.addEventListener('pause', function() { play.innerHTML = PLAY; play.setAttribute('aria-label', 'Play voice note'); });
-    audio.addEventListener('timeupdate', render);
-    audio.addEventListener('loadedmetadata', render);
-    audio.addEventListener('ended', function() { audio.currentTime = 0; render(); });
-    bar.addEventListener('click', function(e) {
-      var rect = bar.getBoundingClientRect();
-      var pct = (e.clientX - rect.left) / rect.width;
-      if (audio.duration) audio.currentTime = Math.max(0, Math.min(1, pct)) * audio.duration;
-    });
-  })();
-</script>
+<script src="../editorial.js"></script>
 </body>
 </html>

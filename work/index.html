@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All Work, Melvin Morales</title>
 <meta name="description" content="All Projects, Melvin Morales, Senior Product Designer">
 <meta property="og:title" content="All Work, Melvin Morales">
 <meta property="og:description" content="All Projects, Melvin Morales, Senior Product Designer">
@@ -14,261 +15,143 @@
 <meta name="twitter:description" content="All Projects, Melvin Morales, Senior Product Designer">
 <meta name="twitter:image" content="https://www.melvinmorales.com/og-image.svg">
 <link rel="canonical" href="https://www.melvinmorales.com/work/">
-<title>All Work, Melvin Morales</title>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #ffffff; --card: #f7f7f8; --card2: #eeeef1;
-    --border: #e6e6e9; --text: #18181b; --muted: #6e6e76;
-    --accent: #3B82F6; --radius: 20px; --radius-sm: 12px;
-  }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; overflow-x: hidden; }
-  body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-weight: 400; min-height: 100vh; cursor: none; overflow-x: hidden; max-width: 100%; }
-
-  #cur { position: fixed; width: 9px; height: 9px; background: var(--accent); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width .2s, height .2s;  }
-  #cur-ring { position: fixed; width: 34px; height: 34px; border: 1px solid rgba(59,130,246,.35); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: width .35s cubic-bezier(.23,1,.32,1), height .35s cubic-bezier(.23,1,.32,1); }
-
-  .nav { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 200; display: flex; align-items: center; gap: 4px; background: rgba(255,255,255,.82); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(0,0,0,.07); border-radius: 100px; padding: 6px 8px; box-shadow: 0 8px 32px rgba(0,0,0,.08); white-space: nowrap; }
-  .nav-logo { font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--text); text-decoration: none; padding: 8px 16px; border-radius: 100px; margin-right: 4px; border-right: 1px solid rgba(0,0,0,.07); }
-  .nav-link { font-size: .7rem; font-weight: 500; letter-spacing: .08em; color: var(--muted); text-decoration: none; padding: 8px 16px; border-radius: 100px; transition: background .2s, color .2s; }
-  .nav-link:hover { background: rgba(0,0,0,.07); color: var(--text); }
-  .nav-link.active { color: var(--text); }
-  .nav-back { font-size: .7rem; font-weight: 500; letter-spacing: .08em; color: var(--muted); text-decoration: none; padding: 8px 16px; border-radius: 100px; transition: background .2s, color .2s; }
-  .nav-back:hover { background: rgba(0,0,0,.07); color: var(--text); }
-  .nav-cta { background: var(--accent); color: #fff; font-weight: 700; font-size: .7rem; letter-spacing: .08em; text-decoration: none; padding: 8px 16px; border-radius: 100px; margin-left: 4px; transition: opacity .2s; }
-  .nav-cta:hover { opacity: .85; }
-
-  .page { max-width: 1300px; margin: 0 auto; padding: 100px 20px 40px; }
-  .page-title { font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 900; letter-spacing: -.02em; text-transform: uppercase; color: var(--text); margin-bottom: 8px; }
-  .page-sub { font-size: .85rem; font-weight: 300; color: var(--muted); margin-bottom: 40px; }
-
-  .proj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-  .group-head { margin: 8px 4px 18px; }
-  .group-head.second { margin-top: 56px; }
-  .group-title { font-size: 1.1rem; font-weight: 800; letter-spacing: -.01em; color: var(--text); display: flex; align-items: center; gap: 11px; }
-  .group-title::before { content: ''; width: 22px; height: 2px; background: var(--accent); border-radius: 2px; display: block; }
-  .group-sub { font-size: .78rem; font-weight: 300; line-height: 1.55; color: var(--muted); margin: 7px 0 0 33px; }
-  .proj-card { background: var(--card2); border-radius: var(--radius-sm); overflow: hidden; text-decoration: none; color: var(--text); border: 1px solid rgba(0,0,0,.10); display: block; transition: transform .3s cubic-bezier(.23,1,.32,1), box-shadow .3s; }
-  .proj-card:hover { transform: translateY(-4px); box-shadow: 0 20px 48px rgba(0,0,0,.45), 0 0 0 1px rgba(59,130,246,.1); }
-  .proj-img-wrap { width: 100%; aspect-ratio: 16/10; overflow: hidden; }
-  .proj-img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(15%) brightness(.82); transition: filter .5s, transform .5s cubic-bezier(.23,1,.32,1); }
-  .proj-card:hover .proj-img { filter: grayscale(0%) brightness(1); transform: scale(1.05); }
-  .proj-info { padding: 14px 16px 16px; display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
-  .proj-cat { font-size: .57rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
-  .proj-title { font-size: .86rem; font-weight: 700; color: var(--text); line-height: 1.2; margin-bottom: 9px; }
-  .proj-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 12px; }
-  .ptag { font-size: .53rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: 3px 8px; border-radius: 100px; background: rgba(0,0,0,.05); color: #6e6e76; border: 1px solid rgba(0,0,0,.06); }
-  .proj-arrow { width: 30px; height: 30px; flex-shrink: 0; border-radius: 50%; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: .8rem; color: var(--muted); transition: background .2s, color .2s, transform .3s; }
-  .proj-card:hover .proj-arrow { background: var(--accent); color: #000; transform: rotate(45deg); }
-  .skill-chip { font-size: .63rem; font-weight: 500; padding: 5px 12px; background: var(--card2); border: 1px solid var(--border); border-radius: 100px; color: #6e6e76; transition: border-color .2s, color .2s; }
-
-  .footer { max-width: 1300px; margin: 40px auto 0; padding: 0 20px 40px; }
-  .footer-card { background: var(--card); border-radius: var(--radius); border: 1px solid rgba(0,0,0,.04); padding: 18px 26px; display: flex; justify-content: space-between; align-items: center; font-size: .6rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
-
-  .reveal { opacity: 0; transform: translateY(22px); transition: opacity .65s cubic-bezier(.23,1,.32,1), transform .65s cubic-bezier(.23,1,.32,1); }
-  .reveal.visible { opacity: 1; transform: none; }
-  @keyframes fadeup { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:none; } }
-
-  @media (max-width: 700px) {
-    body { cursor: auto; }
-    #cur, #cur-ring { display: none; }
-    .nav { gap: 0; padding: 5px 6px; }
-    .nav-link { display: none; }
-    .nav-link.mobile-show { display: inline-block; }
-    .nav-logo { font-size: .68rem; padding: 8px 14px; margin-right: 0; border-right: none; }
-    .nav-cta { font-size: .68rem; padding: 8px 14px; margin-left: 6px; }
-    .proj-grid { grid-template-columns: 1fr 1fr; }
-  }
-  @media (max-width: 500px) {
-    .proj-grid { grid-template-columns: 1fr; }
-    .footer-card { flex-direction: column; gap: 6px; text-align: center; }
-  }
-
-  /* === bento nav bar override === */
-  .nav { position: fixed; top: 16px; left: 50%; transform: translateX(-50%); z-index: 200; display: flex; align-items: center; justify-content: space-between; width: calc(100% - 40px); max-width: 1300px; background: rgba(255,255,255,.82); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(0,0,0,.06); border-radius: 20px; padding: 11px 14px 11px 18px; box-shadow: 0 8px 32px rgba(0,0,0,.08); gap: 0; }
-  .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-  .nav-mark { width: 34px; height: 34px; border-radius: 50%; background: #3B82F6; color: #fff; display: flex; align-items: center; justify-content: center; font-size: .68rem; font-weight: 800; letter-spacing: .08em; flex-shrink: 0; }
-  .nav-name { font-size: .95rem; font-weight: 700; color: #18181b; letter-spacing: -.01em; }
-  .nav-menu { display: flex; align-items: center; gap: 2px; }
-  .nav-link { font-size: .72rem; font-weight: 500; letter-spacing: .04em; color: #6e6e76; text-decoration: none; padding: 9px 15px; border-radius: 100px; transition: background .2s, color .2s; }
-  .nav-link:hover { background: rgba(0,0,0,.05); color: #18181b; }
-  .nav-link.active { color: #18181b; background: rgba(0,0,0,.05); }
-  .nav-cta { background: #3B82F6; color: #fff; font-weight: 700; font-size: .72rem; letter-spacing: .04em; text-decoration: none; padding: 9px 18px; border-radius: 100px; margin-left: 8px; transition: opacity .2s; }
-  .nav-cta:hover { opacity: .85; }
-  @media (max-width: 860px) {
-    [class$="-glow"] { display: none; }
-    .nav { width: calc(100% - 24px); top: 12px; padding: 8px 10px 8px 14px; gap: 0; }
-    .nav-name { font-size: .88rem; }
-    .nav-menu .nav-link { display: none; }
-    .nav-menu .nav-cta { display: inline-block; }
-  }
-</style>
+<link rel="stylesheet" href="../editorial.css">
 </head>
 <body>
 
-<div id="cur"></div>
-<div id="cur-ring"></div>
-
-<nav class="nav">
-  <a href="../index.html" class="nav-brand">
-    <span class="nav-mark">MM</span>
-    <span class="nav-name">Melvin Morales</span>
-  </a>
-  <div class="nav-menu">
-    <a href="index.html" class="nav-link active">Work</a>
-    <a href="../photography.html" class="nav-link">Photography</a>
-    <a href="../print.html" class="nav-link">Print</a>
-    <a href="../about.html" class="nav-link">About</a>
-    <a href="../index.html#contact" class="nav-cta">Contact</a>
+<header class="mast">
+  <div class="wrap">
+    <a href="../index.html" class="mast-name">Melvin Morales</a>
+    <nav class="mast-nav" aria-label="Pages">
+      <a href="index.html" aria-current="page">Work</a>
+      <a href="../photography.html">Photography</a>
+      <a href="../print.html">Print</a>
+      <a href="../about.html">About</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
   </div>
-</nav>
+</header>
 
-<div class="page">
-  <h1 class="page-title" style="opacity:0;animation:fadeup .6s .1s forwards;">Work</h1>
-  <p class="page-sub" style="opacity:0;animation:fadeup .6s .2s forwards;">Everything I&rsquo;ve made: product design for clients and employers, plus the independent products and businesses I designed and built end to end.</p>
+<main>
+<section class="phead">
+    <div class="wrap">
+      <span class="eyebrow">Work</span>
+      <h1>Everything I have made.</h1>
+      <p class="lede muted">Product design for clients and employers, plus the independent products and businesses I designed and built end to end. Every number here is one I can source.</p>
+    </div>
+  </section>
 
-  <div class="group-head reveal">
-    <div class="group-title">Professional</div>
-    <div class="group-sub">Product design for clients &amp; employers, case studies that lead with outcomes.</div>
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-h measure">
+        <span class="eyebrow">Client and employer</span>
+        <h2 class="fade">Four projects I was hired to lead.</h2>
+      </div>
+
+      <a class="plate fade" href="index.html">
+        <div class="plate-media"><img src="assets/netdocuments-card.jpg" alt="NetDocuments Word add-in interface"></div>
+        <div class="plate-body">
+          <span class="num">Plate 01</span>
+          <h3 class="plate-name">NetDocuments</h3>
+          <span class="plate-meta">Legal tech / Senior product designer / Microsoft Word add in</span>
+          <p>A net new add in built inside Word, shaped by research with more than 200 participants and delivered with a PM and an M365 engineering team.</p>
+          <div class="tags"><span>UX Design</span><span>Microsoft</span><span>SaaS</span></div>
+          <span class="go">Read the case study <i>&rarr;</i></span>
+        </div>
+      </a>
+
+      <a class="plate flip fade" href="index.html">
+        <div class="plate-media"><img src="assets/mindbody-hero.jpg" alt="Mindbody branded app screens"></div>
+        <div class="plate-body">
+          <span class="num">Plate 02</span>
+          <h3 class="plate-name">Mindbody</h3>
+          <span class="plate-meta">Wellness / Product designer / iOS and Android</span>
+          <p>A native redesign of the branded app studios hand to their members, rebuilt for two platforms without splitting the experience in two.</p>
+          <div class="tags"><span>Mobile</span><span>iOS / Android</span></div>
+          <span class="go">Read the case study <i>&rarr;</i></span>
+        </div>
+      </a>
+
+      <a class="plate fade" href="index.html">
+        <div class="plate-media"><img src="assets/dardanos-hero.png" alt="Dardano's Shoes storefront design"></div>
+        <div class="plate-body">
+          <span class="num">Plate 03</span>
+          <h3 class="plate-name">Dardano's Shoes</h3>
+          <span class="plate-meta">E-commerce / Sole designer with one engineer / Retail</span>
+          <p>A family shoe store rebuilt for online sale. $106K in profit over six months, roughly three times what the business did before.</p>
+          <div class="tags"><span>E-commerce</span><span>Conversion</span></div>
+          <span class="go">Read the case study <i>&rarr;</i></span>
+        </div>
+      </a>
+
+      <a class="plate flip fade" href="index.html">
+        <div class="plate-media"><img src="assets/ez-shoe-repair-hero.png" alt="EZ Shoe Repair visual checkout"></div>
+        <div class="plate-body">
+          <span class="num">Plate 04</span>
+          <h3 class="plate-name">EZ Shoe Repair</h3>
+          <span class="plate-meta">E-commerce / Sole designer with one engineer / Service</span>
+          <p>The repair half of the same owner's business. A visual checkout that lets people point at the damage instead of describing it, in fewer steps.</p>
+          <div class="tags"><span>E-commerce</span><span>Service design</span></div>
+          <span class="go">Read the case study <i>&rarr;</i></span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <span class="eyebrow">The through line</span>
+      <p>Design, build, create. It is all one instinct.</p>
+      <p class="sub">Dardano's sells the shoes and EZ repairs them, same owner, one ecosystem. Marcavo and Peelr are mine front end to back end, database included. Knowing what a decision costs to build changes which decisions I make.</p>
+    </div>
+  </section>
+
+  <section class="sec last">
+    <div class="wrap">
+      <div class="sec-h measure">
+        <span class="eyebrow">Independent</span>
+        <h2 class="fade">Three products I designed, built and shipped alone.</h2>
+        <p class="fade">Front end to back end, including the database, the billing and the app store listing.</p>
+      </div>
+      <div class="tiles">
+        <a class="tile fade" href="index.html">
+          <div class="tile-media"><img src="assets/peelr-card.png" alt="Peelr conversation game"></div>
+          <span class="num">Plate 05</span>
+          <h3>Peelr</h3>
+          <p>A conversation card game live on iOS and the web. More than 500 questions, a Supabase back end, and a new drop every month.</p>
+          <div class="tags"><span>Product Design</span><span>Full-Stack</span></div>
+          <span class="go">Read the case study <i>&rarr;</i></span>
+        </a>
+        <a class="tile fade" href="index.html">
+          <div class="tile-media"><img src="assets/marcavo-card.png" alt="Marcavo client management platform"></div>
+          <span class="num">Plate 06</span>
+          <h3>Marcavo</h3>
+          <p>A complete client management platform for small studios, designed and built solo in a single month on Next.js.</p>
+          <div class="tags"><span>Product Design</span><span>Next.js</span></div>
+          <span class="go">Read the case study <i>&rarr;</i></span>
+        </a>
+        <a class="tile fade" href="index.html">
+          <div class="tile-media"><img src="assets/sevn-hero.png" alt="SEVN guide to Las Vegas"></div>
+          <span class="num">Plate 07</span>
+          <h3>SEVN</h3>
+          <p>A curated guide to Las Vegas covering more than 500 local spots across seven neighborhoods, with zero paid placements.</p>
+          <div class="tags"><span>Product Design</span><span>Mobile</span></div>
+          <span class="go">Read the case study <i>&rarr;</i></span>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p>&copy; 2026 Melvin Morales</p>
+    <p>Product designer and builder<br>Las Vegas, NV</p>
+    <p>Created by <a href="https://www.proviewmediaco.com" class="link">Proview Media Co.</a></p>
   </div>
+</footer>
 
-  <div class="proj-grid">
-        <a href="netdocuments.html" class="proj-card">
-          <div class="proj-img-wrap">
-            <img src="assets/netdocuments-card.jpg" alt="NetDocuments Word add-in" class="proj-img">
-          </div>
-          <div class="proj-info">
-            <div>
-              <div class="proj-cat">Legal Tech &middot; SaaS</div>
-              <div class="proj-title">NetDocuments Word Add-in</div>
-              <div class="proj-result">Net-new add-in · 200+ research participants</div>
-              <div class="proj-tags"><span class="ptag">UX Design</span><span class="ptag">Microsoft</span><span class="ptag">SaaS</span></div>
-            </div>
-            <div class="proj-arrow">&rarr;</div>
-          </div>
-        </a>
-        <a href="mindbody.html" class="proj-card">
-          <div class="proj-img-wrap">
-            <img src="https://framerusercontent.com/images/VISsLIQFk5HLCoxnMMCpFR4PU.jpg" alt="Mindbody branded app" class="proj-img">
-          </div>
-          <div class="proj-info">
-            <div>
-              <div class="proj-cat">Wellness &middot; Mobile</div>
-              <div class="proj-title">Mindbody Branded App</div>
-              <div class="proj-result">Native redesign · iOS &amp; Android</div>
-              <div class="proj-tags"><span class="ptag">Mobile</span><span class="ptag">iOS / Android</span></div>
-            </div>
-            <div class="proj-arrow">&rarr;</div>
-          </div>
-        </a>
-        <a href="dardanos.html" class="proj-card">
-          <div class="proj-img-wrap">
-            <img src="assets/dardanos-hero.png" alt="Dardano&rsquo;s site redesign" class="proj-img">
-          </div>
-          <div class="proj-info">
-            <div>
-              <div class="proj-cat">E-commerce &middot; Retail</div>
-              <div class="proj-title">Dardanos Shoes</div>
-              <div class="proj-result">$106K profit in 6 months</div>
-              <div class="proj-tags"><span class="ptag">E-commerce</span><span class="ptag">Conversion</span></div>
-            </div>
-            <div class="proj-arrow">&rarr;</div>
-          </div>
-        </a>
-        <a href="ez-shoe-repair.html" class="proj-card">
-          <div class="proj-img-wrap">
-            <img src="assets/ez-shoe-repair-hero.png" alt="EZ Shoe Repair checkout" class="proj-img">
-          </div>
-          <div class="proj-info">
-            <div>
-              <div class="proj-cat">E-commerce &middot; Web</div>
-              <div class="proj-title">EZ Shoe Repair</div>
-              <div class="proj-result">Visual checkout · fewer steps, more orders</div>
-              <div class="proj-tags"><span class="ptag">E-commerce</span><span class="ptag">Web</span></div>
-            </div>
-            <div class="proj-arrow">&rarr;</div>
-          </div>
-        </a>
-  </div>
-
-  <div class="group-head second reveal">
-    <div class="group-title">Independent</div>
-    <div class="group-sub">Products &amp; businesses I designed and built solo, front end to back end.</div>
-  </div>
-
-  <div class="proj-grid">
-        <a href="peelr.html" class="proj-card">
-          <div class="proj-img-wrap">
-            <img src="assets/peelr-card.png" alt="Peelr app screens" class="proj-img">
-          </div>
-          <div class="proj-info">
-            <div>
-              <div class="proj-cat">Social &middot; Gaming</div>
-              <div class="proj-title">Peelr</div>
-              <div class="proj-result">Live iOS + web conversation game, 500+ questions, built solo.</div>
-              <div class="proj-tags"><span class="ptag">Product Design</span><span class="ptag">Mobile</span><span class="ptag">Full-Stack</span></div>
-            </div>
-            <div class="proj-arrow">&rarr;</div>
-          </div>
-        </a>
-        <a href="marcavo.html" class="proj-card">
-          <div class="proj-img-wrap">
-            <img src="assets/marcavo-card.png" alt="Marcavo dashboard" class="proj-img">
-          </div>
-          <div class="proj-info">
-            <div>
-              <div class="proj-cat">SaaS &middot; Client Management</div>
-              <div class="proj-title">Marcavo</div>
-              <div class="proj-result">A complete client-management platform, designed and built solo in one month.</div>
-              <div class="proj-tags"><span class="ptag">Product Design</span><span class="ptag">Full-Stack</span><span class="ptag">Next.js</span></div>
-            </div>
-            <div class="proj-arrow">&rarr;</div>
-          </div>
-        </a>
-        <a href="sevnapp.html" class="proj-card">
-          <div class="proj-img-wrap">
-            <img src="assets/sevn-hero.png" alt="SEVN app" class="proj-img">
-          </div>
-          <div class="proj-info">
-            <div>
-              <div class="proj-cat">Travel &middot; Mobile</div>
-              <div class="proj-title">SEVN</div>
-              <div class="proj-result">A curated guide to Las Vegas, 500+ local spots, zero paid placements.</div>
-              <div class="proj-tags"><span class="ptag">Product Design</span><span class="ptag">Mobile</span><span class="ptag">PWA</span></div>
-            </div>
-            <div class="proj-arrow">&rarr;</div>
-          </div>
-        </a>
-  </div>
-</div>
-
-<div class="footer">
-  <div class="footer-card">
-    <span>&copy; 2026 Melvin Morales</span>
-    <span>Product Designer &amp; Builder &middot; Las Vegas, NV</span>
-    <span>Created by <a href="https://www.proviewmediaco.com" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;">Proview Media Co.</a></span>
-  </div>
-</div>
-
-<script>
-  var cur = document.getElementById('cur'), ring = document.getElementById('cur-ring');
-  var mx=0, my=0, rx=0, ry=0;
-  document.addEventListener('mousemove', function(e) { mx=e.clientX; my=e.clientY; cur.style.left=mx+'px'; cur.style.top=my+'px'; });
-  (function loop() { rx+=(mx-rx)*0.1; ry+=(my-ry)*0.1; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(loop); })();
-  document.querySelectorAll('a,button').forEach(function(el) {
-    el.addEventListener('mouseenter', function() { cur.style.width=cur.style.height='16px'; ring.style.width=ring.style.height='50px'; });
-    el.addEventListener('mouseleave', function() { cur.style.width=cur.style.height='9px'; ring.style.width=ring.style.height='34px'; });
-  });
-  var obs = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e, i) {
-      if (e.isIntersecting) { setTimeout(function(){ e.target.classList.add('visible'); }, i*80); obs.unobserve(e.target); }
-    });
-  }, {threshold: 0.08});
-  document.querySelectorAll('.reveal').forEach(function(el) { obs.observe(el); });
-</script>
-
+<script src="../editorial.js"></script>
 </body>
 </html>
