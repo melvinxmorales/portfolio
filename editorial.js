@@ -39,6 +39,43 @@
     Array.prototype.forEach.call(els, function (el) { obs.observe(el); });
   }
 
+  /* ---- work tabs: Client work | Independent. Without JS both panels show. ---- */
+  var tablist = document.querySelector('[role="tablist"]');
+  if (tablist) {
+    var tabs = Array.prototype.slice.call(tablist.querySelectorAll('[role="tab"]'));
+    var reveal = function (panel) {
+      Array.prototype.forEach.call(panel.querySelectorAll('.fade'), function (el) { el.classList.add('in'); });
+    };
+    var select = function (tab, focus, writeHash) {
+      tabs.forEach(function (t) {
+        var on = t === tab, panel = document.getElementById(t.getAttribute('aria-controls'));
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+        t.tabIndex = on ? 0 : -1;
+        if (panel) { panel.hidden = !on; if (on) reveal(panel); }
+      });
+      if (focus) tab.focus();
+      if (writeHash && history.replaceState) {
+        history.replaceState(null, '', tab === tabs[0] ? location.pathname + location.search : '#' + tab.getAttribute('data-hash'));
+      }
+    };
+    var fromHash = function () {
+      var id = location.hash.slice(1);
+      return tabs.filter(function (t) { return t.getAttribute('data-hash') === id; })[0] || tabs[0];
+    };
+    document.documentElement.classList.add('js-tabs');
+    select(fromHash(), false, false);
+    tabs.forEach(function (t, i) {
+      t.addEventListener('click', function () { select(t, false, true); });
+      t.addEventListener('keydown', function (e) {
+        var n = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+        if (e.key === 'Home') { e.preventDefault(); select(tabs[0], true, true); return; }
+        if (e.key === 'End') { e.preventDefault(); select(tabs[tabs.length - 1], true, true); return; }
+        if (n) { e.preventDefault(); select(tabs[(i + n + tabs.length) % tabs.length], true, true); }
+      });
+    });
+    window.addEventListener('hashchange', function () { select(fromHash(), false, false); });
+  }
+
   /* ---- voice note player ---- */
   Array.prototype.forEach.call(document.querySelectorAll('.vn'), function (vn) {
     var audio = vn.querySelector('audio');
